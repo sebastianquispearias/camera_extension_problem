@@ -1,6 +1,5 @@
 
 """
-poi_protocol.py
 Static PoI node: represents a Point of Interest in the simulation.
 """
 

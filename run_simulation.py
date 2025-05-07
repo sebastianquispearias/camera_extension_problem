@@ -1,4 +1,3 @@
-
 """
 run_simulation.py
 Main script to set up and run the simulation:
@@ -22,32 +21,38 @@ from eqc_protocol import EQCProtocol
 from vqc_protocol import VQCProtocol
 
 if __name__ == "__main__":
+    # Logger setup
     root = logging.getLogger()
-    root.setLevel(logging.INFO)
-    fmt = logging.Formatter("%(asctime)s %(name)-10s %(levelname)-7s %(message)s")
+    root.setLevel(logging.DEBUG)
+    fmt = logging.Formatter("%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
     ch = logging.StreamHandler(); ch.setFormatter(fmt); root.addHandler(ch)
     fh = logging.FileHandler("sim.log","w","utf-8"); fh.setFormatter(fmt); root.addHandler(fh)
+
+    root.info(f"✅ Simulation start — duration={DURATION}s, VQCs={NUM_VQCS}, area={L}×{L}")
 
     sim_cfg = SimulationConfiguration(duration=DURATION, debug=True, real_time=True)
     builder = SimulationBuilder(sim_cfg)
 
-    # Exploration quadcopter
     builder.add_node(EQCProtocol, (0.0, 0.0, 7.0))
-    # Visiting quadcopters
-    for _ in range(NUM_VQCS):
-        x, y = random.uniform(0, L), random.uniform(0, L)
-        builder.add_node(VQCProtocol, (x, y, 4.0))
-    # Static PoI nodes
-    for poi in POIS:
-        x, y = poi["coord"]
-        builder.add_node(POIProtocol, (x, y, 0.0))
+    root.info("➕ Added EQCProtocol at (0,0,7)")
 
-    # Simulation handlers
+    for i in range(NUM_VQCS):
+        pos = (random.uniform(0,L), random.uniform(0,L), 4.0)
+        builder.add_node(VQCProtocol, pos)
+        root.info(f"➕ Added VQCProtocol #{i+1} at {pos}")
+
+    for poi in POIS:
+        builder.add_node(POIProtocol, (poi["coord"][0], poi["coord"][1], 0.0))
+    root.info(f"➕ Added {len(POIS)} POIProtocol nodes")
+
     medium = CommunicationMedium(transmission_range=R_COMM)
     builder.add_handler(CommunicationHandler(medium))
     builder.add_handler(TimerHandler())
     builder.add_handler(MobilityHandler(MobilityConfiguration(default_speed=10.0)))
     builder.add_handler(VisualizationHandler())
+    root.info("🔧 Handlers added")
 
     sim = builder.build()
+    root.info("▶️ Starting simulation")
     sim.start_simulation()
+    root.info("🏁 Simulation complete")

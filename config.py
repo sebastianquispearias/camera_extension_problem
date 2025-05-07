@@ -1,6 +1,5 @@
 
 """
-config.py
 Simulation parameters and PoI definitions:
 - Area size, camera and detection ranges.
 - Buffer limits and simulation duration.
