@@ -58,13 +58,13 @@ class EQCProtocol(IProtocol):
         self.provider.schedule_timer("assign", next_t)
         self.log.debug(f"⏱️ Scheduled first 'assign' at t={next_t:.2f}")
 
-    def handle_telemetry(self, telemetry: Telemetry) -> None:
+    def handle_telemetry(self, telemetry: Telemetry) -> None: # lo que hace es imprimir posicion y a que waypoint se dirige
         self.log.debug(f"📡 Telemetry: pos={telemetry.current_position}, idle={self.mission.is_idle}")
         if not self.mission.is_idle:
             wp = self.mission.current_waypoint
             self.log.info(f"🛰️  EQC rumbo al waypoint en {wp}")
 
-    def handle_timer(self, timer: str) -> None:
+    def handle_timer(self, timer: str) -> None: # lo que hace es actualizar self.pending con las coordenadas detectadas
         if timer == "assign":
             now = self.provider.current_time()
             self.log.info(f"⚙️  EQC handle_timer('assign') @ t={now:.2f}")
@@ -99,7 +99,7 @@ class EQCProtocol(IProtocol):
             self.provider.schedule_timer("assign", next_t)
             self.log.debug(f"⏱️ Rescheduled 'assign' at t={next_t:.2f}")
 
-    def handle_packet(self, message: str) -> None:
+    def handle_packet(self, message: str) -> None: #se activa con HELLO o deliver, actualiza vqc states, pendindg      y en deliver
         self.log.debug(f"📥 handle_packet: {message}")
         msg = json.loads(message)
         t = msg.get("type")
@@ -127,7 +127,11 @@ class EQCProtocol(IProtocol):
                 else:
                     METRICS["redundant"] += 1
             self.log.debug(f"🧮 Metrics: unique={len(METRICS['unique_ids'])}, redundant={METRICS['redundant']}")
-
+            self.log.debug(f"DELIVER recibido de VQC-{vid}: {pids}")
+            self.pending =[
+                p for p in self.pending
+                if p["label"] not in pids
+            ]
         self.assign_to_vqcs()
 
     def assign_to_vqcs(self) -> None:
@@ -138,7 +142,8 @@ class EQCProtocol(IProtocol):
             if free <= 0:
                 self.log.debug(f"→ VQC-{vid} no free slots")
                 continue
-
+##########unicon dos conjuntos, passa informacoes novas
+###no sobrecargar buffer, no dar mas tareas. heuristaica de blanceamiento de carga
             scored = []
             for poi in self.pending:
                 dist = max(1e-6, math.hypot(pos[0]-poi["coord"][0], pos[1]-poi["coord"][1]))

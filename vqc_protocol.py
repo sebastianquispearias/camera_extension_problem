@@ -28,7 +28,7 @@ class VQCProtocol(IProtocol):
         self.discovered: List[str] = []
         self.visited: List[str] = []
         self.delivering = False
-
+        
         self.log.info(f"🛫 VQC-{self.id} initialized at {self.pos}")
 
         self.random = RandomMobilityPlugin(
@@ -57,15 +57,29 @@ class VQCProtocol(IProtocol):
                 if dist <= R_DETECT:
                     pid = next(p["id"] for p in POIS if p["coord"]==(coord3d[0],coord3d[1]) and p["urgency"]==urg)
                     if pid not in self.discovered and pid not in self.visited:
-                        self.discovered.append(pid)
-                        self.log.info(f"🔍 Local detect: {pid}")
-                    if not self.delivering and self.discovered:
-                        self.delivering = True
-                        self.log.info(f"📦 Starting deliver phase with {self.discovered}")
-                        self.provider.schedule_timer("deliver", self.provider.current_time()+1)
+                        if len(self.discovered) <M:
+                            self.discovered.append(pid)
+                            self.log.info(f"🔍 Local detect: {pid}")
+                        else:
+                            self.log.warning(f"Buffer discovered lleno")
 
     def handle_timer(self, timer: str) -> None:
         if timer == "hello":
+            if self.discovered:
+                report = {
+                    "type": "DELIVER",
+                    "v_id": self.id,
+                    "pids": self.discovered.copy()
+                }
+                cmd = CommunicationCommand(
+                    CommunicationCommandType.BROADCAST,
+                    json.dumps(report)
+                )
+                self.provider.send_communication_command(cmd)
+                self.log.info(f"📣 DELIVER automático en HELLO: entregados {self.discovered}")
+                # Marcar como visitados y vaciar buffer
+                self.visited.extend(self.discovered)
+                self.discovered.clear()            
             free = M - len(self.next2visit)
             msg = {"type":"HELLO","v_id":self.id,"huecos":free,"visited":self.visited.copy(),"position":list(self.pos)}
             self.log.debug(f"📤 HELLO payload: {msg}")
@@ -73,32 +87,6 @@ class VQCProtocol(IProtocol):
             self.provider.send_communication_command(cmd)
             self.log.info(f"📤 HELLO sent: free={free}, visited={self.visited}")
             self.provider.schedule_timer("hello", self.provider.current_time()+1)
-
-        elif timer == "deliver" and self.delivering:
-            report = {"type":"DELIVER","v_id":self.id,"pids":self.discovered.copy()}
-            self.log.debug(f"📣 DELIVER payload: {report}")
-            cmd = CommunicationCommand(CommunicationCommandType.BROADCAST, json.dumps(report))
-            self.provider.send_communication_command(cmd)
-            self.log.info(f"📣 DELIVER sent: {self.discovered}")
-            delivered = set(self.discovered)
-            self.visited.extend(self.discovered)
-            self.discovered.clear()
-            self.log.debug(f"🗑️ Discovered cleared; visited={self.visited}")
-
-            before = len(self.next2visit)
-            self.next2visit = [(c,u) for (c,u) in self.next2visit
-                               if next(p["id"] for p in POIS if p["coord"]==(c[0],c[1]) and p["urgency"]==u)
-                               not in delivered]
-            self.log.debug(f"🗑️ next2visit filtered: {before}→{len(self.next2visit)}")
-
-            if self.next2visit:
-                waypoints = [c for (c,_) in self.next2visit]
-                self.log.info(f"🗺️ Restarting mission to {waypoints}")
-                self.mission.start_mission(waypoints)
-            else:
-                self.delivering = False
-                self.log.warning("⚠️ No PoIs left → will resume roaming")
-                self.provider.schedule_timer("check_roam", self.provider.current_time()+0.1)
 
         elif timer == "check_roam":
             self.log.debug(f"🔥 check_roam: idle={self.mission.is_idle}, roaming={self.random._trip_ongoing}")
@@ -112,31 +100,38 @@ class VQCProtocol(IProtocol):
         msg = json.loads(message)
         if msg.get("type") == "ASSIGN":
             self.log.info(f"📥 ASSIGN received: {msg['pois']}")
-            if self.discovered:
-                report = {"type":"DELIVER","v_id":self.id,"pids":self.discovered.copy()}
-                cmd = CommunicationCommand(CommunicationCommandType.BROADCAST, json.dumps(report))
-                self.provider.send_communication_command(cmd)
-                self.log.info(f"📣 Flushed deliver: {self.discovered}")
-                self.visited.extend(self.discovered)
+
+            antiguos = list(self.next2visit)
 
             self.next2visit.clear()
-            self.discovered.clear()
-            self.delivering = False
-            self.log.debug("🔄 Cleared next2visit & discovered")
-
+            # 3) Cargar primero las nuevas tareas que envía el EQC
+            nuevos_ids = set()
             for p in msg["pois"]:
-                x,y = p["coord"]
-                self.next2visit.append(((x,y,4.0), p["urgency"]))
-            self.log.debug(f"📋 Loaded next2visit: {self.next2visit}")
+                x, y = p["coord"]
+                urg = p["urgency"]
+                coord3d = (x, y, 4.0)
+                self.next2visit.append((coord3d, urg))
+                nuevos_ids.add(p["label"])      # usa "label" o "id" según tu POIS
+            # 4) Volver a añadir las antiguas que no estén ya en los nuevos,
+            #    hasta completar la capacidad M
+            for coord3d, urg in antiguos:
+                # obtener el label según las coordenadas
+                label = next(poi["label"]
+                            for poi in POIS
+                            if poi["coord"] == (coord3d[0], coord3d[1]))
+                if label not in nuevos_ids and len(self.next2visit) < M:
+                    self.next2visit.append((coord3d, urg))
 
-            self.random.finish_random_trip()
-            if not msg["pois"]:
-                self.log.warning("⚠️ ASSIGN empty → resuming roaming")
+            # 5) Si tras el merge no queda nada, reanudar roaming
+            if not self.next2visit:
+                self.log.warning("⚠️ No quedan PoIs tras merge → reanudando roaming")
                 self.random.initiate_random_trip()
                 return
-
-            waypoints = [c for (c,_) in self.next2visit]
-            self.log.info(f"🛑 Stopping roam, starting mission to {waypoints}")
+                
+            # 6) Arrancar la misión guiada con la lista combinada
+            waypoints = [coord for (coord, _) in self.next2visit]
+            self.log.info(f"🗺️ Waypoints combinados: {waypoints}")
+            self.random.finish_random_trip()
             self.mission.start_mission(waypoints)
 
     def finish(self) -> None:
