@@ -15,7 +15,7 @@ R_COMM = 10.0              # communication range
 
 # Buffer and duration
 M = 5                      # maximum PoI buffer per V-QC
-DURATION = 60             # simulation duration (seconds)
+DURATION = 120             # simulation duration (seconds)
 NUM_VQCS = 5               # number of V-QCs
 MAX_ASSIGN_PER_ENCOUNTER = 5
 # PoI definitions
