@@ -148,25 +148,20 @@ class EQCProtocol(IProtocol):
             vid = msg["v_id"]
             pids = msg.get("pids", [])
             self.log.info(f"📥 DELIVER from VQC-{vid}: {pids}")
+            # Métricas y filtrado
             for pid in pids:
-                # **(C) Métrica: para cada pid entregado, si lo habías asignado, calculo latencia**
                 t0 = self.assign_times.pop(pid, None)
                 if t0 is None:
-                    # PoI llegó por flush inmediato: asignamos ahora el timestamp 'assign'
-                    t0 = self.provider.current_time()
-
-                if t0 is not None:
-                    latency = now - t0
-                    self.latencies.append((pid, latency))
-                    self.assign_success += 1                
+                    t0 = now
+                self.latencies.append((pid, now - t0))
+                self.assign_success += 1
                 if pid not in METRICS["unique_ids"]:
                     METRICS["unique_ids"].add(pid)
                 else:
                     METRICS["redundant"] += 1
-
-            # **(D) Métrica: registrar punto de cobertura**  
-            elapsed = now - self.start_time
-            self.coverage_timeline.append((elapsed, len(METRICS["unique_ids"])))
+                # **(D) Métrica: registrar punto de cobertura**  
+                elapsed = now - self.start_time
+                self.coverage_timeline.append((elapsed, len(METRICS["unique_ids"])))
 
 
 

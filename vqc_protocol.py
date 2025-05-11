@@ -62,25 +62,39 @@ class VQCProtocol(IProtocol):
         self.pos = telemetry.current_position
         self.log.debug(f"📡 Telemetry: from {old} to {self.pos}")
 
-        if not self.mission.is_idle:
-            for coord3d, urg in list(self.next2visit):
-                dx, dy, dz = self.pos[0]-coord3d[0], self.pos[1]-coord3d[1], self.pos[2]-coord3d[2]
-                dist = math.sqrt(dx*dx + dy*dy + dz*dz)
-                self.log.debug(f"    Dist to {coord3d}: {dist:.2f} (tol={R_DETECT})")
-                if dist <= R_DETECT:
-                    pid = next(p["id"] for p in POIS if p["coord"]==(coord3d[0],coord3d[1]) and p["urgency"]==urg)
-                    if pid not in self.discovered and pid not in self.visited:
-                        if len(self.discovered) <M:
-                            self.discovered.append(pid)
-                            # Métrica: casual vs assigned
-                            if in_mission:
-                                self.disc_assigned += 1
-                            else:
-                                self.disc_casual += 1
-                            self.log.info(f"🔍 Local detect: {pid}")
+        for coord3d, urg in list(self.next2visit):
+            dx, dy, dz = self.pos[0]-coord3d[0], self.pos[1]-coord3d[1], self.pos[2]-coord3d[2]
+            dist = math.sqrt(dx*dx + dy*dy + dz*dz)
+            self.log.debug(f"    Dist to {coord3d}: {dist:.2f} (tol={R_DETECT})")
+            if dist <= R_DETECT:
+                pid = next(p["id"] for p in POIS if p["coord"]==(coord3d[0],coord3d[1]) and p["urgency"]==urg)
+                if pid not in self.discovered and pid not in self.visited:
+                    if len(self.discovered) <M:
+                        self.discovered.append(pid)
+                        # Métrica: casual vs assigned
+                        if in_mission:
+                            self.disc_assigned += 1
                         else:
-                            self.log.warning(f"Buffer discovered lleno")
-
+                            self.disc_casual += 1
+                        self.log.info(f"🔍 Local detect: {pid}")
+                    else:
+                        self.log.warning(f"Buffer discovered lleno")
+        # 2) Detección casual completa (cuando NO vas en misión)
+        if not in_mission:
+            for poi in POIS:
+                px, py = poi["coord"]
+                dx, dy = self.pos[0]-px, self.pos[1]-py
+                dist = math.hypot(dx, dy)
+                if dist <= R_DETECT:
+                    pid = poi["id"]
+                    if pid not in self.discovered and pid not in self.visited:
+                        if len(self.discovered) < M:
+                            self.discovered.append(pid)
+                            self.disc_casual += 1
+                            self.log.info(f"🔍 Casual detect: {pid}")
+                        else:
+                            self.log.warning("Buffer discovered lleno")
+                            
     def handle_timer(self, timer: str) -> None:
         if timer == "hello":
             self._exec["handle_timer.hello"] = True
