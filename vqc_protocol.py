@@ -78,8 +78,8 @@ class VQCProtocol(IProtocol):
                 self.provider.send_communication_command(cmd)
                 self.log.info(f"📣 DELIVER automático en HELLO: entregados {self.discovered}")
                 # Marcar como visitados y vaciar buffer
-                self.visited.extend(self.discovered)
-                self.discovered.clear()            
+                #self.visited.extend(self.discovered)
+                #self.discovered.clear()            
             free = M - len(self.next2visit)
             msg = {"type":"HELLO","v_id":self.id,"huecos":free,"visited":self.visited.copy(),"position":list(self.pos)}
             self.log.debug(f"📤 HELLO payload: {msg}")
@@ -133,6 +133,16 @@ class VQCProtocol(IProtocol):
             self.log.info(f"🗺️ Waypoints combinados: {waypoints}")
             self.random.finish_random_trip()
             self.mission.start_mission(waypoints)
-
+            
+        elif t == "DELIVER_ACK":
+            acked = msg.get("pids", [])
+            self.log.info(f"📥 DELIVER_ACK recibido: {acked}")
+            # Solo eliminar de discovered los PoIs que realmente llegaron
+            for pid in acked:
+                if pid in self.discovered:
+                    self.discovered.remove(pid)
+                    self.visited.append(pid)
+            self.log.debug(f"🗂️ discovered tras ACK: {self.discovered}, visited: {self.visited}")
+       
     def finish(self) -> None:
         self.log.info(f"🏁 VQC-{self.id} finished — next2visit={self.next2visit}, visited={self.visited}")

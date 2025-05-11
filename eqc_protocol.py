@@ -9,6 +9,7 @@ import json
 import math
 import logging
 from typing import List
+from config import MAX_ASSIGN_PER_ENCOUNTER
 
 from gradysim.protocol.interface import IProtocol
 from gradysim.protocol.messages.communication import CommunicationCommand, CommunicationCommandType
@@ -132,6 +133,22 @@ class EQCProtocol(IProtocol):
                 p for p in self.pending
                 if p["label"] not in pids
             ]
+            # 2) Enviar ACK de entrega SOLO a ese V-QC
+            ack_payload = {
+                "type": "DELIVER_ACK",
+                "v_id": vid,
+                "pids": pids
+            }
+            cmd_ack = CommunicationCommand(
+                CommunicationCommandType.SEND,
+                json.dumps(ack_payload),
+                vid
+            )
+            self.provider.send_communication_command(cmd_ack)
+            self.log.info(f"📣 Enviado DELIVER_ACK a VQC-{vid}: {pids}")
+
+
+
         self.assign_to_vqcs()
 
     def assign_to_vqcs(self) -> None:
@@ -152,7 +169,9 @@ class EQCProtocol(IProtocol):
                 self.log.debug(f"    ⋅ {poi['label']} urg={poi['urgency']} dist={dist:.2f} score={score:.2f}")
 
             scored.sort(key=lambda x: x[0], reverse=True)
-            to_assign = [p for _, p in scored[:free]]
+            limit = min(free, MAX_ASSIGN_PER_ENCOUNTER)
+
+            to_assign = [p for _, p in scored[:limit]]
             if not to_assign:
                 self.log.debug(f"→ No PoIs for VQC-{vid}")
                 continue
