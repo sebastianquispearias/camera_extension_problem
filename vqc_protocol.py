@@ -133,8 +133,8 @@ class VQCProtocol(IProtocol):
             self.log.info(f"🗺️ Waypoints combinados: {waypoints}")
             self.random.finish_random_trip()
             self.mission.start_mission(waypoints)
-            
-        elif t == "DELIVER_ACK":
+
+        elif msg.get("type") == "DELIVER_ACK":
             acked = msg.get("pids", [])
             self.log.info(f"📥 DELIVER_ACK recibido: {acked}")
             # Solo eliminar de discovered los PoIs que realmente llegaron

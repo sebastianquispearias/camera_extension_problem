@@ -39,6 +39,14 @@ class EQCProtocol(IProtocol):
         self.mission = MissionMobilityPlugin(self, cfg)
         self.mission.start_mission(waypoints)
 
+        # ---------- Métricas ----------
+        self.start_time        = self.provider.current_time()
+        self.assign_count      = 0                # total ASSIGNs enviadas
+        self.assign_success    = 0                # PoIs de ASSIGN que efectivamente se entregaron
+        self.assign_times      = {}               # mapa poi_label → t_assign
+        self.latencies         = []               # lista de (label, latency)
+        self.coverage_timeline = []               # lista de (elapsed_time, unique_count)
+        # --------------------------------
         # Configurar cámara
         cam_cfg = CameraConfiguration(
             camera_reach=R_CAMERA,
@@ -119,14 +127,28 @@ class EQCProtocol(IProtocol):
             self.vqc_states[vid] = {"huecos": free, "pos": pos}
 
         elif t == "DELIVER":
+            now = self.provider.current_time()
             vid = msg["v_id"]
             pids = msg.get("pids", [])
             self.log.info(f"📥 DELIVER from VQC-{vid}: {pids}")
             for pid in pids:
+                # **(C) Métrica: para cada pid entregado, si lo habías asignado, calculo latencia**
+                t0 = self.assign_times.pop(pid, None)
+                if t0 is not None:
+                    latency = now - t0
+                    self.latencies.append((pid, latency))
+                    self.assign_success += 1                
                 if pid not in METRICS["unique_ids"]:
                     METRICS["unique_ids"].add(pid)
                 else:
                     METRICS["redundant"] += 1
+
+            # **(D) Métrica: registrar punto de cobertura**  
+            elapsed = now - self.start_time
+            self.coverage_timeline.append((elapsed, len(METRICS["unique_ids"])))
+
+
+
             self.log.debug(f"🧮 Metrics: unique={len(METRICS['unique_ids'])}, redundant={METRICS['redundant']}")
             self.log.debug(f"DELIVER recibido de VQC-{vid}: {pids}")
             self.pending =[
@@ -152,8 +174,10 @@ class EQCProtocol(IProtocol):
         self.assign_to_vqcs()
 
     def assign_to_vqcs(self) -> None:
+        now = self.provider.current_time()
         self.log.debug(f"🔍 assign_to_vqcs: pending={len(self.pending)}, states={self.vqc_states}")
         for vid, st in self.vqc_states.items():
+            
             free, pos = st["huecos"], st["pos"]
             self.log.debug(f"→ VQC-{vid} state: free={free}, pos={pos}")
             if free <= 0:
@@ -176,6 +200,12 @@ class EQCProtocol(IProtocol):
                 self.log.debug(f"→ No PoIs for VQC-{vid}")
                 continue
 
+            # 3) MARCAR “IN-FLIGHT”: quitar inmediatamente de pending
+            for p in to_assign:
+                self.assign_times[p["label"]] = now
+                self.pending.remove(p)
+            self.assign_count += len(to_assign)
+
             payload = {
                 "type":"ASSIGN","v_id":vid,
                 "pois":[{"label":p["label"],"coord":p["coord"],"urgency":p["urgency"],"ts":self.detect_ts[p["label"]]} for p in to_assign]
@@ -187,6 +217,16 @@ class EQCProtocol(IProtocol):
             self.log.info(f"🚀 ASSIGN {len(to_assign)} to VQC-{vid}: {[p['label'] for p in to_assign]}")
 
     def finish(self) -> None:
-        total = len(self.detect_ts)
-        red = METRICS["redundant"]
-        self.log.info(f"✅ EQC finished. Unique={total}, redundant={red}")
+
+        total_time = self.provider.current_time() - self.start_time
+        unique = len(METRICS["unique_ids"])
+        redundant = METRICS["redundant"]
+        success = self.assign_success
+        assigns = self.assign_count
+        avg_latency = sum(l for _, l in self.latencies) / len(self.latencies) if self.latencies else float('nan')
+        discovery_rate = unique / total_time if total_time>0 else float('nan')
+        success_rate   = success / assigns if assigns>0 else float('nan')
+
+        self.log.info(f"✅ EQC finished. Unique={unique}, redundant={redundant}")
+        self.log.info(f"   Assigns sent={assigns}, successful delivers={success} (rate={success_rate:.2f})")
+        self.log.info(f"   Avg. latency={avg_latency:.2f}s, discovery rate={discovery_rate:.2f} PoIs/s")
