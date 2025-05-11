@@ -104,8 +104,8 @@ class EQCProtocol(IProtocol):
         if timer == "assign":
             self._executed["handle_timer.assign"] = True
             now = self.provider.current_time()
-            self.log.info("="*10 + f" t={now:.2f}s " + "="*10)
-            self._executed["handle_timer.assign"] = True
+            ########
+            self.log.info("*"*20 + f" t={now:.2f}s " + "*"*20)
             self.log.info(f"⚙️  EQC handle_timer('assign') @ t={now:.2f}")
             detected = self.camera.take_picture()
             # Métrica raw

@@ -93,7 +93,7 @@ class VQCProtocol(IProtocol):
                             self.disc_casual += 1
                             self.log.info(f"🔍 Casual detect: {pid}")
                         else:
-                            self.log.warning("Buffer discovered lleno")
+                            self.log.debug("Buffer discovered lleno")
 
     def handle_timer(self, timer: str) -> None:
         if timer == "hello":
