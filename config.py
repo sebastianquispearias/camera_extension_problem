@@ -15,9 +15,9 @@ R_COMM = 10.0              # communication range
 
 # Buffer and duration
 M = 5                     # maximum PoI buffer per V-QC
-DURATION = 60             # simulation duration (seconds)
-NUM_VQCS = 7               # number of V-QCs
-MAX_ASSIGN_PER_ENCOUNTER = 3
+DURATION = 120             # simulation duration (seconds)
+NUM_VQCS = 10               # number of V-QCs
+MAX_ASSIGN_PER_ENCOUNTER = 2
 # PoI definitions
 POIS = [
     {"id": "ABC-0001", "label": "POI-1",  "coord": (5.0,  5.0),  "urgency": 3},

@@ -46,6 +46,15 @@ class EQCProtocol(IProtocol):
         self.assign_times      = {}               # mapa poi_label → t_assign
         self.latencies         = []               # lista de (label, latency)
         self.coverage_timeline = []               # lista de (elapsed_time, unique_count)
+
+        self.cam_raw_count     = 0   # cada nodo detectado por take_picture()
+        self.cam_poi_matches   = 0   # cuántos de esos nodes eran PoIs
+        # Flags de ejecución
+        self._executed = {
+            "handle_timer.assign": False,
+            "handle_packet.HELLO": False,
+            "handle_packet.DELIVER": False,
+        }
         # --------------------------------
         # Configurar cámara
         cam_cfg = CameraConfiguration(
@@ -75,9 +84,12 @@ class EQCProtocol(IProtocol):
 
     def handle_timer(self, timer: str) -> None: # lo que hace es actualizar self.pending con las coordenadas detectadas
         if timer == "assign":
+            self._executed["handle_timer.assign"] = True
             now = self.provider.current_time()
             self.log.info(f"⚙️  EQC handle_timer('assign') @ t={now:.2f}")
             detected = self.camera.take_picture()
+            # Métrica raw
+            self.cam_raw_count += len(detected)
             self.log.info(f"⚙️  assign @ t={now:.2f}: {len(detected)} nodos detectados")
 
             # Log raw detections
@@ -93,6 +105,8 @@ class EQCProtocol(IProtocol):
                 for node in detected:
                     x, y, z = node["position"]
                     if abs(x-px)<eps and abs(y-py)<eps and abs(z-0.0)<eps:
+                        # Métrica de match válido
+                        self.cam_poi_matches += 1
                         label = poi["label"]
                         if label not in self.detect_ts:
                             self.detect_ts[label] = now
@@ -114,6 +128,8 @@ class EQCProtocol(IProtocol):
         t = msg.get("type")
 
         if t == "HELLO":
+            self._executed["handle_packet.HELLO"] = True
+
             vid = msg["v_id"]
             free = msg["huecos"]
             visited = msg["visited"]
@@ -127,6 +143,7 @@ class EQCProtocol(IProtocol):
             self.vqc_states[vid] = {"huecos": free, "pos": pos}
 
         elif t == "DELIVER":
+            self._executed["handle_packet.DELIVER"] = True
             now = self.provider.current_time()
             vid = msg["v_id"]
             pids = msg.get("pids", [])
@@ -134,6 +151,10 @@ class EQCProtocol(IProtocol):
             for pid in pids:
                 # **(C) Métrica: para cada pid entregado, si lo habías asignado, calculo latencia**
                 t0 = self.assign_times.pop(pid, None)
+                if t0 is None:
+                    # PoI llegó por flush inmediato: asignamos ahora el timestamp 'assign'
+                    t0 = self.provider.current_time()
+
                 if t0 is not None:
                     latency = now - t0
                     self.latencies.append((pid, latency))
@@ -230,3 +251,10 @@ class EQCProtocol(IProtocol):
         self.log.info(f"✅ EQC finished. Unique={unique}, redundant={redundant}")
         self.log.info(f"   Assigns sent={assigns}, successful delivers={success} (rate={success_rate:.2f})")
         self.log.info(f"   Avg. latency={avg_latency:.2f}s, discovery rate={discovery_rate:.2f} PoIs/s")
+
+        self.log.info(f"📷 Cámara hizo {self.cam_raw_count} detecciones totales, "
+                      f"{self.cam_poi_matches} coincidencias con PoIs")
+        # Métodos invocados
+        never_called = [k for k,v in self._executed.items() if not v]
+        if never_called:
+            self.log.warning(f"⚠️ Métodos nunca ejecutados: {never_called}")

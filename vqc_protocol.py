@@ -44,7 +44,20 @@ class VQCProtocol(IProtocol):
         self.provider.schedule_timer("hello", t0+4)
         self.provider.schedule_timer("check_roam", t0+1)
 
+        # Métricas de descubrimiento
+        self.disc_casual   = 0   # fuera de misión
+        self.disc_assigned = 0   # dentro de misión dirigida
+        # Flags ejecución
+        self._exec = {
+            "handle_telemetry": False,
+            "handle_timer.hello": False,
+            "handle_packet.ASSIGN": False,
+            "handle_packet.DELIVER_ACK": False,
+        }
     def handle_telemetry(self, telemetry: Telemetry) -> None:
+        self._exec["handle_telemetry"] = True
+        in_mission = not self.mission.is_idle
+
         old = self.pos
         self.pos = telemetry.current_position
         self.log.debug(f"📡 Telemetry: from {old} to {self.pos}")
@@ -59,12 +72,18 @@ class VQCProtocol(IProtocol):
                     if pid not in self.discovered and pid not in self.visited:
                         if len(self.discovered) <M:
                             self.discovered.append(pid)
+                            # Métrica: casual vs assigned
+                            if in_mission:
+                                self.disc_assigned += 1
+                            else:
+                                self.disc_casual += 1
                             self.log.info(f"🔍 Local detect: {pid}")
                         else:
                             self.log.warning(f"Buffer discovered lleno")
 
     def handle_timer(self, timer: str) -> None:
         if timer == "hello":
+            self._exec["handle_timer.hello"] = True
             if self.discovered:
                 report = {
                     "type": "DELIVER",
@@ -99,6 +118,7 @@ class VQCProtocol(IProtocol):
         self.log.debug(f"📥 handle_packet ASSIGN: {message}")
         msg = json.loads(message)
         if msg.get("type") == "ASSIGN":
+            self._exec["handle_packet.ASSIGN"] = True
             self.log.info(f"📥 ASSIGN received: {msg['pois']}")
 
 
@@ -155,6 +175,7 @@ class VQCProtocol(IProtocol):
             self.mission.start_mission(waypoints)
 
         elif msg.get("type") == "DELIVER_ACK":
+            self._exec["handle_packet.DELIVER_ACK"] = True
             acked = msg.get("pids", [])
             self.log.info(f"📥 DELIVER_ACK recibido: {acked}")
             # Solo eliminar de discovered los PoIs que realmente llegaron
@@ -166,3 +187,7 @@ class VQCProtocol(IProtocol):
        
     def finish(self) -> None:
         self.log.info(f"🏁 VQC-{self.id} finished — next2visit={self.next2visit}, visited={self.visited}")
+        self.log.info(f"📊 Discoveries: casual={self.disc_casual}, assigned={self.disc_assigned}")
+        never = [k for k,v in self._exec.items() if not v]
+        if never:
+            self.log.warning(f"⚠️ Métodos VQC nunca ejecutados: {never}")
