@@ -101,6 +101,26 @@ class VQCProtocol(IProtocol):
         if msg.get("type") == "ASSIGN":
             self.log.info(f"📥 ASSIGN received: {msg['pois']}")
 
+
+
+
+            # 1) Flush inmediato de PoIs descubiertos, garantizado por SEND
+            if self.discovered:
+                report = {
+                    "type": "DELIVER",
+                    "v_id": self.id,
+                    "pids": self.discovered.copy()
+                }
+                # Envío DIRECTO al EQC (asume id==0)
+                cmd_flush = CommunicationCommand(
+                    CommunicationCommandType.SEND,
+                    json.dumps(report),
+                    0
+                )
+                self.provider.send_communication_command(cmd_flush)
+                self.log.info(f"📣 DELIVER inmediato en ASSIGN: {self.discovered}")
+                # NOTA: No borramos aquí; aguardamos al ACK
+
             antiguos = list(self.next2visit)
 
             self.next2visit.clear()
