@@ -48,7 +48,7 @@ if __name__ == "__main__":
     medium = CommunicationMedium(transmission_range=R_COMM)
     builder.add_handler(CommunicationHandler(medium))
     builder.add_handler(TimerHandler())
-    builder.add_handler(MobilityHandler(MobilityConfiguration(default_speed=10.0)))
+    builder.add_handler(MobilityHandler(MobilityConfiguration(default_speed=5.0)))
     builder.add_handler(VisualizationHandler())
     root.info("🔧 Handlers added")
 

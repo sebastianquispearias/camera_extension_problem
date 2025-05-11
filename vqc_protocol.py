@@ -41,7 +41,7 @@ class VQCProtocol(IProtocol):
         self.random.initiate_random_trip()
         self.log.info("✅ Random roaming started")
         t0 = self.provider.current_time()
-        self.provider.schedule_timer("hello", t0+4)
+        self.provider.schedule_timer("hello", t0+1)
         self.provider.schedule_timer("check_roam", t0+1)
 
         # Métricas de descubrimiento
@@ -78,7 +78,7 @@ class VQCProtocol(IProtocol):
                             self.disc_casual += 1
                         self.log.info(f"🔍 Local detect: {pid}")
                     else:
-                        self.log.warning(f"Buffer discovered lleno")
+                        self.log.debug(f"Buffer discovered lleno")
         # 2) Detección casual completa (cuando NO vas en misión)
         if not in_mission:
             for poi in POIS:
@@ -94,7 +94,7 @@ class VQCProtocol(IProtocol):
                             self.log.info(f"🔍 Casual detect: {pid}")
                         else:
                             self.log.warning("Buffer discovered lleno")
-                            
+
     def handle_timer(self, timer: str) -> None:
         if timer == "hello":
             self._exec["handle_timer.hello"] = True

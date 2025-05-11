@@ -23,7 +23,17 @@ class EQCProtocol(IProtocol):
     def initialize(self) -> None:
         self.id = self.provider.get_id()
         self.log = logging.getLogger(f"EQC-{self.id}")
-
+        # ——— Inicializar el último waypoint para el logging condicional ———
+        self._last_wp = None
+        # ——— Configuración de handler/formatter (opcional) ———
+        handler = logging.StreamHandler()
+        fmt = '%(asctime)s %(name)-8s %(levelname)-7s %(message)s'
+        handler.setFormatter(logging.Formatter(fmt, datefmt='%H:%M:%S'))
+        if not self.log.handlers:
+            self.log.addHandler(handler)
+        self.log.setLevel(logging.DEBUG)
+        self.log.propagate = False
+        # ——————————————————————————————————————————————
         # Definir waypoints de patrulla
         waypoints = [
             (0,0,7.0),(L,0,7.0),(L,10,7.0),(0,10,7.0),
@@ -46,6 +56,10 @@ class EQCProtocol(IProtocol):
         self.assign_times      = {}               # mapa poi_label → t_assign
         self.latencies         = []               # lista de (label, latency)
         self.coverage_timeline = []               # lista de (elapsed_time, unique_count)
+        self.redundant_delivers = 0
+        METRICS["unique_ids"]  = set()
+        METRICS["redundant"]   = 0
+
 
         self.cam_raw_count     = 0   # cada nodo detectado por take_picture()
         self.cam_poi_matches   = 0   # cuántos de esos nodes eran PoIs
@@ -80,12 +94,18 @@ class EQCProtocol(IProtocol):
         self.log.debug(f"📡 Telemetry: pos={telemetry.current_position}, idle={self.mission.is_idle}")
         if not self.mission.is_idle:
             wp = self.mission.current_waypoint
-            self.log.info(f"🛰️  EQC rumbo al waypoint en {wp}")
+            self.log.debug(f"🛰️ EQC moving towards waypoint {wp}")
+            # INFO sólo cuando cambiamos de waypoint
+            if wp != self._last_wp:
+                self.log.info(f"🛰️ EQC rumbo al waypoint en {wp}")
+                self._last_wp = wp
 
     def handle_timer(self, timer: str) -> None: # lo que hace es actualizar self.pending con las coordenadas detectadas
         if timer == "assign":
             self._executed["handle_timer.assign"] = True
             now = self.provider.current_time()
+            self.log.info("="*10 + f" t={now:.2f}s " + "="*10)
+            self._executed["handle_timer.assign"] = True
             self.log.info(f"⚙️  EQC handle_timer('assign') @ t={now:.2f}")
             detected = self.camera.take_picture()
             # Métrica raw
@@ -106,9 +126,9 @@ class EQCProtocol(IProtocol):
                     x, y, z = node["position"]
                     if abs(x-px)<eps and abs(y-py)<eps and abs(z-0.0)<eps:
                         # Métrica de match válido
-                        self.cam_poi_matches += 1
                         label = poi["label"]
                         if label not in self.detect_ts:
+                            self.cam_poi_matches += 1
                             self.detect_ts[label] = now
                             self.pending.append(poi)
                             new_cnt += 1
@@ -151,18 +171,25 @@ class EQCProtocol(IProtocol):
             # Métricas y filtrado
             for pid in pids:
                 t0 = self.assign_times.pop(pid, None)
-                if t0 is None:
-                    t0 = now
-                self.latencies.append((pid, now - t0))
-                self.assign_success += 1
-                if pid not in METRICS["unique_ids"]:
+                if t0 is not None:
+                    latency = now - t0
+                    self.latencies.append((pid, latency))
+                    self.assign_success += 1
+
+                elif pid not in METRICS["unique_ids"]:
+                    # — Caso B: primer auto‐deliver (descubrimiento) —
                     METRICS["unique_ids"].add(pid)
+                    self.log.debug(f"ℹ️ First auto‐deliver for pid={pid}")
+
                 else:
+                    # — Caso C: redundante tras descubrimiento —
+                    self.redundant_delivers += 1
                     METRICS["redundant"] += 1
-                # **(D) Métrica: registrar punto de cobertura**  
+                    self.log.debug(f"⚠️ Redundant DELIVER for pid={pid}")
+
+                # Métrica de cobertura (siempre)
                 elapsed = now - self.start_time
                 self.coverage_timeline.append((elapsed, len(METRICS["unique_ids"])))
-
 
 
             self.log.debug(f"🧮 Metrics: unique={len(METRICS['unique_ids'])}, redundant={METRICS['redundant']}")
@@ -233,6 +260,17 @@ class EQCProtocol(IProtocol):
             self.log.info(f"🚀 ASSIGN {len(to_assign)} to VQC-{vid}: {[p['label'] for p in to_assign]}")
 
     def finish(self) -> None:
+        # calcular latencia promedio ignorando ceros
+        valid_latencies = [l for _, l in self.latencies if l > 0]
+        avg_latency = (
+            sum(valid_latencies) / len(valid_latencies)
+            if valid_latencies else float("nan")
+        )
+
+        self.log.info(f"✔️ assign_success    = {self.assign_success}")
+        self.log.info(f"ℹ️ redundant_delivers = {self.redundant_delivers}")
+        self.log.info(f"⏱️ avg_latency       = {avg_latency:.3f}s")
+        # ... resto del finish ...
 
         total_time = self.provider.current_time() - self.start_time
         unique = len(METRICS["unique_ids"])
