@@ -23,17 +23,10 @@ class EQCProtocol(IProtocol):
     def initialize(self) -> None:
         self.id = self.provider.get_id()
         self.log = logging.getLogger(f"EQC-{self.id}")
+        self.log.info(f"Current handlers: {self.log.handlers!r}")
         # ——— Inicializar el último waypoint para el logging condicional ———
         self._last_wp = None
-        # ——— Configuración de handler/formatter (opcional) ———
-        handler = logging.StreamHandler()
-        fmt = '%(asctime)s %(name)-8s %(levelname)-7s %(message)s'
-        handler.setFormatter(logging.Formatter(fmt, datefmt='%H:%M:%S'))
-        if not self.log.handlers:
-            self.log.addHandler(handler)
-        self.log.setLevel(logging.DEBUG)
-        self.log.propagate = False
-        # ——————————————————————————————————————————————
+
         # Definir waypoints de patrulla
         waypoints = [
             (0,0,7.0),(L,0,7.0),(L,10,7.0),(0,10,7.0),
@@ -88,6 +81,7 @@ class EQCProtocol(IProtocol):
         # Programar muestreo de detección y asignación cada 1s
         next_t = self.provider.current_time() + 1
         self.provider.schedule_timer("assign", next_t)
+        self.log.info(f"✅ First ‘assign’ timer scheduled for t={next_t:.2f}s")
         self.log.debug(f"⏱️ Scheduled first 'assign' at t={next_t:.2f}")
 
     def handle_telemetry(self, telemetry: Telemetry) -> None: # lo que hace es imprimir posicion y a que waypoint se dirige
@@ -101,11 +95,12 @@ class EQCProtocol(IProtocol):
                 self._last_wp = wp
 
     def handle_timer(self, timer: str) -> None: # lo que hace es actualizar self.pending con las coordenadas detectadas
+        self.log.debug(f"handle_timer invoked with timer='{timer}'")
         if timer == "assign":
             self._executed["handle_timer.assign"] = True
             now = self.provider.current_time()
+            self.log.info("*"*40 + f" t={now:.2f}s " + "*"*40)
             ########
-            self.log.info("*"*20 + f" t={now:.2f}s " + "*"*20)
             self.log.info(f"⚙️  EQC handle_timer('assign') @ t={now:.2f}")
             detected = self.camera.take_picture()
             # Métrica raw
