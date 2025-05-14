@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     root.info(f"✅ Simulation start — duration={DURATION}s, VQCs={NUM_VQCS}, area={L}×{L}")
 
-    sim_cfg = SimulationConfiguration(duration=DURATION, debug=False, real_time=False)
+    sim_cfg = SimulationConfiguration(duration=DURATION, debug=True, real_time=False)
     builder = SimulationBuilder(sim_cfg)
 
     builder.add_node(EQCProtocol, (0.0, 0.0, 7.0))
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     medium = CommunicationMedium(transmission_range=R_COMM)
     builder.add_handler(CommunicationHandler(medium))
     builder.add_handler(TimerHandler())
-    builder.add_handler(MobilityHandler(MobilityConfiguration(default_speed=5.0)))
+    builder.add_handler(MobilityHandler(MobilityConfiguration(default_speed=8.0)))
     builder.add_handler(VisualizationHandler())
     root.info("🔧 Handlers added")
 
