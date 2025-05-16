@@ -6,10 +6,16 @@ Static PoI node: represents a Point of Interest in the simulation.
 from gradysim.protocol.interface import IProtocol
 from gradysim.protocol.messages.telemetry import Telemetry
 
-class POIProtocol(IProtocol):
-    def initialize(self) -> None:
-        pass
+from gradysim.protocol.plugin.random_mobility import RandomMobilityPlugin, RandomMobilityConfig
 
+class POIProtocol(IProtocol):
+    def initialize(self):
+        # … tu init habitual …
+        # agrega un plugin de movilidad estática (speed=0)
+        self.mob = RandomMobilityPlugin(
+            self,
+            RandomMobilityConfig(x_range=(0,0), y_range=(0,0), z_range=(0.0,0.0), tolerance=0)
+        )
     def handle_telemetry(self, telemetry: Telemetry) -> None:
         pass
 

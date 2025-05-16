@@ -63,6 +63,7 @@ class EQCProtocol(IProtocol):
             "handle_packet.DELIVER": False,
         }
         # --------------------------------
+    
         # Configurar cámara
         cam_cfg = CameraConfiguration(
             camera_reach=R_CAMERA,
@@ -114,10 +115,11 @@ class EQCProtocol(IProtocol):
 
             # Filtrar PoIs
             new_cnt = 0
-            eps = 1e-3
+            eps = 0.2
             for poi in POIS:
                 px, py = poi["coord"]
                 for node in detected:
+                    self.log.debug(f"   Raw node: {node!r}")
                     x, y, z = node["position"]
                     if abs(x-px)<eps and abs(y-py)<eps and abs(z-0.0)<eps:
                         # Métrica de match válido
@@ -129,8 +131,20 @@ class EQCProtocol(IProtocol):
                             new_cnt += 1
                             self.log.info(f"🔍 {label} detectado @ {poi['coord']} t={now:.2f}")
                         break
+            #for node in detected:
+            #    self.log.debug(f"   Raw node: {node!r}")
+            #    pid = node.get("id")
+            #    if pid and pid not in self.detect_ts:
+            #        # es un PoI nuevo
+            #        self.cam_poi_matches += 1
+            #        self.detect_ts[pid] = now
+            #        # busco el objeto completo en POIS
+            #        poi = next(p for p in POIS if p.get("label")==pid or p.get("id")==pid)
+            #        self.pending.append(poi)
+            #        new_cnt += 1
+            #        self.log.info(f"🔍 {pid} detectado @ {poi['coord']} t={now:.2f}")
 
-            self.log.debug(f"🗂️ pending size: {len(self.pending)} (+{new_cnt})")
+            self.log.debug(f"🗂️ pending size /relacionado con new_cnt: {len(self.pending)} (+{new_cnt})")
 
             # Reprogramar
             next_t = now + 1
@@ -144,16 +158,26 @@ class EQCProtocol(IProtocol):
 
         if t == "HELLO":
             self._executed["handle_packet.HELLO"] = True
-
             vid = msg["v_id"]
             free = msg["huecos"]
-            visited = msg["visited"]
             pos = tuple(msg["position"])
-            self.log.info(f"📩 HELLO from VQC-{vid}: free={free}, visited={visited}, pos={pos}")
+            self.log.info(f"📩 HELLO from VQC-{vid}: free={free}, pos={pos}")
 
-            before = len(self.pending)
-            self.pending = [p for p in self.pending if p["label"] not in visited]
-            self.log.debug(f"🗑️ pending filtered: {before}→{len(self.pending)}")
+            # CHANGED: ahora respondemos HELLO_ACK
+            ack = {"type": "HELLO_ACK", "v_id": vid}
+            cmd_ack = CommunicationCommand(
+                CommunicationCommandType.SEND,
+                json.dumps(ack),
+                vid
+            )
+            self.provider.send_communication_command(cmd_ack)
+            self.log.info(f"📣 EQC envió HELLO_ACK a VQC-{vid}")
+
+
+
+            #before = len(self.pending)
+            #self.pending = [p for p in self.pending if p["label"] not in visited]
+            #self.log.debug(f"🗑️ pending filtered: {before}→{len(self.pending)}")
 
             self.vqc_states[vid] = {"huecos": free, "pos": pos}
 
@@ -161,43 +185,45 @@ class EQCProtocol(IProtocol):
             self._executed["handle_packet.DELIVER"] = True
             now = self.provider.current_time()
             vid = msg["v_id"]
-            pids = msg.get("pids", [])
-            self.log.info(f"📥 DELIVER from VQC-{vid}: {pids}")
+            delivered = msg.get("pids", [])  
+            self.log.info(f"📥 DELIVER from VQC-{vid}: {delivered}")
             # Métricas y filtrado
-            for pid in pids:
-                t0 = self.assign_times.pop(pid, None)
+            for entry in delivered:
+                label = entry.get("label")
+                poi_id = entry.get("id")
+                if label is None or poi_id is None:
+                    self.log.warning(f"DELIVER malformed: {entry!r}")
+                    continue
+                # 1) “Pop” usando el mismo label que guardamos en assign_times
+                t0 = self.assign_times.pop(label, None)
                 if t0 is not None:
                     latency = now - t0
-                    self.latencies.append((pid, latency))
+                    self.latencies.append((label, latency))
                     self.assign_success += 1
-
-                elif pid not in METRICS["unique_ids"]:
-                    # — Caso B: primer auto‐deliver (descubrimiento) —
-                    METRICS["unique_ids"].add(pid)
-                    self.log.debug(f"ℹ️ First auto‐deliver for pid={pid}")
-
+                elif label not in METRICS["unique_ids"]:
+                    METRICS["unique_ids"].add(label)
+                    self.log.debug(f"ℹ️ First auto‐deliver for {label}")
                 else:
-                    # — Caso C: redundante tras descubrimiento —
                     self.redundant_delivers += 1
                     METRICS["redundant"] += 1
-                    self.log.debug(f"⚠️ Redundant DELIVER for pid={pid}")
+                    self.log.debug(f"⚠️ Redundant DELIVER for {label}")
 
-                # Métrica de cobertura (siempre)
+                # 2) Métrica de cobertura
                 elapsed = now - self.start_time
                 self.coverage_timeline.append((elapsed, len(METRICS["unique_ids"])))
 
-
             self.log.debug(f"🧮 Metrics: unique={len(METRICS['unique_ids'])}, redundant={METRICS['redundant']}")
-            self.log.debug(f"DELIVER recibido de VQC-{vid}: {pids}")
+            delivered_labels = [e["label"] for e in delivered]
+            self.log.debug(f"DELIVER recibido de VQC-{vid}: {delivered_labels}")
             self.pending =[
                 p for p in self.pending
-                if p["label"] not in pids
+                if p["label"] not in delivered_labels
             ]
             # 2) Enviar ACK de entrega SOLO a ese V-QC
             ack_payload = {
                 "type": "DELIVER_ACK",
                 "v_id": vid,
-                "pids": pids
+                "pids": [entry["id"] for entry in delivered]
             }
             cmd_ack = CommunicationCommand(
                 CommunicationCommandType.SEND,
@@ -205,11 +231,11 @@ class EQCProtocol(IProtocol):
                 vid
             )
             self.provider.send_communication_command(cmd_ack)
-            self.log.info(f"📣 Enviado DELIVER_ACK a VQC-{vid}: {pids}")
+            self.log.info(f"📣 Enviado DELIVER_ACK a VQC-{vid}: {ack_payload['pids']}")
 
 
 
-        self.assign_to_vqcs()
+            self.assign_to_vqcs()
 
     def assign_to_vqcs(self) -> None:
         now = self.provider.current_time()

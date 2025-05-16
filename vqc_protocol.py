@@ -8,7 +8,7 @@ Visiting Quadcopter (V-QC) protocol:
 import json
 import math
 import logging
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 from gradysim.protocol.interface import IProtocol
 from gradysim.protocol.messages.communication import CommunicationCommand, CommunicationCommandType
@@ -25,7 +25,7 @@ class VQCProtocol(IProtocol):
 
         self.pos = (0.0, 0.0, 4.0)
         self.next2visit: List[Tuple[Tuple[float, float], int]] = []
-        self.discovered: List[str] = []
+        self.discovered: List[Dict[str,str]] = []
         self.visited: List[str] = []
         self.delivering = False
         
@@ -52,6 +52,7 @@ class VQCProtocol(IProtocol):
             "handle_telemetry": False,
             "handle_timer.hello": False,
             "handle_packet.ASSIGN": False,
+            "handle_packet.HELLO_ACK": False,
             "handle_packet.DELIVER_ACK": False,
         }
     def handle_telemetry(self, telemetry: Telemetry) -> None:
@@ -63,41 +64,61 @@ class VQCProtocol(IProtocol):
         self.log.debug(f"📡 Telemetry: from {old} to {self.pos}")
 
         for coord3d, urg in list(self.next2visit):
-            dx, dy, dz = self.pos[0]-coord3d[0], self.pos[1]-coord3d[1], self.pos[2]-coord3d[2]
+            dx, dy, dz = (
+                self.pos[0] - coord3d[0],
+                self.pos[1] - coord3d[1],
+                self.pos[2] - coord3d[2]
+            )
             dist = math.sqrt(dx*dx + dy*dy + dz*dz)
             self.log.debug(f"    Dist to {coord3d}: {dist:.2f} (tol={R_DETECT})")
+
             if dist <= R_DETECT:
-                pid = next(p["id"] for p in POIS if p["coord"]==(coord3d[0],coord3d[1]) and p["urgency"]==urg)
-                if pid not in self.discovered and pid not in self.visited:
-                    if len(self.discovered) <M:
-                        self.discovered.append(pid)
+                # encontramos el POI correspondiente:
+                poi = next(p for p in POIS
+                        if p["coord"] == (coord3d[0], coord3d[1])
+                        and p["urgency"] == urg)
+                poi_id    = poi["id"]
+                poi_label = poi["label"]
+
+                # 1) no lo hayamos visitado ya
+                # 2) no esté ya en discovered (que ahora son dicts con clave "id")
+                already_discovered = any(d["id"] == poi_id for d in self.discovered)
+                if poi_id not in self.visited and not already_discovered:
+                    if len(self.discovered) < M:
+                        self.discovered.append({"id": poi_id, "label": poi_label})
                         # Métrica: casual vs assigned
                         if in_mission:
                             self.disc_assigned += 1
                         else:
                             self.disc_casual += 1
-                        self.log.info(f"🔍 Local detect: {pid}")
+                        self.log.info(f"🔍 Local detect: {poi_id} ({poi_label})")
                     else:
-                        self.log.debug(f"Buffer discovered lleno")
-        # 2) Detección casual completa (cuando NO vas en misión)
+                        self.log.debug("Buffer discovered lleno")
+
+        # 2) detección casual cuando no estamos en misión:
         if not in_mission:
             for poi in POIS:
                 px, py = poi["coord"]
-                dx, dy = self.pos[0]-px, self.pos[1]-py
+                dx, dy = self.pos[0] - px, self.pos[1] - py
                 dist = math.hypot(dx, dy)
                 if dist <= R_DETECT:
-                    pid = poi["id"]
-                    if pid not in self.discovered and pid not in self.visited:
+                    poi_id    = poi["id"]
+                    poi_label = poi["label"]
+
+                    already_discovered = any(d["id"] == poi_id for d in self.discovered)
+                    if poi_id not in self.visited and not already_discovered:
                         if len(self.discovered) < M:
-                            self.discovered.append(pid)
+                            self.discovered.append({"id": poi_id, "label": poi_label})
                             self.disc_casual += 1
-                            self.log.info(f"🔍 Casual detect: {pid}")
+                            self.log.info(f"🔍 Casual detect: {poi_id} ({poi_label})")
                         else:
                             self.log.debug("Buffer discovered lleno")
 
     def handle_timer(self, timer: str) -> None:
+
         if timer == "hello":
             self._exec["handle_timer.hello"] = True
+            """
             if self.discovered:
                 report = {
                     "type": "DELIVER",
@@ -112,13 +133,15 @@ class VQCProtocol(IProtocol):
                 self.log.info(f"📣 DELIVER automático en HELLO: entregados {self.discovered}")
                 # Marcar como visitados y vaciar buffer
                 #self.visited.extend(self.discovered)
-                #self.discovered.clear()            
+                #self.discovered.clear()    """ 
+
+                       
             free = M - len(self.next2visit)
-            msg = {"type":"HELLO","v_id":self.id,"huecos":free,"visited":self.visited.copy(),"position":list(self.pos)}
+            msg = {"type":"HELLO","v_id":self.id,"huecos":free,"position":list(self.pos)}
             self.log.debug(f"📤 HELLO payload: {msg}")
             cmd = CommunicationCommand(CommunicationCommandType.BROADCAST, json.dumps(msg))
             self.provider.send_communication_command(cmd)
-            self.log.info(f"📤 HELLO sent: free={free}, visited={self.visited}")
+            self.log.info(f"📤 HELLO sent: free={free}")
             self.provider.schedule_timer("hello", self.provider.current_time()+1)
 
         elif timer == "check_roam":
@@ -131,28 +154,30 @@ class VQCProtocol(IProtocol):
     def handle_packet(self, message: str) -> None:
         self.log.debug(f"📥 handle_packet ASSIGN: {message}")
         msg = json.loads(message)
-        if msg.get("type") == "ASSIGN":
+
+        t = msg.get("type")
+        
+        if t == "ASSIGN":
             self._exec["handle_packet.ASSIGN"] = True
             self.log.info(f"📥 ASSIGN received: {msg['pois']}")
-
-
-
-
-            # 1) Flush inmediato de PoIs descubiertos, garantizado por SEND
-            if self.discovered:
-                report = {
-                    "type": "DELIVER",
-                    "v_id": self.id,
-                    "pids": self.discovered.copy()
-                }
-                # Envío DIRECTO al EQC (asume id==0)
-                cmd_flush = CommunicationCommand(
-                    CommunicationCommandType.SEND,
-                    json.dumps(report),
-                    0
-                )
-                self.provider.send_communication_command(cmd_flush)
-                self.log.info(f"📣 DELIVER inmediato en ASSIGN: {self.discovered}")
+ 
+#
+#
+#            # 1) Flush inmediato de PoIs descubiertos, garantizado por SEND
+#            if self.discovered:
+#                report = {
+#                    "type": "DELIVER",
+#                    "v_id": self.id,
+#                    "pids": self.discovered.copy()
+#               }
+#                # Envío DIRECTO al EQC (asume id==0)
+#                cmd_flush = CommunicationCommand(
+#                    CommunicationCommandType.SEND,
+#                   json.dumps(report),
+#                    0
+#                )
+#                self.provider.send_communication_command(cmd_flush)
+#                self.log.info(f"📣 DELIVER inmediato en ASSIGN: {self.discovered}")
                 # NOTA: No borramos aquí; aguardamos al ACK
 
             antiguos = list(self.next2visit)
@@ -187,21 +212,49 @@ class VQCProtocol(IProtocol):
             self.log.info(f"🗺️ Waypoints combinados: {waypoints}")
             self.random.finish_random_trip()
             self.mission.start_mission(waypoints)
+            
+        elif t == "HELLO_ACK":
+                self._exec["handle_packet.HELLO_ACK"] = True
+                self.log.info(f"✅ VQC-{self.id} recebeu HELLO_ACK, enviando DELIVER")
+                self.send_deliver() 
 
-        elif msg.get("type") == "DELIVER_ACK":
+        elif t == "DELIVER_ACK":
             self._exec["handle_packet.DELIVER_ACK"] = True
-            acked = msg.get("pids", [])
+            acked = msg.get("pids", [])  # lista de IDs como strings
             self.log.info(f"📥 DELIVER_ACK recibido: {acked}")
-            # Solo eliminar de discovered los PoIs que realmente llegaron
-            for pid in acked:
-                if pid in self.discovered:
-                    self.discovered.remove(pid)
-                    self.visited.append(pid)
+
+            # Reemplaza tu loop antiguo por:
+            for poi_id in acked:
+                # quita cualquier dict con .["id"] == poi_id
+                self.discovered = [d for d in self.discovered if d["id"] != poi_id]
+                self.visited.append(poi_id)
+
             self.log.debug(f"🗂️ discovered tras ACK: {self.discovered}, visited: {self.visited}")
-       
+
+        else:
+            self.log.debug(f"⚠️ VQC-{self.id} recebeu mensagem desconhecida: {t}")
+
     def finish(self) -> None:
         self.log.info(f"🏁 VQC-{self.id} finished — next2visit={self.next2visit}, visited={self.visited}")
         self.log.info(f"📊 Discoveries: casual={self.disc_casual}, assigned={self.disc_assigned}")
         never = [k for k,v in self._exec.items() if not v]
         if never:
             self.log.warning(f"⚠️ Métodos VQC nunca ejecutados: {never}")
+        
+    
+    def send_deliver(self) -> None:
+        pids = [d["id"] for d in self.discovered]
+        msg = {
+            "type": "DELIVER",
+            "v_id": self.id,
+            "pids": [{"id":  d["id"],"label": d["label"]}for d in self.discovered]
+        }
+        # 3) Cria e envia o comando ao EQC (id = 0)
+        cmd = CommunicationCommand(
+            CommunicationCommandType.SEND,
+            json.dumps(msg),
+            0
+        )
+        self.provider.send_communication_command(cmd)
+        # 4) Log para você ver no sim.log
+        self.log.info(f"📤 DELIVER enviado: {pids}")
