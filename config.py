@@ -10,14 +10,14 @@ Simulation parameters and PoI definitions:
 # Dimensions and ranges
 L = 50.0                   # area size
 R_CAMERA = 20              # camera reach
-R_DETECT = 5.0             # V-QC detection range
+R_DETECT = 8.0             # V-QC detection range
 R_COMM = 7.0              # communication range
 
 # Buffer and duration
 M = 5                     # maximum PoI buffer per V-QC
-DURATION = 100          # simulation duration (seconds)
-NUM_VQCS = 3               # number of V-QCs
-MAX_ASSIGN_PER_ENCOUNTER = 3
+DURATION = 120          # simulation duration (seconds)
+NUM_VQCS = 4               # number of V-QCs
+MAX_ASSIGN_PER_ENCOUNTER = 4
 # PoI definitions
 POIS = [
     {"id": "ABC-0001", "label": "POI-1",  "coord": (5.0,  5.0),  "urgency": 3},

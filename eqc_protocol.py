@@ -152,16 +152,25 @@ class EQCProtocol(IProtocol):
             self.log.debug(f"⏱️ Rescheduled 'assign' at t={next_t:.2f}")
 
     def handle_packet(self, message: str) -> None: #se activa con HELLO o deliver, actualiza vqc states, pendindg      y en deliver
-        self.log.debug(f"📥 handle_packet: {message}")
+        self.log.debug(f"📥 [RAW] handle_packet recibido: {message}")
         msg = json.loads(message)
         t = msg.get("type")
-
+        vid = msg["v_id"]
+        # Si aún no tenemos estado de este VQC y el mensaje no es HELLO, lo ignoramos
+        if t != "HELLO" and vid not in self.vqc_states:
+            self.log.warning(f"Ignorando {t} de VQC-{vid} (no hay HELLO previo)")
+            return
         if t == "HELLO":
             self._executed["handle_packet.HELLO"] = True
-            vid = msg["v_id"]
             free = msg["huecos"]
             pos = tuple(msg["position"])
             self.log.info(f"📩 HELLO from VQC-{vid}: free={free}, pos={pos}")
+            #before = len(self.pending)
+            #self.pending = [p for p in self.pending if p["label"] not in visited]
+            #self.log.debug(f"🗑️ pending filtered: {before}→{len(self.pending)}")
+            self.vqc_states[vid] = {"huecos": free, "pos": pos}
+            if free <= 0:
+                    self.log.debug(f"→ VQC-{vid} buffer FULL tras assign")
 
             # CHANGED: ahora respondemos HELLO_ACK
             ack = {"type": "HELLO_ACK", "v_id": vid}
@@ -172,14 +181,6 @@ class EQCProtocol(IProtocol):
             )
             self.provider.send_communication_command(cmd_ack)
             self.log.info(f"📣 EQC envió HELLO_ACK a VQC-{vid}")
-
-
-
-            #before = len(self.pending)
-            #self.pending = [p for p in self.pending if p["label"] not in visited]
-            #self.log.debug(f"🗑️ pending filtered: {before}→{len(self.pending)}")
-
-            self.vqc_states[vid] = {"huecos": free, "pos": pos}
 
         elif t == "DELIVER":
             self._executed["handle_packet.DELIVER"] = True
@@ -279,6 +280,10 @@ class EQCProtocol(IProtocol):
             cmd = CommunicationCommand(CommunicationCommandType.SEND, json.dumps(payload), vid)
             self.provider.send_communication_command(cmd)
             self.log.info(f"🚀 ASSIGN {len(to_assign)} to VQC-{vid}: {[p['label'] for p in to_assign]}")
+                # ——> ACTUALIZAR huecos
+            self.vqc_states[vid]["huecos"] -= len(to_assign)
+            self.log.debug(f"→ Después de ASSIGN, VQC-{vid} tiene {self.vqc_states[vid]['huecos']} huecos")
+
 
     def finish(self) -> None:
         # calcular latencia promedio ignorando ceros
