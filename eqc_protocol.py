@@ -5,11 +5,11 @@ Exploration Quadcopter (E-QC) protocol:
 - Coordinates with V-QCs by sending ASSIGN messages.
 """
 
-import json
-import math
+import json                                                   
+import math                                                  
 import logging
 from typing import List
-from config import MAX_ASSIGN_PER_ENCOUNTER
+from collections import Counter        #
 
 from gradysim.protocol.interface import IProtocol
 from gradysim.protocol.messages.communication import CommunicationCommand, CommunicationCommandType
@@ -17,9 +17,11 @@ from gradysim.protocol.messages.telemetry import Telemetry
 from gradysim.protocol.plugin.mission_mobility import MissionMobilityPlugin, MissionMobilityConfiguration, LoopMission
 from gradysim.simulator.extension.camera import CameraHardware, CameraConfiguration
 
-from config import L, R_CAMERA, R_DETECT, POIS, METRICS
+import config
+from config import MAX_ASSIGN_PER_ENCOUNTER                    
 
 class EQCProtocol(IProtocol):
+
     def initialize(self) -> None:
         self.id = self.provider.get_id()
         self.log = logging.getLogger(f"EQC-{self.id}")
@@ -29,13 +31,14 @@ class EQCProtocol(IProtocol):
 
         # Definir waypoints de patrulla
         waypoints = [
-            (0,0,7.0),(L,0,7.0),(L,10,7.0),(0,10,7.0),
-            (0,20,7.0),(L,20,7.0),(L,30,7.0),(0,30,7.0),
-            (0,40,7.0),(L,40,7.0),(L,L,7.0),(0,L,7.0),
+            (0,0,7.0),(config.L,0,7.0),(config.L,10,7.0),(0,10,7.0),
+            (0,20,7.0),(config.L,20,7.0),(config.L,30,7.0),(0,30,7.0),
+            (0,40,7.0),(config.L,40,7.0),(config.L,config.L,7.0),(0,config.L,7.0),
         ]
+
         self.log.info(f"🛰️  EQC iniciando patrulla con waypoints: {waypoints}")
         cfg = MissionMobilityConfiguration(
-            speed=10.0,
+            speed=config.EQC_SPEED,
             loop_mission=LoopMission.RESTART,
             tolerance=1
         )
@@ -50,8 +53,8 @@ class EQCProtocol(IProtocol):
         self.latencies         = []               # lista de (label, latency)
         self.coverage_timeline = []               # lista de (elapsed_time, unique_count)
         self.redundant_delivers = 0
-        METRICS["unique_ids"]  = set()
-        METRICS["redundant"]   = 0
+        config.METRICS["unique_ids"]  = set()
+        config.METRICS["redundant"]   = 0
 
 
         self.cam_raw_count     = 0   # cada nodo detectado por take_picture()
@@ -62,17 +65,16 @@ class EQCProtocol(IProtocol):
             "handle_packet.HELLO": False,
             "handle_packet.DELIVER": False,
         }
-        # --------------------------------
     
         # Configurar cámara
         cam_cfg = CameraConfiguration(
-            camera_reach=R_CAMERA,
-            camera_theta=60.0,
+            camera_reach=config.R_CAMERA,
+            camera_theta=180.0, #########################no filtra por anguñp
             facing_elevation=180.0,
             facing_rotation=0.0
         )
         self.camera = CameraHardware(self, cam_cfg)
-        self.log.info(f"📷 Camera configured: reach={R_CAMERA}, theta={cam_cfg.camera_theta}")
+        self.log.info(f"📷 Camera configured: reach={config.R_CAMERA}, theta={cam_cfg.camera_theta}")
 
         # Estados internos
         self.pending: List[dict] = []
@@ -109,17 +111,19 @@ class EQCProtocol(IProtocol):
             self.log.info(f"⚙️  assign @ t={now:.2f}: {len(detected)} nodos detectados")
 
             # Log raw detections
-            for node in detected:
-                pos = node["position"]
-                self.log.debug(f"   📸 Raw detection at {pos}")
+            #for node in detected:
+            #    pos = node["position"]
+            #    self.log.debug(f"   📸 Raw detection at {pos}")
+            # Log raw detections (agrupados)
+            self._log_raw_detections(detected)
 
             # Filtrar PoIs
             new_cnt = 0
             eps = 0.2
-            for poi in POIS:
+            for poi in config.POIS:
                 px, py = poi["coord"]
                 for node in detected:
-                    self.log.debug(f"   Raw node: {node!r}")
+                    #self.log.debug(f"   Raw node: {node!r}")
                     x, y, z = node["position"]
                     if abs(x-px)<eps and abs(y-py)<eps and abs(z-0.0)<eps:
                         # Métrica de match válido
@@ -201,19 +205,19 @@ class EQCProtocol(IProtocol):
                     latency = now - t0
                     self.latencies.append((label, latency))
                     self.assign_success += 1
-                elif label not in METRICS["unique_ids"]:
-                    METRICS["unique_ids"].add(label)
+                elif label not in config.METRICS["unique_ids"]:
+                    config.METRICS["unique_ids"].add(label)
                     self.log.debug(f"ℹ️ First auto‐deliver for {label}")
                 else:
                     self.redundant_delivers += 1
-                    METRICS["redundant"] += 1
+                    config.METRICS["redundant"] += 1
                     self.log.debug(f"⚠️ Redundant DELIVER for {label}")
 
                 # 2) Métrica de cobertura
                 elapsed = now - self.start_time
-                self.coverage_timeline.append((elapsed, len(METRICS["unique_ids"])))
+                self.coverage_timeline.append((elapsed, len(config.METRICS["unique_ids"])))
 
-            self.log.debug(f"🧮 Metrics: unique={len(METRICS['unique_ids'])}, redundant={METRICS['redundant']}")
+            self.log.debug(f"🧮 Metrics: unique={len(config.METRICS['unique_ids'])}, redundant={config.METRICS['redundant']}")
             delivered_labels = [e["label"] for e in delivered]
             self.log.debug(f"DELIVER recibido de VQC-{vid}: {delivered_labels}")
             self.pending =[
@@ -299,8 +303,8 @@ class EQCProtocol(IProtocol):
         # ... resto del finish ...
 
         total_time = self.provider.current_time() - self.start_time
-        unique = len(METRICS["unique_ids"])
-        redundant = METRICS["redundant"]
+        unique = len(config.METRICS["unique_ids"])
+        redundant = config.METRICS["redundant"]
         success = self.assign_success
         assigns = self.assign_count
         avg_latency = sum(l for _, l in self.latencies) / len(self.latencies) if self.latencies else float('nan')
@@ -317,3 +321,16 @@ class EQCProtocol(IProtocol):
         never_called = [k for k,v in self._executed.items() if not v]
         if never_called:
             self.log.warning(f"⚠️ Métodos nunca ejecutados: {never_called}")
+
+
+    def _log_raw_detections(self, detected: List[dict]):
+        """
+        Agrupa y logea posiciones únicas de las detecciones en un solo mensaje.
+        """
+        if not detected:
+            return
+        # Extrae sólo las tuplas de posición
+        coords = [tuple(n["position"]) for n in detected]
+        counts = Counter(coords)
+        entries = ", ".join(f"{pos}:{cnt}" for pos, cnt in counts.items())
+        self.log.debug(f"📊 Raw detections ({len(detected)}): {entries}")

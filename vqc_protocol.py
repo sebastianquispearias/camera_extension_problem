@@ -16,7 +16,7 @@ from gradysim.protocol.messages.telemetry import Telemetry
 from gradysim.protocol.plugin.random_mobility import RandomMobilityPlugin, RandomMobilityConfig
 from gradysim.protocol.plugin.mission_mobility import MissionMobilityPlugin, MissionMobilityConfiguration, LoopMission
 
-from config import L, R_DETECT, M, POIS
+import config
 
 class VQCProtocol(IProtocol):
     def initialize(self) -> None:
@@ -32,10 +32,10 @@ class VQCProtocol(IProtocol):
         self.log.info(f"🛫 VQC-{self.id} initialized at {self.pos}")
 
         self.random = RandomMobilityPlugin(
-            self, RandomMobilityConfig(x_range=(0,L), y_range=(0,L), z_range=(4.0,4.0), tolerance=1)
+            self, RandomMobilityConfig(x_range=(0,config.L), y_range=(0,config.L), z_range=(4.0,4.0), tolerance=1)
         )
         self.mission = MissionMobilityPlugin(
-            self, MissionMobilityConfiguration(speed=10, loop_mission=LoopMission.NO, tolerance=1)
+            self, MissionMobilityConfiguration(speed=config.VQC_SPEED, loop_mission=LoopMission.NO, tolerance=1)
         )
 
         self.random.initiate_random_trip()
@@ -70,11 +70,11 @@ class VQCProtocol(IProtocol):
                 self.pos[2] - coord3d[2]
             )
             dist = math.sqrt(dx*dx + dy*dy + dz*dz)
-            self.log.debug(f"    Dist to {coord3d}: {dist:.2f} (tol={R_DETECT})")
+            self.log.debug(f"    Dist to {coord3d}: {dist:.2f} (tol={config.R_DETECT})")
 
-            if dist <= R_DETECT:
+            if dist <= config.R_DETECT:
                 # encontramos el POI correspondiente:
-                poi = next(p for p in POIS
+                poi = next(p for p in config.POIS
                         if p["coord"] == (coord3d[0], coord3d[1])
                         and p["urgency"] == urg)
                 poi_id    = poi["id"]
@@ -84,30 +84,40 @@ class VQCProtocol(IProtocol):
                 # 2) no esté ya en discovered (que ahora son dicts con clave "id")
                 already_discovered = any(d["id"] == poi_id for d in self.discovered)
                 if poi_id not in self.visited and not already_discovered:
-                    if len(self.discovered) < M:
+                    if len(self.discovered) < config.M:
+                        # ➞ lo añadimos al buffer discovered
                         self.discovered.append({"id": poi_id, "label": poi_label})
-                        # Métrica: casual vs assigned
-                        if in_mission:
+
+                        # ➞ CLASIFICAMOS: assigned si (coord3d, urg) estaba en next2visit
+                        entry = (coord3d, urg)
+                        if entry in self.next2visit:
                             self.disc_assigned += 1
+                            # ➞ lo quitamos de next2visit para no volver a contarlo
+                            self.next2visit.remove(entry)
+                            kind = "assigned"
                         else:
+                            # (raro, pero por seguridad)
                             self.disc_casual += 1
-                        self.log.info(f"🔍 Local detect: {poi_id} ({poi_label})")
+                            kind = "casual"
+
+                        self.log.info(f"🔍 Local detect ({kind}): {poi_id} ({poi_label})")
                     else:
                         self.log.debug("Buffer discovered lleno")
-
+                # → Tras detectar uno assigned, puedes 'break' si solo esperas un PoI a la vez
+                # break
         # 2) detección casual cuando no estamos en misión:
-        if not in_mission:
-            for poi in POIS:
+        if not self.next2visit:
+            for poi in config.POIS:
                 px, py = poi["coord"]
                 dx, dy = self.pos[0] - px, self.pos[1] - py
                 dist = math.hypot(dx, dy)
-                if dist <= R_DETECT:
+                if dist <= config.R_DETECT:
                     poi_id    = poi["id"]
                     poi_label = poi["label"]
 
                     already_discovered = any(d["id"] == poi_id for d in self.discovered)
                     if poi_id not in self.visited and not already_discovered:
-                        if len(self.discovered) < M:
+                        if len(self.discovered) < config.M:
                             self.discovered.append({"id": poi_id, "label": poi_label})
                             self.disc_casual += 1
                             self.log.info(f"🔍 Casual detect: {poi_id} ({poi_label})")
@@ -136,10 +146,10 @@ class VQCProtocol(IProtocol):
                 #self.discovered.clear()    """ 
 
                        
-            free = M - len(self.next2visit)
+            free = config.M - len(self.next2visit)
             msg = {"type":"HELLO","v_id":self.id,"huecos":free,"position":list(self.pos)}
             self.log.debug(f"📤 HELLO payload: {msg}")
-            cmd = CommunicationCommand(CommunicationCommandType.BROADCAST, json.dumps(msg))
+            cmd = CommunicationCommand(CommunicationCommandType.SEND, json.dumps(msg),0)
             self.provider.send_communication_command(cmd)
             self.log.info(f"📤 HELLO sent: free={free}")
             self.provider.schedule_timer("hello", self.provider.current_time()+1)
@@ -196,9 +206,9 @@ class VQCProtocol(IProtocol):
             for coord3d, urg in antiguos:
                 # obtener el label según las coordenadas
                 label = next(poi["label"]
-                            for poi in POIS
+                            for poi in config.POIS
                             if poi["coord"] == (coord3d[0], coord3d[1]))
-                if label not in nuevos_ids and len(self.next2visit) < M:
+                if label not in nuevos_ids and len(self.next2visit) < config.M:
                     self.next2visit.append((coord3d, urg))
 
             # 5) Si tras el merge no queda nada, reanudar roaming
@@ -243,6 +253,8 @@ class VQCProtocol(IProtocol):
         
     
     def send_deliver(self) -> None:
+       # if not self.discovered:
+       #     return        
         pids = [d["id"] for d in self.discovered]
         msg = {
             "type": "DELIVER",
