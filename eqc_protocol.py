@@ -3,6 +3,7 @@ Exploration Quadcopter (E-QC) protocol:
 - Patrols the area via predefined waypoints.
 - Captures and filters PoI detections.
 - Coordinates with V-QCs by sending ASSIGN messages.
+- Limits total ASSIGNs per physical encounter (not per timer tick)
 """
 
 import json                                                   
@@ -26,6 +27,10 @@ class EQCProtocol(IProtocol):
         self.id = self.provider.get_id()
         self.log = logging.getLogger(f"EQC-{self.id}")
         self.log.info(f"Current handlers: {self.log.handlers!r}")
+
+        self.encounter_assigned = {vid: 0 for vid in range(config.NUM_VQCS)}
+        self.last_hello_time = {}
+
         # ——— Inicializar el último waypoint para el logging condicional ———
         self._last_wp = None
 
@@ -166,6 +171,12 @@ class EQCProtocol(IProtocol):
             return
         if t == "HELLO":
             self._executed["handle_packet.HELLO"] = True
+            now = self.provider.current_time()
+            prev = self.last_hello_time.get(vid)
+            if prev is None or (now - prev) > 1.2:
+                self.encounter_assigned[vid] = 0
+            self.last_hello_time[vid] = now
+
             free = msg["huecos"]
             pos = tuple(msg["position"])
             self.log.info(f"📩 HELLO from VQC-{vid}: free={free}, pos={pos}")
@@ -249,9 +260,10 @@ class EQCProtocol(IProtocol):
             
             free, pos = st["huecos"], st["pos"]
             self.log.debug(f"→ VQC-{vid} state: free={free}, pos={pos}")
-            if free <= 0:
-                self.log.debug(f"→ VQC-{vid} no free slots")
+            if free <= 0 or self.encounter_assigned.get(vid,0) >= MAX_ASSIGN_PER_ENCOUNTER:
+                self.log.debug(f"→ VQC-{vid} no free slots / {MAX_ASSIGN_PER_ENCOUNTER} reached")
                 continue
+
 ##########unicon dos conjuntos, passa informacoes novas
 ###no sobrecargar buffer, no dar mas tareas. heuristaica de blanceamiento de carga
             scored = []
@@ -262,7 +274,10 @@ class EQCProtocol(IProtocol):
                 self.log.debug(f"    ⋅ {poi['label']} urg={poi['urgency']} dist={dist:.2f} score={score:.2f}")
 
             scored.sort(key=lambda x: x[0], reverse=True)
-            limit = min(free, MAX_ASSIGN_PER_ENCOUNTER)
+            remaining = MAX_ASSIGN_PER_ENCOUNTER - self.encounter_assigned.get(vid,0)
+
+
+            limit = min(free, remaining)
 
             to_assign = [p for _, p in scored[:limit]]
             if not to_assign:
@@ -273,6 +288,7 @@ class EQCProtocol(IProtocol):
             for p in to_assign:
                 self.assign_times[p["label"]] = now
                 self.pending.remove(p)
+
             self.assign_count += len(to_assign)
 
             payload = {
@@ -283,6 +299,8 @@ class EQCProtocol(IProtocol):
 
             cmd = CommunicationCommand(CommunicationCommandType.SEND, json.dumps(payload), vid)
             self.provider.send_communication_command(cmd)
+            self.encounter_assigned[vid] += len(to_assign)
+
             self.log.info(f"🚀 ASSIGN {len(to_assign)} to VQC-{vid}: {[p['label'] for p in to_assign]}")
                 # ——> ACTUALIZAR huecos
             self.vqc_states[vid]["huecos"] -= len(to_assign)
