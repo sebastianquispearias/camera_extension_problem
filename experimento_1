@@ -1,0 +1,6 @@
+# ——— Listas de valores a probar ———
+num_pois_list     = [25, 50, 100]      # densidades de PoIs
+num_vqcs_list     = [3, 5, 7]          # número de V-QCs
+buffer_sizes_list = [3, 5, 10]         # tamaño de buffer M
+speeds_list       = [5.0, 10.0]        # velocidad de vuelo (m/s)
+camera_reaches    = [10.0, 15.0, 20.0]  # alcance oblicuo de la cámara
