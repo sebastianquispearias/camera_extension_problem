@@ -1,0 +1,6 @@
+# Experimentos y modelos generados
+callbacks/
+models/
+*.xlsx
+*_history.csv
+*.h5
