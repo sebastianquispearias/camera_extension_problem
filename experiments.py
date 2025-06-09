@@ -5,12 +5,12 @@ import re
 import csv
 import itertools
 
-seeds = list(range(100, 110))  
+seeds = list(range(100, 101))  
 # ——— Listas de valores a probar ———
-num_pois_list     = [25, 50, 100]      # densidades de PoIs
-num_vqcs_list     = [3, 5, 7]          # número de V-QCs
+num_pois_list     = [50, 100, 200]      # densidades de PoIs
+num_vqcs_list     = [5, 10, 20]          # número de V-QCs
 buffer_sizes_list = [3, 5, 10]         # tamaño de buffer M
-speeds_list       = [5.0, 10.0]        # velocidad de vuelo (m/s)
+speeds_list       = [5.0]        # velocidad de vuelo (m/s)
 camera_reaches    = [10.0, 15.0, 20.0]  # alcance oblicuo de la cámara
 
 # FOV angular siempre fijo en 180° (hemiespacio)
@@ -21,6 +21,7 @@ with open('experiment_results.csv', 'w', newline='', encoding='utf-8') as csvfil
     writer = csv.writer(csvfile)
     writer.writerow(['seed',
         'num_pois','num_vqcs','buffer_size',
+
         'speed','camera_reach',
         'assign_success','redundant_delivers',
         'avg_latency','discovery_rate'

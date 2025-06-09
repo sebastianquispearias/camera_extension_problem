@@ -23,13 +23,14 @@ from vqc_protocol import VQCProtocol
 if __name__ == "__main__":
     # ——— PARSEO DE ARGUMENTOS CLI ———                             # MODIFICACIÓN: bloque CLI
     parser = argparse.ArgumentParser(description="Ejecuta simulaciones con parámetros variables")
-    parser.add_argument('--num_pois',      type=int,required=True,   choices=[25,50,100], help='Cantidad de PoIs a usar')
-    parser.add_argument('--num_vqcs',      type=int,required=True,   choices=[3,5,7],     help='Número de V-QCs')
+    parser.add_argument('--num_pois',      type=int,required=True,   choices=[50,100,200], help='Cantidad de PoIs a usar')
+    parser.add_argument('--num_vqcs',      type=int,required=True,   choices=[5,10,20],     help='Número de V-QCs')
     parser.add_argument('--buffer_size',   type=int,required=True,   choices=[3,5,10],    help='Tamaño máximo de buffer M')
     parser.add_argument('--speed',         type=float,required=True, choices=[5.0,10.0],  help='Velocidad de vuelo (m/s)')
     parser.add_argument('--camera_reach',  type=float,required=True, choices=[10.0,15.0,20.0], help='Alcance oblicuo de la cámara')
     parser.add_argument('--seed',          type=int,required=True,help='Semilla para generar PoIs y posiciones iniciales')
  
+
     args = parser.parse_args()
     # ——— REPRODUCIBILIDAD ——
     random.seed(args.seed)  

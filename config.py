@@ -18,7 +18,7 @@ POIS: List[Dict] = []
 
 # Buffer and duration
 M = 5                    
-DURATION = 120          
+DURATION = 100          
 NUM_VQCS = 5              
 MAX_ASSIGN_PER_ENCOUNTER = 3
 EQC_SPEED = 5.0               

@@ -26,8 +26,8 @@ class EQCProtocol(IProtocol):
     def initialize(self) -> None:
         self.id = self.provider.get_id()
         self.log = logging.getLogger(f"EQC-{self.id}")
-        self.log.info(f"Current handlers: {self.log.handlers!r}")
-
+        self.log.info(f"Current handlers: s{self.log.handlers!r}")
+        self.assignment_policy = "greedy" # or "round_robin" or "load_balancing"  greedy
         self.encounter_assigned = {vid: 0 for vid in range(config.NUM_VQCS)}
         self.last_hello_time = {}
 
@@ -254,58 +254,176 @@ class EQCProtocol(IProtocol):
             self.assign_to_vqcs()
 
     def assign_to_vqcs(self) -> None:
+        if self.assignment_policy == "greedy":
+            self._assign_greedy()
+        elif self.assignment_policy == "round_robin":
+            self._assign_round_robin()
+        elif self.assignment_policy == "load_balancing":
+            self._assign_load_balancing()
+        else:
+            self.log.error(f"Unknown assignment policy: {self.assignment_policy}")
+
+    ########### editar aqui ###########
+    # Método para política Greedy (tu implementación actual)
+    def _assign_greedy(self) -> None:
         now = self.provider.current_time()
-        self.log.debug(f"🔍 assign_to_vqcs: pending={len(self.pending)}, states={self.vqc_states}")
+        self.log.debug(f"🔍 assign_to_vqcs (Greedy): pending={len(self.pending)}, states={self.vqc_states}")
         for vid, st in self.vqc_states.items():
-            
             free, pos = st["huecos"], st["pos"]
             self.log.debug(f"→ VQC-{vid} state: free={free}, pos={pos}")
-            if free <= 0 or self.encounter_assigned.get(vid,0) >= MAX_ASSIGN_PER_ENCOUNTER:
+            if free <= 0 or self.encounter_assigned.get(vid, 0) >= MAX_ASSIGN_PER_ENCOUNTER:
                 self.log.debug(f"→ VQC-{vid} no free slots / {MAX_ASSIGN_PER_ENCOUNTER} reached")
                 continue
 
-##########unicon dos conjuntos, passa informacoes novas
-###no sobrecargar buffer, no dar mas tareas. heuristaica de blanceamiento de carga
             scored = []
             for poi in self.pending:
-                dist = max(1e-6, math.hypot(pos[0]-poi["coord"][0], pos[1]-poi["coord"][1]))
-                score = poi["urgency"]/dist
+                dist = max(1e-6, math.hypot(pos[0] - poi["coord"][0], pos[1] - poi["coord"][1]))
+                score = poi["urgency"] / dist
                 scored.append((score, poi))
                 self.log.debug(f"    ⋅ {poi['label']} urg={poi['urgency']} dist={dist:.2f} score={score:.2f}")
 
             scored.sort(key=lambda x: x[0], reverse=True)
-            remaining = MAX_ASSIGN_PER_ENCOUNTER - self.encounter_assigned.get(vid,0)
-
-
+            remaining = MAX_ASSIGN_PER_ENCOUNTER - self.encounter_assigned.get(vid, 0)
             limit = min(free, remaining)
-
             to_assign = [p for _, p in scored[:limit]]
             if not to_assign:
                 self.log.debug(f"→ No PoIs for VQC-{vid}")
                 continue
 
-            # 3) MARCAR “IN-FLIGHT”: quitar inmediatamente de pending
             for p in to_assign:
                 self.assign_times[p["label"]] = now
                 self.pending.remove(p)
-
             self.assign_count += len(to_assign)
 
             payload = {
-                "type":"ASSIGN","v_id":vid,
-                "pois":[{"label":p["label"],"coord":p["coord"],"urgency":p["urgency"],"ts":self.detect_ts[p["label"]]} for p in to_assign]
+                "type": "ASSIGN", "v_id": vid,
+                "pois": [{"label": p["label"], "coord": p["coord"], "urgency": p["urgency"], "ts": self.detect_ts[p["label"]]} for p in to_assign]
             }
-            self.log.debug(f"🚀 ASSIGN payload for VQC-{vid}: {payload}")
+            self.log.debug(f"🚀 ASSIGN payload for VQC-{vid} (Greedy): {payload}")
 
             cmd = CommunicationCommand(CommunicationCommandType.SEND, json.dumps(payload), vid)
             self.provider.send_communication_command(cmd)
             self.encounter_assigned[vid] += len(to_assign)
 
             self.log.info(f"🚀 ASSIGN {len(to_assign)} to VQC-{vid}: {[p['label'] for p in to_assign]}")
-                # ——> ACTUALIZAR huecos
             self.vqc_states[vid]["huecos"] -= len(to_assign)
-            self.log.debug(f"→ Después de ASSIGN, VQC-{vid} tiene {self.vqc_states[vid]['huecos']} huecos")
 
+    ########### editar aqui ###########
+    # Método para política Round-Robin
+    def _assign_round_robin(self) -> None:
+        now = self.provider.current_time()
+        self.log.debug(f"🔍 assign_to_vqcs (Round-Robin): pending={len(self.pending)}, states={self.vqc_states}")
+
+        if not hasattr(self, "_rr_index"):
+            self._rr_index = 0
+
+        vqc_ids = list(self.vqc_states.keys())
+        n_vqcs = len(vqc_ids)
+        if n_vqcs == 0:
+            self.log.debug("→ No VQCs available for assignment")
+            return
+
+        for _ in range(n_vqcs):
+            vid = vqc_ids[self._rr_index % n_vqcs]
+            self._rr_index += 1
+
+            st = self.vqc_states[vid]
+            free, pos = st["huecos"], st["pos"]
+
+            self.log.debug(f"→ VQC-{vid} state: free={free}, pos={pos}")
+            if free <= 0:
+                self.log.debug(f"→ VQC-{vid} no free slots")
+                continue
+
+            if not self.pending:
+                self.log.debug("→ No PoIs pending")
+                break
+
+            to_assign = [self.pending[0]]  # Solo un PoI por ronda
+
+            for p in to_assign:
+                self.assign_times[p["label"]] = now
+                self.pending.remove(p)
+            self.assign_count += len(to_assign)
+
+            payload = {
+                "type": "ASSIGN", "v_id": vid,
+                "pois": [{"label": p["label"], "coord": p["coord"], "urgency": p["urgency"], "ts": self.detect_ts[p["label"]]} for p in to_assign]
+            }
+            self.log.debug(f"🚀 ASSIGN payload for VQC-{vid} (Round-Robin): {payload}")
+
+            cmd = CommunicationCommand(CommunicationCommandType.SEND, json.dumps(payload), vid)
+            self.provider.send_communication_command(cmd)
+            self.log.info(f"🚀 ASSIGN {len(to_assign)} to VQC-{vid}: {[p['label'] for p in to_assign]}")
+
+            self.vqc_states[vid]["huecos"] -= len(to_assign)
+            break  # Asigna solo 1 VQC por llamada (puedes cambiar esto)
+
+    ########### editar aqui ###########
+    # Método para política Load-Balancing
+    def _assign_load_balancing(self) -> None:
+        now = self.provider.current_time()
+        self.log.debug(f"🔍 assign_to_vqcs (Load-Balancing): pending={len(self.pending)}, states={self.vqc_states}")
+
+        if not self.vqc_states or not self.pending:
+            self.log.debug("→ No VQCs or no PoIs pending")
+            return
+
+        max_ratio = -1
+        best_vid = None
+        for vid, st in self.vqc_states.items():
+            free = st["huecos"]
+            buffer_max = getattr(config, "BUFFER_M", 5)  # Suponemos existe BUFFER_M en config
+            ratio = free / buffer_max if buffer_max > 0 else 0
+            self.log.debug(f"→ VQC-{vid} free={free}, buffer_max={buffer_max}, ratio={ratio:.2f}")
+            if free > 0 and ratio > max_ratio:
+                max_ratio = ratio
+                best_vid = vid
+
+        if best_vid is None:
+            self.log.debug("→ No VQC con slots libres")
+            return
+
+        st = self.vqc_states[best_vid]
+        free, pos = st["huecos"], st["pos"]
+
+        if free <= 0 or self.encounter_assigned.get(best_vid, 0) >= MAX_ASSIGN_PER_ENCOUNTER:
+            self.log.debug(f"→ VQC-{best_vid} no free slots o throttle alcanzado")
+            return
+
+        scored = []
+        for poi in self.pending:
+            dist = max(1e-6, math.hypot(pos[0] - poi["coord"][0], pos[1] - poi["coord"][1]))
+            score = poi["urgency"] / dist
+            scored.append((score, poi))
+            self.log.debug(f"    ⋅ {poi['label']} urg={poi['urgency']} dist={dist:.2f} score={score:.2f}")
+
+        scored.sort(key=lambda x: x[0], reverse=True)
+        remaining = MAX_ASSIGN_PER_ENCOUNTER - self.encounter_assigned.get(best_vid, 0)
+        limit = min(free, remaining)
+
+        to_assign = [p for _, p in scored[:limit]]
+        if not to_assign:
+            self.log.debug(f"→ No PoIs for VQC-{best_vid}")
+            return
+
+        for p in to_assign:
+            self.assign_times[p["label"]] = now
+            self.pending.remove(p)
+        self.assign_count += len(to_assign)
+
+        payload = {
+            "type": "ASSIGN", "v_id": best_vid,
+            "pois": [{"label": p["label"], "coord": p["coord"], "urgency": p["urgency"], "ts": self.detect_ts[p["label"]]} for p in to_assign]
+        }
+        self.log.debug(f"🚀 ASSIGN payload for VQC-{best_vid} (Load-Balancing): {payload}")
+
+        cmd = CommunicationCommand(CommunicationCommandType.SEND, json.dumps(payload), best_vid)
+        self.provider.send_communication_command(cmd)
+        self.encounter_assigned[best_vid] += len(to_assign)
+
+        self.log.info(f"🚀 ASSIGN {len(to_assign)} to VQC-{best_vid}: {[p['label'] for p in to_assign]}")
+        self.vqc_states[best_vid]["huecos"] -= len(to_assign)
 
     def finish(self) -> None:
         # calcular latencia promedio ignorando ceros
