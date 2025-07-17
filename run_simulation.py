@@ -19,9 +19,9 @@ from gradysim.simulator.simulation import SimulationBuilder, SimulationConfigura
 from poi_protocol import POIProtocol
 from eqc_protocol import EQCProtocol
 from vqc_protocol import VQCProtocol
+from config import EQC_INIT_POS
 
 if __name__ == "__main__":
-    # ——— PARSEO DE ARGUMENTOS CLI ———                             # MODIFICACIÓN: bloque CLI
     parser = argparse.ArgumentParser(description="Ejecuta simulaciones con parámetros variables")
     parser.add_argument('--num_pois',      type=int,required=True,   choices=[50,100,200], help='Cantidad de PoIs a usar')
     parser.add_argument('--num_vqcs',      type=int,required=True,   choices=[5,10,20],     help='Número de V-QCs')
@@ -32,18 +32,14 @@ if __name__ == "__main__":
  
 
     args = parser.parse_args()
-    # ——— REPRODUCIBILIDAD ——
     random.seed(args.seed)  
-    # ——— GENERACIÓN ANIDADA DE POIs ———                   
     config.POIS = config.get_pois(seed=args.seed, n=args.num_pois)
-    # ——— Overrides opcionales de los demás parámetros ———
-    config.NUM_VQCS   = args.num_vqcs    # <<< EDITA AQUÍ
-    config.M          = args.buffer_size # <<< EDITA AQUÍ
-    config.R_CAMERA   = args.camera_reach# <<< EDITA AQUÍ
-    mobility_speed    = args.speed       # <<< EDITA AQUÍ
+    config.NUM_VQCS   = args.num_vqcs    
+    config.M          = args.buffer_size 
+    config.R_CAMERA   = args.camera_reach
+    mobility_speed    = args.speed      
 
 
-    # ——— Setup de logging ———
     root = logging.getLogger()
     root.setLevel(logging.DEBUG)
     fmt = logging.Formatter("%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
@@ -56,11 +52,11 @@ if __name__ == "__main__":
         f"speed={mobility_speed} m/s, camera_reach={config.R_CAMERA}"
     )
 
- ###——— Construcción de la simulación ———
-    sim_cfg = SimulationConfiguration(duration=config.DURATION, debug=True, real_time=False)
+ #####################——— Construcción de la simulación ———
+    sim_cfg = SimulationConfiguration(duration=config.DURATION, debug=False, real_time=True)
     builder = SimulationBuilder(sim_cfg)
 
-    builder.add_node(EQCProtocol, (0.0, 0.0, 7.0))
+    builder.add_node(EQCProtocol, EQC_INIT_POS)
     root.info("➕ Added EQCProtocol at (0,0,7)")
   # Añadimos VQCs con posiciones reproducibles
     for i in range(config.NUM_VQCS):
@@ -75,7 +71,7 @@ if __name__ == "__main__":
     medium = CommunicationMedium(transmission_range=config.R_COMM)
     builder.add_handler(CommunicationHandler(medium))
     builder.add_handler(TimerHandler())
-    builder.add_handler(MobilityHandler(MobilityConfiguration(default_speed=mobility_speed)))  # MODIFICACIÓN: usa DEFAULT_SPEED
+    builder.add_handler(MobilityHandler(MobilityConfiguration(default_speed=mobility_speed))) 
     builder.add_handler(VisualizationHandler())
     root.info("🔧 Handlers added")
  # ——— Ejecución ———

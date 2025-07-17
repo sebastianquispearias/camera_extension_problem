@@ -1,0 +1,1570 @@
+2025-07-17 06:10:05,912 root         INFO     ✅ Simulation start — seed=100, num_pois=50, duration=100s, VQCs=5, area=50.0×50.0, speed=5.0 m/s, camera_reach=20.0
+2025-07-17 06:10:05,916 root         INFO     ➕ Added EQCProtocol at (0,0,7)
+2025-07-17 06:10:05,916 root         INFO     ➕ Added VQCProtocol #1 at (7.283462755206516, 22.746350225701068, 4.0)
+2025-07-17 06:10:05,916 root         INFO     ➕ Added VQCProtocol #2 at (38.53919028295111, 35.2756613467014, 4.0)
+2025-07-17 06:10:05,916 root         INFO     ➕ Added VQCProtocol #3 at (36.59794865166279, 21.675721744770186, 4.0)
+2025-07-17 06:10:05,916 root         INFO     ➕ Added VQCProtocol #4 at (40.00102285667138, 26.645070732128566, 4.0)
+2025-07-17 06:10:05,916 root         INFO     ➕ Added VQCProtocol #5 at (4.007685458925097, 22.79729405917836, 4.0)
+2025-07-17 06:10:05,916 root         INFO     ➕ Added 50 POIProtocol nodes
+2025-07-17 06:10:06,346 root         INFO     🔧 Handlers added
+2025-07-17 06:10:06,346 root         INFO     ▶️ Starting simulation
+2025-07-17 06:10:06,346 root         INFO     [--------- Simulation started ---------]
+2025-07-17 06:10:06,366 EQC-0        INFO     Current handlers: s[]
+2025-07-17 06:10:06,366 EQC-0        INFO     🛰️  EQC iniciando patrulla con waypoints: [(0.0, 0.0, 7.0), (50.0, 0.0, 7.0), (50.0, 10.0, 7.0), (0.0, 10.0, 7.0), (0.0, 20.0, 7.0), (50.0, 20.0, 7.0), (50.0, 30.0, 7.0), (0.0, 30.0, 7.0), (0.0, 40.0, 7.0), (50.0, 40.0, 7.0), (50.0, 50.0, 7.0), (0.0, 50.0, 7.0)]
+2025-07-17 06:10:06,366 root         INFO     Mission: Starting mission
+2025-07-17 06:10:06,369 EQC-0        INFO     📷 Camera configured: reach=20.0, theta=180.0
+2025-07-17 06:10:06,369 EQC-0        INFO     ✅ First ‘assign’ timer scheduled for t=1.00s
+2025-07-17 06:10:06,370 VQC-1        INFO     🛰️ Posición inicial EQC sembrada: (0.0, 0.0, 7.0)
+2025-07-17 06:10:06,370 VQC-1        INFO     🛫 VQC-1 initialized at (0.0, 0.0, 4.0)
+2025-07-17 06:10:06,371 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (-1.288837517149696, -1.4999999999999998, 7.0)
+2025-07-17 06:10:06,371 root         INFO     Mission: Starting mission
+2025-07-17 06:10:06,373 VQC-1        INFO     Modo satélite iniciado
+2025-07-17 06:10:06,373 VQC-2        INFO     🛰️ Posición inicial EQC sembrada: (0.0, 0.0, 7.0)
+2025-07-17 06:10:06,373 VQC-2        INFO     🛫 VQC-2 initialized at (0.0, 0.0, 4.0)
+2025-07-17 06:10:06,373 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.288837517149696, 1.4999999999999998, 7.0)
+2025-07-17 06:10:06,373 root         INFO     Mission: Starting mission
+2025-07-17 06:10:06,376 VQC-2        INFO     Modo satélite iniciado
+2025-07-17 06:10:06,376 VQC-3        INFO     🛰️ Posición inicial EQC sembrada: (0.0, 0.0, 7.0)
+2025-07-17 06:10:06,376 VQC-3        INFO     🛫 VQC-3 initialized at (0.0, 0.0, 4.0)
+2025-07-17 06:10:06,377 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (-3.886913728503012, -2.9999999999999996, 7.0)
+2025-07-17 06:10:06,378 root         INFO     Mission: Starting mission
+2025-07-17 06:10:06,378 VQC-3        INFO     Modo satélite iniciado
+2025-07-17 06:10:06,379 VQC-4        INFO     🛰️ Posición inicial EQC sembrada: (0.0, 0.0, 7.0)
+2025-07-17 06:10:06,379 VQC-4        INFO     🛫 VQC-4 initialized at (0.0, 0.0, 4.0)
+2025-07-17 06:10:06,381 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-3.886913728503012, 2.9999999999999996, 7.0)
+2025-07-17 06:10:06,381 root         INFO     Mission: Starting mission
+2025-07-17 06:10:06,381 VQC-4        INFO     Modo satélite iniciado
+2025-07-17 06:10:06,381 VQC-5        INFO     🛰️ Posición inicial EQC sembrada: (0.0, 0.0, 7.0)
+2025-07-17 06:10:06,383 VQC-5        INFO     🛫 VQC-5 initialized at (0.0, 0.0, 4.0)
+2025-07-17 06:10:06,385 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (-6.484989939856328, -4.499999999999999, 7.0)
+2025-07-17 06:10:06,386 root         INFO     Mission: Starting mission
+2025-07-17 06:10:06,386 VQC-5        INFO     Modo satélite iniciado
+2025-07-17 06:10:06,389 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:06,390 EQC-0        INFO     🛰️ EQC rumbo al waypoint en 1
+2025-07-17 06:10:06,390 VQC-1        INFO     🔍 Casual detect: 100-000 (POI-1)
+2025-07-17 06:10:06,390 VQC-1        INFO     🔍 Casual detect: 100-003 (POI-4)
+2025-07-17 06:10:06,390 VQC-1        INFO     🔍 Casual detect: 100-011 (POI-12)
+2025-07-17 06:10:06,392 VQC-1        INFO     🔍 Casual detect: 100-015 (POI-16)
+2025-07-17 06:10:06,392 VQC-1        INFO     🔍 Casual detect: 100-032 (POI-33)
+2025-07-17 06:10:06,393 VQC-2        INFO     🔍 Casual detect: 100-001 (POI-2)
+2025-07-17 06:10:06,393 VQC-2        INFO     🔍 Casual detect: 100-004 (POI-5)
+2025-07-17 06:10:06,393 VQC-2        INFO     🔍 Casual detect: 100-010 (POI-11)
+2025-07-17 06:10:06,393 VQC-2        INFO     🔍 Casual detect: 100-016 (POI-17)
+2025-07-17 06:10:06,395 VQC-2        INFO     🔍 Casual detect: 100-017 (POI-18)
+2025-07-17 06:10:06,396 VQC-3        INFO     🔍 Casual detect: 100-029 (POI-30)
+2025-07-17 06:10:06,396 VQC-3        INFO     🔍 Casual detect: 100-043 (POI-44)
+2025-07-17 06:10:06,397 VQC-4        INFO     🔍 Casual detect: 100-010 (POI-11)
+2025-07-17 06:10:06,397 VQC-4        INFO     🔍 Casual detect: 100-043 (POI-44)
+2025-07-17 06:10:06,399 VQC-5        INFO     🔍 Casual detect: 100-000 (POI-1)
+2025-07-17 06:10:06,399 VQC-5        INFO     🔍 Casual detect: 100-003 (POI-4)
+2025-07-17 06:10:06,399 VQC-5        INFO     🔍 Casual detect: 100-011 (POI-12)
+2025-07-17 06:10:06,400 VQC-5        INFO     🔍 Casual detect: 100-015 (POI-16)
+2025-07-17 06:10:06,400 VQC-5        INFO     🔍 Casual detect: 100-032 (POI-33)
+2025-07-17 06:10:06,496 VQC-4        INFO     🔍 Casual detect: 100-029 (POI-30)
+2025-07-17 06:10:06,544 VQC-3        INFO     🔍 Casual detect: 100-018 (POI-19)
+2025-07-17 06:10:06,802 VQC-4        INFO     🔍 Casual detect: 100-018 (POI-19)
+2025-07-17 06:10:06,862 VQC-3        INFO     🔍 Casual detect: 100-021 (POI-22)
+2025-07-17 06:10:06,898 VQC-3        INFO     🔍 Casual detect: 100-042 (POI-43)
+2025-07-17 06:10:06,983 VQC-4        INFO     🔍 Casual detect: 100-041 (POI-42)
+2025-07-17 06:10:07,626 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:07,626 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:07,626 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:07,629 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:07,629 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:07,631 EQC-0        INFO     **************************************** t=1.00s ****************************************
+2025-07-17 06:10:07,631 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=1.00
+2025-07-17 06:10:07,631 EQC-0        INFO     ⚙️  assign @ t=1.00: 12 nodos detectados
+2025-07-17 06:10:07,631 EQC-0        INFO     🔍 POI-3 detectado @ (25.343251153834334, 5.498503719606029) t=1.00
+2025-07-17 06:10:07,634 EQC-0        INFO     🔍 POI-6 detectado @ (16.767538797000505, 15.470296457001709) t=1.00
+2025-07-17 06:10:07,635 EQC-0        INFO     🔍 POI-13 detectado @ (8.127009195328, 8.350729510625715) t=1.00
+2025-07-17 06:10:07,635 EQC-0        INFO     🔍 POI-22 detectado @ (21.72291809787337, 11.989834847812542) t=1.00
+2025-07-17 06:10:07,636 EQC-0        INFO     🔍 POI-31 detectado @ (0.626363862143231, 5.701496256707994) t=1.00
+2025-07-17 06:10:07,637 EQC-0        INFO     🔍 POI-39 detectado @ (4.716992392782565, 6.998961497741068) t=1.00
+2025-07-17 06:10:07,637 EQC-0        INFO     🔍 POI-40 detectado @ (4.509385348487621, 12.579949970096504) t=1.00
+2025-07-17 06:10:07,639 EQC-0        INFO     🔍 POI-43 detectado @ (22.710897223509242, 9.710128086232196) t=1.00
+2025-07-17 06:10:07,641 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:07,776 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (16.548049015394724, -1.4999999999999998, 7.0)
+2025-07-17 06:10:07,776 root         INFO     Mission: Starting mission
+2025-07-17 06:10:07,834 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:07,913 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (16.624839420385815, -4.499999999999999, 7.0)
+2025-07-17 06:10:07,913 root         INFO     Mission: Starting mission
+2025-07-17 06:10:08,678 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:08,720 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (16.80888270941429, -1.4999999999999998, 7.0)
+2025-07-17 06:10:08,721 root         INFO     Mission: Starting mission
+2025-07-17 06:10:08,723 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:08,818 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:08,861 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (18.039924896625415, -1.4999999999999998, 7.0)
+2025-07-17 06:10:08,862 root         INFO     Mission: Starting mission
+2025-07-17 06:10:08,862 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (28.83517941893011, -2.9999999999999996, 7.0)
+2025-07-17 06:10:08,863 root         INFO     Mission: Starting mission
+2025-07-17 06:10:08,863 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:08,942 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:08,997 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:08,998 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:08,999 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:08,999 EQC-0        INFO     **************************************** t=2.00s ****************************************
+2025-07-17 06:10:09,000 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=2.00
+2025-07-17 06:10:09,000 EQC-0        INFO     ⚙️  assign @ t=2.00: 10 nodos detectados
+2025-07-17 06:10:09,001 EQC-0        INFO     🔍 POI-19 detectado @ (26.408961669285986, 17.16341396513598) t=2.00
+2025-07-17 06:10:09,001 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:09,001 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(18.039924896625415, -1.4999999999999998, 7.0)
+2025-07-17 06:10:09,001 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:09,002 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:09,002 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (19.800000000000015, 0.0, 7.0) t=2
+2025-07-17 06:10:09,003 VQC-1        INFO     📤 DELIVER enviado: ['100-000', '100-003', '100-011', '100-015', '100-032']
+2025-07-17 06:10:09,004 EQC-0        INFO     📩 HELLO from VQC-5: free=5, pos=(13.515010060143672, -4.499999999999999, 7.0)
+2025-07-17 06:10:09,005 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:09,006 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-000', 'label': 'POI-1'}, {'id': '100-003', 'label': 'POI-4'}, {'id': '100-011', 'label': 'POI-12'}, {'id': '100-015', 'label': 'POI-16'}, {'id': '100-032', 'label': 'POI-33'}]
+2025-07-17 06:10:09,007 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-000', '100-003', '100-011', '100-015', '100-032']
+2025-07-17 06:10:09,008 EQC-0        INFO     🚀 ASSIGN 3 to VQC-1: ['POI-43', 'POI-22', 'POI-39']
+2025-07-17 06:10:09,009 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (19.800000000000015, 0.0, 7.0) t=2
+2025-07-17 06:10:09,009 VQC-5        INFO     📤 DELIVER enviado: ['100-000', '100-003', '100-011', '100-015', '100-032']
+2025-07-17 06:10:09,010 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-000', '100-003', '100-011', '100-015', '100-032']
+2025-07-17 06:10:09,011 VQC-1        INFO     📥 ASSIGN received: [{'label': 'POI-43', 'coord': [22.710897223509242, 9.710128086232196], 'urgency': 3, 'ts': 1}, {'label': 'POI-22', 'coord': [21.72291809787337, 11.989834847812542], 'urgency': 3, 'ts': 1}, {'label': 'POI-39', 'coord': [4.716992392782565, 6.998961497741068], 'urgency': 3, 'ts': 1}]
+2025-07-17 06:10:09,013 VQC-1        INFO     🗺️ Waypoints combinados: [(22.710897223509242, 9.710128086232196, 4.0), (21.72291809787337, 11.989834847812542, 4.0), (4.716992392782565, 6.998961497741068, 4.0)]
+2025-07-17 06:10:09,014 root         INFO     Mission: Starting mission
+2025-07-17 06:10:09,014 EQC-0        INFO     📥 DELIVER from VQC-5: [{'id': '100-000', 'label': 'POI-1'}, {'id': '100-003', 'label': 'POI-4'}, {'id': '100-011', 'label': 'POI-12'}, {'id': '100-015', 'label': 'POI-16'}, {'id': '100-032', 'label': 'POI-33'}]
+2025-07-17 06:10:09,015 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: ['100-000', '100-003', '100-011', '100-015', '100-032']
+2025-07-17 06:10:09,016 EQC-0        INFO     🚀 ASSIGN 3 to VQC-5: ['POI-40', 'POI-19', 'POI-13']
+2025-07-17 06:10:09,016 VQC-5        INFO     📥 DELIVER_ACK recibido: ['100-000', '100-003', '100-011', '100-015', '100-032']
+2025-07-17 06:10:09,016 VQC-5        INFO     📥 ASSIGN received: [{'label': 'POI-40', 'coord': [4.509385348487621, 12.579949970096504], 'urgency': 3, 'ts': 1}, {'label': 'POI-19', 'coord': [26.408961669285986, 17.16341396513598], 'urgency': 2, 'ts': 2}, {'label': 'POI-13', 'coord': [8.127009195328, 8.350729510625715], 'urgency': 1, 'ts': 1}]
+2025-07-17 06:10:09,016 VQC-5        INFO     🗺️ Waypoints combinados: [(4.509385348487621, 12.579949970096504, 4.0), (26.408961669285986, 17.16341396513598, 4.0), (8.127009195328, 8.350729510625715, 4.0)]
+2025-07-17 06:10:09,017 root         INFO     Mission: Starting mission
+2025-07-17 06:10:09,019 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (30.53622415609705, 2.9999999999999996, 7.0)
+2025-07-17 06:10:09,021 root         INFO     Mission: Starting mission
+2025-07-17 06:10:09,102 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:09,161 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (33.12969136703665, 1.4999999999999998, 7.0)
+2025-07-17 06:10:09,161 root         INFO     Mission: Starting mission
+2025-07-17 06:10:09,263 VQC-1        INFO     🔍 Local detect (assigned): 100-042 (POI-43)
+2025-07-17 06:10:09,358 VQC-1        INFO     🔍 Local detect (assigned): 100-021 (POI-22)
+2025-07-17 06:10:09,358 VQC-5        INFO     🔍 Local detect (assigned): 100-012 (POI-13)
+2025-07-17 06:10:09,650 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:09,650 VQC-5        INFO     🔍 Local detect (assigned): 100-039 (POI-40)
+2025-07-17 06:10:09,782 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:10,046 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:10,322 VQC-1        INFO     🔍 Local detect (assigned): 100-038 (POI-39)
+2025-07-17 06:10:10,322 VQC-1        INFO     🔍 Casual detect: 100-005 (POI-6)
+2025-07-17 06:10:10,326 VQC-1        INFO     🔍 Casual detect: 100-012 (POI-13)
+2025-07-17 06:10:10,407 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:10,407 VQC-5        INFO     📤 HELLO sent: free=4
+2025-07-17 06:10:10,407 EQC-0        INFO     **************************************** t=3.00s ****************************************
+2025-07-17 06:10:10,407 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=3.00
+2025-07-17 06:10:10,407 EQC-0        INFO     ⚙️  assign @ t=3.00: 10 nodos detectados
+2025-07-17 06:10:10,407 EQC-0        INFO     🔍 POI-32 detectado @ (41.103274198354484, 5.954275548497701) t=3.00
+2025-07-17 06:10:10,407 EQC-0        INFO     🔍 POI-45 detectado @ (41.417904724449194, 3.870684627574245) t=3.00
+2025-07-17 06:10:10,407 EQC-0        INFO     🔍 POI-47 detectado @ (42.08585311124954, 4.747054424315367) t=3.00
+2025-07-17 06:10:10,407 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:10,407 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(24.081863383190715, -2.980478082788322, 6.99762658404723)
+2025-07-17 06:10:10,407 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:10,407 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:10,413 EQC-0        INFO     📩 HELLO from VQC-4: free=5, pos=(21.532045106623883, 3.023940935585858, 6.996962461750643)
+2025-07-17 06:10:10,413 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-4
+2025-07-17 06:10:10,413 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (29.90000000000016, 0.0, 7.0) t=3
+2025-07-17 06:10:10,415 VQC-3        INFO     📤 DELIVER enviado: ['100-029', '100-043', '100-018', '100-021', '100-042']
+2025-07-17 06:10:10,416 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(21.211162482850305, 1.4999999999999998, 7.0)
+2025-07-17 06:10:10,416 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:10,417 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:10,417 VQC-4        INFO     ✅ VQC-4 recebeu HELLO_ACK, enviando DELIVER en (29.90000000000016, 0.0, 7.0) t=3
+2025-07-17 06:10:10,418 VQC-4        INFO     📤 DELIVER enviado: ['100-010', '100-043', '100-029', '100-018', '100-041']
+2025-07-17 06:10:10,419 EQC-0        INFO     📥 DELIVER from VQC-3: [{'id': '100-029', 'label': 'POI-30'}, {'id': '100-043', 'label': 'POI-44'}, {'id': '100-018', 'label': 'POI-19'}, {'id': '100-021', 'label': 'POI-22'}, {'id': '100-042', 'label': 'POI-43'}]
+2025-07-17 06:10:10,420 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: ['100-029', '100-043', '100-018', '100-021', '100-042']
+2025-07-17 06:10:10,421 EQC-0        INFO     🚀 ASSIGN 3 to VQC-3: ['POI-45', 'POI-32', 'POI-3']
+2025-07-17 06:10:10,422 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (29.90000000000016, 0.0, 7.0) t=3
+2025-07-17 06:10:10,424 VQC-2        INFO     📤 DELIVER enviado: ['100-001', '100-004', '100-010', '100-016', '100-017']
+2025-07-17 06:10:10,424 EQC-0        INFO     📥 DELIVER from VQC-4: [{'id': '100-010', 'label': 'POI-11'}, {'id': '100-043', 'label': 'POI-44'}, {'id': '100-029', 'label': 'POI-30'}, {'id': '100-018', 'label': 'POI-19'}, {'id': '100-041', 'label': 'POI-42'}]
+2025-07-17 06:10:10,426 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-4: ['100-010', '100-043', '100-029', '100-018', '100-041']
+2025-07-17 06:10:10,426 EQC-0        INFO     🚀 ASSIGN 3 to VQC-4: ['POI-6', 'POI-47', 'POI-31']
+2025-07-17 06:10:10,426 VQC-3        INFO     📥 DELIVER_ACK recibido: ['100-029', '100-043', '100-018', '100-021', '100-042']
+2025-07-17 06:10:10,428 VQC-3        INFO     📥 ASSIGN received: [{'label': 'POI-45', 'coord': [41.417904724449194, 3.870684627574245], 'urgency': 3, 'ts': 3}, {'label': 'POI-32', 'coord': [41.103274198354484, 5.954275548497701], 'urgency': 3, 'ts': 3}, {'label': 'POI-3', 'coord': [25.343251153834334, 5.498503719606029], 'urgency': 1, 'ts': 1}]
+2025-07-17 06:10:10,430 VQC-3        INFO     🗺️ Waypoints combinados: [(41.417904724449194, 3.870684627574245, 4.0), (41.103274198354484, 5.954275548497701, 4.0), (25.343251153834334, 5.498503719606029, 4.0)]
+2025-07-17 06:10:10,431 root         INFO     Mission: Starting mission
+2025-07-17 06:10:10,431 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-001', 'label': 'POI-2'}, {'id': '100-004', 'label': 'POI-5'}, {'id': '100-010', 'label': 'POI-11'}, {'id': '100-016', 'label': 'POI-17'}, {'id': '100-017', 'label': 'POI-18'}]
+2025-07-17 06:10:10,431 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-001', '100-004', '100-010', '100-016', '100-017']
+2025-07-17 06:10:10,431 VQC-4        INFO     📥 ASSIGN received: [{'label': 'POI-6', 'coord': [16.767538797000505, 15.470296457001709], 'urgency': 1, 'ts': 1}, {'label': 'POI-47', 'coord': [42.08585311124954, 4.747054424315367], 'urgency': 1, 'ts': 3}, {'label': 'POI-31', 'coord': [0.626363862143231, 5.701496256707994], 'urgency': 1, 'ts': 1}]
+2025-07-17 06:10:10,431 VQC-4        INFO     🗺️ Waypoints combinados: [(16.767538797000505, 15.470296457001709, 4.0), (42.08585311124954, 4.747054424315367, 4.0), (0.626363862143231, 5.701496256707994, 4.0)]
+2025-07-17 06:10:10,433 root         INFO     Mission: Starting mission
+2025-07-17 06:10:10,434 VQC-4        INFO     📥 DELIVER_ACK recibido: ['100-010', '100-043', '100-029', '100-018', '100-041']
+2025-07-17 06:10:10,434 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-001', '100-004', '100-010', '100-016', '100-017']
+2025-07-17 06:10:10,450 VQC-2        INFO     🔍 Casual detect: 100-002 (POI-3)
+2025-07-17 06:10:10,602 VQC-3        INFO     🔍 Local detect (assigned): 100-002 (POI-3)
+2025-07-17 06:10:10,740 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:10,756 VQC-4        INFO     🔍 Local detect (assigned): 100-005 (POI-6)
+2025-07-17 06:10:10,853 VQC-1        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:10,853 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (47.401923788646684, -0.20483401410616842, 7.0)
+2025-07-17 06:10:10,853 root         INFO     Mission: Starting mission
+2025-07-17 06:10:10,866 VQC-5        INFO     🔍 Local detect (assigned): 100-018 (POI-19)
+2025-07-17 06:10:10,866 VQC-5        INFO     🔍 Casual detect: 100-005 (POI-6)
+2025-07-17 06:10:10,866 VQC-5        INFO     🔍 Casual detect: 100-007 (POI-8)
+2025-07-17 06:10:11,048 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:11,048 VQC-3        INFO     🔍 Local detect (assigned): 100-044 (POI-45)
+2025-07-17 06:10:11,090 VQC-3        INFO     🔍 Local detect (assigned): 100-031 (POI-32)
+2025-07-17 06:10:11,104 VQC-3        INFO     🔍 Casual detect: 100-046 (POI-47)
+2025-07-17 06:10:11,135 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (33.854810972188425, 1.4999999999999998, 7.0)
+2025-07-17 06:10:11,137 root         INFO     Mission: Starting mission
+2025-07-17 06:10:11,152 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:11,153 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:11,180 VQC-2        INFO     🔍 Casual detect: 100-044 (POI-45)
+2025-07-17 06:10:11,262 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:11,278 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (35.01305349939346, 1.4999999999999998, 7.0)
+2025-07-17 06:10:11,278 root         INFO     Mission: Starting mission
+2025-07-17 06:10:11,294 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:11,330 VQC-2        INFO     🔍 Casual detect: 100-031 (POI-32)
+2025-07-17 06:10:11,346 VQC-2        INFO     🔍 Casual detect: 100-046 (POI-47)
+2025-07-17 06:10:11,436 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (35.92137900098196, 1.4999999999999998, 7.0)
+2025-07-17 06:10:11,437 root         INFO     Mission: Starting mission
+2025-07-17 06:10:11,452 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:11,466 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:11,496 VQC-3        INFO     🔍 Casual detect: 100-006 (POI-7)
+2025-07-17 06:10:11,555 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:11,585 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (36.97431063905059, 1.4999999999999998, 7.0)
+2025-07-17 06:10:11,588 root         INFO     Mission: Starting mission
+2025-07-17 06:10:11,606 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:11,735 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (37.943686389341046, 1.4999999999999998, 7.0)
+2025-07-17 06:10:11,737 root         INFO     Mission: Starting mission
+2025-07-17 06:10:11,751 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:11,882 VQC-4        INFO     📤 HELLO sent: free=3
+2025-07-17 06:10:11,883 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:11,884 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:11,886 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:11,887 EQC-0        INFO     **************************************** t=4.00s ****************************************
+2025-07-17 06:10:11,888 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=4.00
+2025-07-17 06:10:11,889 EQC-0        INFO     ⚙️  assign @ t=4.00: 11 nodos detectados
+2025-07-17 06:10:11,891 EQC-0        INFO     🔍 POI-7 detectado @ (48.04301864596485, 7.0415639089774) t=4.00
+2025-07-17 06:10:11,892 EQC-0        INFO     🔍 POI-14 detectado @ (45.688842112461415, 11.861253146135203) t=4.00
+2025-07-17 06:10:11,894 EQC-0        INFO     🔍 POI-30 detectado @ (36.36161333628499, 17.8612132868695) t=4.00
+2025-07-17 06:10:11,895 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(37.943686389341046, 1.4999999999999998, 7.0)
+2025-07-17 06:10:11,896 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:11,898 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:11,899 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (39.9000000000003, 0.0, 7.0) t=4
+2025-07-17 06:10:11,901 VQC-2        INFO     📤 DELIVER enviado: ['100-002', '100-044', '100-031', '100-046']
+2025-07-17 06:10:11,903 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(35.41365089602418, 5.187820582594893, 4.035215004837442)
+2025-07-17 06:10:11,904 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:11,904 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-002', 'label': 'POI-3'}, {'id': '100-044', 'label': 'POI-45'}, {'id': '100-031', 'label': 'POI-32'}, {'id': '100-046', 'label': 'POI-47'}]
+2025-07-17 06:10:11,906 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-002', '100-044', '100-031', '100-046']
+2025-07-17 06:10:11,909 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (39.9000000000003, 0.0, 7.0) t=4
+2025-07-17 06:10:11,911 VQC-3        INFO     📤 DELIVER enviado: ['100-002', '100-044', '100-031', '100-046', '100-006']
+2025-07-17 06:10:11,913 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-002', '100-044', '100-031', '100-046']
+2025-07-17 06:10:11,916 EQC-0        INFO     📥 DELIVER from VQC-3: [{'id': '100-002', 'label': 'POI-3'}, {'id': '100-044', 'label': 'POI-45'}, {'id': '100-031', 'label': 'POI-32'}, {'id': '100-046', 'label': 'POI-47'}, {'id': '100-006', 'label': 'POI-7'}]
+2025-07-17 06:10:11,921 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: ['100-002', '100-044', '100-031', '100-046', '100-006']
+2025-07-17 06:10:11,932 VQC-3        INFO     📥 DELIVER_ACK recibido: ['100-002', '100-044', '100-031', '100-046', '100-006']
+2025-07-17 06:10:11,938 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (38.96138417044878, 1.4999999999999998, 7.0)
+2025-07-17 06:10:11,941 root         INFO     Mission: Starting mission
+2025-07-17 06:10:11,952 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,076 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (39.951149734034175, 1.4999999999999998, 7.0)
+2025-07-17 06:10:12,077 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,092 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,220 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (40.957065921275934, 1.4999999999999998, 7.0)
+2025-07-17 06:10:12,221 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,233 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,318 VQC-4        INFO     🔍 Local detect (assigned): 100-046 (POI-47)
+2025-07-17 06:10:12,359 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (41.95364520520019, 1.4999999999999998, 7.0)
+2025-07-17 06:10:12,361 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,376 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,415 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,493 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,543 VQC-3        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:12,543 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (44.80384757729337, 0.9254594577885453, 7.0)
+2025-07-17 06:10:12,543 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,543 VQC-5        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:12,546 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (41.643929241224626, 5.500000000000001, 7.0)
+2025-07-17 06:10:12,546 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,546 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (42.95562279474388, 1.4999999999999998, 7.0)
+2025-07-17 06:10:12,546 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,561 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,576 VQC-2        INFO     🔍 Casual detect: 100-006 (POI-7)
+2025-07-17 06:10:12,689 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (43.95447942232118, 1.4999999999999998, 7.0)
+2025-07-17 06:10:12,690 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,702 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,757 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:12,835 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (44.95514045136309, 1.4999999999999998, 7.0)
+2025-07-17 06:10:12,836 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,847 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:12,958 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (45.954758274666645, 1.4999999999999998, 7.0)
+2025-07-17 06:10:12,958 root         INFO     Mission: Starting mission
+2025-07-17 06:10:12,970 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:13,084 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (46.95497922853121, 1.4999999999999998, 7.0)
+2025-07-17 06:10:13,084 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,096 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:13,213 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (47.401923788646684, 1.8078620150337128, 7.0)
+2025-07-17 06:10:13,213 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,226 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:13,230 EQC-0        INFO     🛰️ EQC rumbo al waypoint en 2
+2025-07-17 06:10:13,232 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:13,357 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:13,360 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (51.499999999999964, -1.069892129167549, 7.0)
+2025-07-17 06:10:13,360 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,361 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.499999999999964, -1.5187369552398544, 7.0)
+2025-07-17 06:10:13,361 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,362 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:13,362 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:13,363 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(39.855310370999135, 2.092235475359556, 6.234252308073765)
+2025-07-17 06:10:13,364 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:13,366 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(47.401923788646684, 1.8078620150337128, 7.0)
+2025-07-17 06:10:13,366 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:13,366 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (49.08955334711926, 0.8955334711889938, 7.0) t=5
+2025-07-17 06:10:13,366 VQC-3        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:13,370 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (49.08955334711926, 0.8955334711889938, 7.0) t=5
+2025-07-17 06:10:13,374 VQC-2        INFO     📤 DELIVER enviado: ['100-006']
+2025-07-17 06:10:13,376 EQC-0        INFO     📥 DELIVER from VQC-3: []
+2025-07-17 06:10:13,376 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: []
+2025-07-17 06:10:13,377 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-006', 'label': 'POI-7'}]
+2025-07-17 06:10:13,381 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-006']
+2025-07-17 06:10:13,383 VQC-3        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:13,383 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-006']
+2025-07-17 06:10:13,387 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:13,390 EQC-0        INFO     **************************************** t=5.00s ****************************************
+2025-07-17 06:10:13,390 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=5.00
+2025-07-17 06:10:13,391 EQC-0        INFO     ⚙️  assign @ t=5.00: 10 nodos detectados
+2025-07-17 06:10:13,392 EQC-0        INFO     🔍 POI-48 detectado @ (49.90319238876913, 19.52710783272548) t=5.00
+2025-07-17 06:10:13,394 VQC-4        INFO     📤 HELLO sent: free=4
+2025-07-17 06:10:13,396 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:13,397 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(46.52409943092959, -0.0566864837829655, 6.93830438548142)
+2025-07-17 06:10:13,397 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:13,398 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (49.08955334711926, 0.8955334711889938, 7.0) t=5
+2025-07-17 06:10:13,399 VQC-1        INFO     📤 DELIVER enviado: ['100-042', '100-021', '100-038', '100-005', '100-012']
+2025-07-17 06:10:13,400 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-042', 'label': 'POI-43'}, {'id': '100-021', 'label': 'POI-22'}, {'id': '100-038', 'label': 'POI-39'}, {'id': '100-005', 'label': 'POI-6'}, {'id': '100-012', 'label': 'POI-13'}]
+2025-07-17 06:10:13,403 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-042', '100-021', '100-038', '100-005', '100-012']
+2025-07-17 06:10:13,404 EQC-0        INFO     🚀 ASSIGN 3 to VQC-1: ['POI-14', 'POI-48', 'POI-30']
+2025-07-17 06:10:13,406 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-042', '100-021', '100-038', '100-005', '100-012']
+2025-07-17 06:10:13,406 VQC-1        INFO     📥 ASSIGN received: [{'label': 'POI-14', 'coord': [45.688842112461415, 11.861253146135203], 'urgency': 2, 'ts': 4}, {'label': 'POI-48', 'coord': [49.90319238876913, 19.52710783272548], 'urgency': 2, 'ts': 5}, {'label': 'POI-30', 'coord': [36.36161333628499, 17.8612132868695], 'urgency': 2, 'ts': 4}]
+2025-07-17 06:10:13,409 VQC-1        INFO     🗺️ Waypoints combinados: [(45.688842112461415, 11.861253146135203, 4.0), (49.90319238876913, 19.52710783272548, 4.0), (36.36161333628499, 17.8612132868695, 4.0)]
+2025-07-17 06:10:13,410 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,571 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:13,684 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:13,704 VQC-1        INFO     🔍 Local detect (assigned): 100-013 (POI-14)
+2025-07-17 06:10:13,752 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (53.0, -0.6189568892264159, 7.0)
+2025-07-17 06:10:13,753 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,757 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.5, 1.8499853083005244, 7.0)
+2025-07-17 06:10:13,758 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,922 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:13,933 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.5, 1.9396764886862203, 7.0)
+2025-07-17 06:10:13,935 root         INFO     Mission: Starting mission
+2025-07-17 06:10:13,955 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,118 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.5, 2.9637056381548574, 7.0)
+2025-07-17 06:10:14,119 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,129 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,209 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:14,278 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,283 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.5, 3.949808645554643, 7.0)
+2025-07-17 06:10:14,284 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,293 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (53.0, 3.5431626485999317, 7.0)
+2025-07-17 06:10:14,294 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,299 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,314 VQC-1        INFO     🔍 Local detect (assigned): 100-047 (POI-48)
+2025-07-17 06:10:14,451 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.5, 4.9578416236667735, 7.0)
+2025-07-17 06:10:14,452 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,472 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,493 VQC-2        INFO     🔍 Casual detect: 100-013 (POI-14)
+2025-07-17 06:10:14,507 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,622 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.5, 5.9531968524060765, 7.0)
+2025-07-17 06:10:14,624 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,629 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (53.0, 4.550305185511181, 7.0)
+2025-07-17 06:10:14,632 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,646 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,650 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,666 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,793 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:14,802 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (52.385863506159794, 4.803847577293368, 7.0)
+2025-07-17 06:10:14,804 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,819 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (53.16246810465324, 2.205771365940052, 7.0)
+2025-07-17 06:10:14,820 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,827 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.5, 6.955882048986947, 7.0)
+2025-07-17 06:10:14,827 root         INFO     Mission: Starting mission
+2025-07-17 06:10:14,836 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,840 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:14,854 root         INFO     Mission: Going to waypoint 3
+2025-07-17 06:10:14,856 EQC-0        INFO     🛰️ EQC rumbo al waypoint en 3
+2025-07-17 06:10:14,920 VQC-4        INFO     🔍 Local detect (assigned): 100-030 (POI-31)
+2025-07-17 06:10:14,921 VQC-4        INFO     🔍 Casual detect: 100-012 (POI-13)
+2025-07-17 06:10:14,922 VQC-4        INFO     🔍 Casual detect: 100-038 (POI-39)
+2025-07-17 06:10:15,001 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.19243171790457, 7.401923788646684, 7.0)
+2025-07-17 06:10:15,005 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,009 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (51.37646790408133, 4.803847577293368, 7.0)
+2025-07-17 06:10:15,010 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,027 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,030 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,191 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (52.57494786778102, 12.999999999999769, 7.0)
+2025-07-17 06:10:15,193 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,197 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (51.518765617847656, 8.499999999999886, 7.0)
+2025-07-17 06:10:15,199 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,202 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:15,204 VQC-1        INFO     📤 HELLO sent: free=4
+2025-07-17 06:10:15,213 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(51.37646790408133, 4.803847577293368, 7.0)
+2025-07-17 06:10:15,213 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:15,216 EQC-0        INFO     **************************************** t=6.00s ****************************************
+2025-07-17 06:10:15,216 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=6.00
+2025-07-17 06:10:15,217 EQC-0        INFO     ⚙️  assign @ t=6.00: 14 nodos detectados
+2025-07-17 06:10:15,217 EQC-0        INFO     🔍 POI-20 detectado @ (49.9222623123094, 20.086811394058767) t=6.00
+2025-07-17 06:10:15,219 EQC-0        INFO     🔍 POI-41 detectado @ (47.29158607618136, 20.101081593653667) t=6.00
+2025-07-17 06:10:15,222 EQC-0        INFO     🔍 POI-44 detectado @ (42.843251768953486, 20.888189280528856) t=6.00
+2025-07-17 06:10:15,222 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (48.10580657452308, 9.088922576780798, 7.0) t=6
+2025-07-17 06:10:15,222 VQC-3        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:15,222 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:15,226 EQC-0        INFO     📥 DELIVER from VQC-3: []
+2025-07-17 06:10:15,228 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: []
+2025-07-17 06:10:15,232 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(48.19243171790457, 7.401923788646684, 7.0)
+2025-07-17 06:10:15,234 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:15,235 VQC-3        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:15,236 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (48.10580657452308, 9.088922576780798, 7.0) t=6
+2025-07-17 06:10:15,237 VQC-2        INFO     📤 DELIVER enviado: ['100-013']
+2025-07-17 06:10:15,238 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:15,240 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-013', 'label': 'POI-14'}]
+2025-07-17 06:10:15,240 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-013']
+2025-07-17 06:10:15,243 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:15,246 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-013']
+2025-07-17 06:10:15,247 EQC-0        INFO     📩 HELLO from VQC-5: free=5, pos=(46.45119410747479, 4.125152915515032, 7.0)
+2025-07-17 06:10:15,248 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:15,249 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (48.10580657452308, 9.088922576780798, 7.0) t=6
+2025-07-17 06:10:15,251 VQC-5        INFO     📤 DELIVER enviado: ['100-012', '100-039', '100-018', '100-005', '100-007']
+2025-07-17 06:10:15,252 EQC-0        INFO     📥 DELIVER from VQC-5: [{'id': '100-012', 'label': 'POI-13'}, {'id': '100-039', 'label': 'POI-40'}, {'id': '100-018', 'label': 'POI-19'}, {'id': '100-005', 'label': 'POI-6'}, {'id': '100-007', 'label': 'POI-8'}]
+2025-07-17 06:10:15,254 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: ['100-012', '100-039', '100-018', '100-005', '100-007']
+2025-07-17 06:10:15,254 EQC-0        INFO     🚀 ASSIGN 3 to VQC-5: ['POI-41', 'POI-20', 'POI-44']
+2025-07-17 06:10:15,256 VQC-5        INFO     📥 DELIVER_ACK recibido: ['100-012', '100-039', '100-018', '100-005', '100-007']
+2025-07-17 06:10:15,256 VQC-5        INFO     📥 ASSIGN received: [{'label': 'POI-41', 'coord': [47.29158607618136, 20.101081593653667], 'urgency': 3, 'ts': 6}, {'label': 'POI-20', 'coord': [49.9222623123094, 20.086811394058767], 'urgency': 1, 'ts': 6}, {'label': 'POI-44', 'coord': [42.843251768953486, 20.888189280528856], 'urgency': 1, 'ts': 6}]
+2025-07-17 06:10:15,258 VQC-5        INFO     🗺️ Waypoints combinados: [(47.29158607618136, 20.101081593653667, 4.0), (49.9222623123094, 20.086811394058767, 4.0), (42.843251768953486, 20.888189280528856, 4.0)]
+2025-07-17 06:10:15,258 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,270 VQC-1        INFO     🔍 Local detect (assigned): 100-029 (POI-30)
+2025-07-17 06:10:15,270 VQC-1        INFO     🔍 Casual detect: 100-019 (POI-20)
+2025-07-17 06:10:15,271 VQC-1        INFO     🔍 Casual detect: 100-040 (POI-41)
+2025-07-17 06:10:15,360 VQC-3        INFO     🔍 Casual detect: 100-013 (POI-14)
+2025-07-17 06:10:15,426 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,481 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,578 VQC-4        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:15,585 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (39.41321364169922, 7.000000000000002, 7.0)
+2025-07-17 06:10:15,589 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,615 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.1499967320174, 8.5, 7.0)
+2025-07-17 06:10:15,616 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,767 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,771 VQC-3        INFO     🔍 Casual detect: 100-047 (POI-48)
+2025-07-17 06:10:15,788 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,793 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,798 VQC-1        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:15,805 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (45.48063135942658, 11.5, 7.0)
+2025-07-17 06:10:15,806 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,813 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (48.412820577138085, 13.0, 7.0)
+2025-07-17 06:10:15,814 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,820 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (48.06030698581657, 8.5, 7.0)
+2025-07-17 06:10:15,821 root         INFO     Mission: Starting mission
+2025-07-17 06:10:15,834 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:15,869 VQC-3        INFO     🔍 Casual detect: 100-019 (POI-20)
+2025-07-17 06:10:15,883 VQC-5        INFO     🔍 Local detect (assigned): 100-040 (POI-41)
+2025-07-17 06:10:15,917 VQC-5        INFO     🔍 Local detect (assigned): 100-019 (POI-20)
+2025-07-17 06:10:15,980 VQC-3        INFO     🔍 Casual detect: 100-040 (POI-41)
+2025-07-17 06:10:15,984 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (47.03630393096289, 8.5, 7.0)
+2025-07-17 06:10:15,986 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,000 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,004 VQC-5        INFO     🔍 Local detect (assigned): 100-043 (POI-44)
+2025-07-17 06:10:16,008 VQC-5        INFO     🔍 Casual detect: 100-006 (POI-7)
+2025-07-17 06:10:16,012 VQC-5        INFO     🔍 Casual detect: 100-013 (POI-14)
+2025-07-17 06:10:16,039 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,150 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (46.05018582712931, 8.5, 7.0)
+2025-07-17 06:10:16,156 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,161 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (47.47412026777836, 13.0, 7.0)
+2025-07-17 06:10:16,162 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,182 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,186 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,345 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (46.44008233409998, 13.0, 7.0)
+2025-07-17 06:10:16,346 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,348 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (45.042161573621875, 8.5, 7.0)
+2025-07-17 06:10:16,349 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,359 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,361 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,380 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:16,516 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:16,519 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (45.459001912187084, 13.0, 7.0)
+2025-07-17 06:10:16,519 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,540 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (44.04680129964832, 8.5, 7.0)
+2025-07-17 06:10:16,540 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,556 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,559 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,563 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,722 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (43.04411901958855, 8.5, 7.0)
+2025-07-17 06:10:16,723 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,731 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (42.173878871828215, 11.5, 7.0)
+2025-07-17 06:10:16,733 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,739 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (44.44849159392027, 13.0, 7.0)
+2025-07-17 06:10:16,747 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,757 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,764 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,915 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,926 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (42.045669834252074, 8.5, 7.0)
+2025-07-17 06:10:16,927 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,939 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (43.45433218149427, 13.0, 7.0)
+2025-07-17 06:10:16,942 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,949 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (42.08224821598127, 11.5, 7.0)
+2025-07-17 06:10:16,951 root         INFO     Mission: Starting mission
+2025-07-17 06:10:16,958 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,959 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,961 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:16,994 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,141 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (42.451087128874114, 13.0, 7.0)
+2025-07-17 06:10:17,146 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,146 VQC-5        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:17,152 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (42.14417657886939, 14.499999999999998, 7.0)
+2025-07-17 06:10:17,152 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,158 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (41.02358475909631, 11.5, 7.0)
+2025-07-17 06:10:17,160 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,169 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (41.04477325171212, 8.5, 7.0)
+2025-07-17 06:10:17,172 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,173 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:17,174 EQC-0        INFO     **************************************** t=7.00s ****************************************
+2025-07-17 06:10:17,174 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=7.00
+2025-07-17 06:10:17,174 EQC-0        INFO     ⚙️  assign @ t=7.00: 19 nodos detectados
+2025-07-17 06:10:17,178 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(42.045669834252074, 8.5, 7.0)
+2025-07-17 06:10:17,181 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:17,182 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:17,183 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (38.10759952692282, 9.278278942724436, 7.0) t=7
+2025-07-17 06:10:17,184 VQC-2        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:17,186 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(42.08224821598127, 11.5, 7.0)
+2025-07-17 06:10:17,188 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:17,188 EQC-0        INFO     📥 DELIVER from VQC-2: []
+2025-07-17 06:10:17,188 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: []
+2025-07-17 06:10:17,190 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (38.10759952692282, 9.278278942724436, 7.0) t=7
+2025-07-17 06:10:17,190 VQC-1        INFO     📤 DELIVER enviado: ['100-013', '100-047', '100-029', '100-019', '100-040']
+2025-07-17 06:10:17,190 VQC-2        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:17,190 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-013', 'label': 'POI-14'}, {'id': '100-047', 'label': 'POI-48'}, {'id': '100-029', 'label': 'POI-30'}, {'id': '100-019', 'label': 'POI-20'}, {'id': '100-040', 'label': 'POI-41'}]
+2025-07-17 06:10:17,190 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-013', '100-047', '100-029', '100-019', '100-040']
+2025-07-17 06:10:17,190 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:17,195 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-013', '100-047', '100-029', '100-019', '100-040']
+2025-07-17 06:10:17,195 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(43.45433218149427, 13.0, 7.0)
+2025-07-17 06:10:17,200 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:17,202 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:17,203 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (38.10759952692282, 9.278278942724436, 7.0) t=7
+2025-07-17 06:10:17,205 VQC-3        INFO     📤 DELIVER enviado: ['100-013', '100-047', '100-019', '100-040']
+2025-07-17 06:10:17,205 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:17,207 EQC-0        INFO     📥 DELIVER from VQC-3: [{'id': '100-013', 'label': 'POI-14'}, {'id': '100-047', 'label': 'POI-48'}, {'id': '100-019', 'label': 'POI-20'}, {'id': '100-040', 'label': 'POI-41'}]
+2025-07-17 06:10:17,208 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: ['100-013', '100-047', '100-019', '100-040']
+2025-07-17 06:10:17,209 VQC-3        INFO     📥 DELIVER_ACK recibido: ['100-013', '100-047', '100-019', '100-040']
+2025-07-17 06:10:17,222 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,222 VQC-1        INFO     🔍 Casual detect: 100-006 (POI-7)
+2025-07-17 06:10:17,223 VQC-1        INFO     🔍 Casual detect: 100-031 (POI-32)
+2025-07-17 06:10:17,223 VQC-1        INFO     🔍 Casual detect: 100-044 (POI-45)
+2025-07-17 06:10:17,224 VQC-1        INFO     🔍 Casual detect: 100-046 (POI-47)
+2025-07-17 06:10:17,225 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,227 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,366 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (40.04529161633212, 8.5, 7.0)
+2025-07-17 06:10:17,366 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,378 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (40.0575277821645, 11.5, 7.0)
+2025-07-17 06:10:17,380 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,387 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (41.45289026682374, 13.0, 7.0)
+2025-07-17 06:10:17,389 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,404 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,407 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,410 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,557 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (40.45188839342379, 13.0, 7.0)
+2025-07-17 06:10:17,559 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,563 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (39.04499192655143, 8.5, 7.0)
+2025-07-17 06:10:17,563 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,569 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (39.03791300460988, 11.5, 7.0)
+2025-07-17 06:10:17,573 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,583 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,584 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,587 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,647 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,728 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (40.69735199798043, 14.499999999999998, 7.0)
+2025-07-17 06:10:17,728 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,730 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (39.45244507865769, 13.0, 7.0)
+2025-07-17 06:10:17,731 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,733 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (38.04925631511147, 11.5, 7.0)
+2025-07-17 06:10:17,733 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,737 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (38.04516519258251, 8.5, 7.0)
+2025-07-17 06:10:17,740 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,750 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,752 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,754 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,772 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,903 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (37.04269922610969, 11.5, 7.0)
+2025-07-17 06:10:17,904 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,910 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (39.942261887737175, 14.499999999999998, 7.0)
+2025-07-17 06:10:17,911 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,921 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (37.04506501925928, 8.5, 7.0)
+2025-07-17 06:10:17,924 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,931 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (38.452135764814805, 13.0, 7.0)
+2025-07-17 06:10:17,933 root         INFO     Mission: Starting mission
+2025-07-17 06:10:17,938 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,944 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,946 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:17,947 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,098 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (36.04512293443489, 8.5, 7.0)
+2025-07-17 06:10:18,101 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,105 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (38.80876902983738, 14.499999999999998, 7.0)
+2025-07-17 06:10:18,108 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,117 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (36.04649054245289, 11.5, 7.0)
+2025-07-17 06:10:18,117 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,124 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (37.452307632019384, 13.0, 7.0)
+2025-07-17 06:10:18,124 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,139 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,142 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,144 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,146 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,306 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (36.452212136180876, 13.0, 7.0)
+2025-07-17 06:10:18,307 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,314 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (37.88176492151389, 14.499999999999998, 7.0)
+2025-07-17 06:10:18,316 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,327 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (35.04508945086734, 8.5, 7.0)
+2025-07-17 06:10:18,333 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,338 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (35.04429871218674, 11.5, 7.0)
+2025-07-17 06:10:18,341 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,348 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,350 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,352 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,354 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,511 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (36.841917375062025, 14.499999999999998, 7.0)
+2025-07-17 06:10:18,512 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,518 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (35.452265197386694, 13.0, 7.0)
+2025-07-17 06:10:18,520 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,535 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (34.04556595477381, 11.5, 7.0)
+2025-07-17 06:10:18,540 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,549 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (34.04510880936365, 8.5, 7.0)
+2025-07-17 06:10:18,552 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,556 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,557 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,560 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,561 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,576 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,693 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (33.04483331272232, 11.5, 7.0)
+2025-07-17 06:10:18,694 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,696 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (35.863690142267195, 14.499999999999998, 7.0)
+2025-07-17 06:10:18,697 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,700 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (32.06402552100817, 7.000000000000002, 7.0)
+2025-07-17 06:10:18,700 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,703 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (33.045097617273534, 8.5, 7.0)
+2025-07-17 06:10:18,704 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,707 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (34.45223571456151, 13.0, 7.0)
+2025-07-17 06:10:18,708 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,720 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,721 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,722 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,722 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,877 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (32.045104087968994, 8.5, 7.0)
+2025-07-17 06:10:18,880 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,886 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (34.851799530242864, 14.499999999999998, 7.0)
+2025-07-17 06:10:18,890 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,898 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (32.04525689319783, 11.5, 7.0)
+2025-07-17 06:10:18,902 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,904 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (33.45225209635554, 13.0, 7.0)
+2025-07-17 06:10:18,906 root         INFO     Mission: Starting mission
+2025-07-17 06:10:18,920 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,920 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,926 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,927 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:18,972 VQC-1        INFO     🔍 Casual detect: 100-018 (POI-19)
+2025-07-17 06:10:19,074 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (32.45224299400383, 13.0, 7.0)
+2025-07-17 06:10:19,076 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,082 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (33.8582950859482, 14.499999999999998, 7.0)
+2025-07-17 06:10:19,083 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,095 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (31.045100346943958, 8.5, 7.0)
+2025-07-17 06:10:19,096 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,104 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (31.045012002051134, 11.5, 7.0)
+2025-07-17 06:10:19,106 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,108 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:19,109 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:19,111 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(33.45225209635554, 13.0, 7.0)
+2025-07-17 06:10:19,114 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:19,114 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(32.04525689319783, 11.5, 7.0)
+2025-07-17 06:10:19,116 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:19,119 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (28.109392479322697, 9.467635308668074, 7.0) t=8
+2025-07-17 06:10:19,120 VQC-3        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:19,121 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (28.109392479322697, 9.467635308668074, 7.0) t=8
+2025-07-17 06:10:19,123 VQC-1        INFO     📤 DELIVER enviado: ['100-006', '100-031', '100-044', '100-046', '100-018']
+2025-07-17 06:10:19,124 EQC-0        INFO     📥 DELIVER from VQC-3: []
+2025-07-17 06:10:19,124 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: []
+2025-07-17 06:10:19,126 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-006', 'label': 'POI-7'}, {'id': '100-031', 'label': 'POI-32'}, {'id': '100-044', 'label': 'POI-45'}, {'id': '100-046', 'label': 'POI-47'}, {'id': '100-018', 'label': 'POI-19'}]
+2025-07-17 06:10:19,127 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-006', '100-031', '100-044', '100-046', '100-018']
+2025-07-17 06:10:19,128 VQC-3        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:19,128 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-006', '100-031', '100-044', '100-046', '100-018']
+2025-07-17 06:10:19,131 EQC-0        INFO     **************************************** t=8.00s ****************************************
+2025-07-17 06:10:19,131 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=8.00
+2025-07-17 06:10:19,132 EQC-0        INFO     ⚙️  assign @ t=8.00: 19 nodos detectados
+2025-07-17 06:10:19,132 EQC-0        INFO     🔍 POI-8 detectado @ (18.503108108908545, 20.484651238961433) t=8.00
+2025-07-17 06:10:19,135 EQC-0        INFO     🔍 POI-9 detectado @ (20.153351111747565, 23.055447099879256) t=8.00
+2025-07-17 06:10:19,135 EQC-0        INFO     🔍 POI-42 detectado @ (21.31633850713279, 22.52529797839568) t=8.00
+2025-07-17 06:10:19,138 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:19,138 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:19,138 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(32.045104087968994, 8.5, 7.0)
+2025-07-17 06:10:19,138 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:19,141 EQC-0        INFO     📩 HELLO from VQC-4: free=5, pos=(34.41321364169922, 7.000000000000002, 7.0)
+2025-07-17 06:10:19,141 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-4
+2025-07-17 06:10:19,141 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (28.109392479322697, 9.467635308668074, 7.0) t=8
+2025-07-17 06:10:19,143 VQC-2        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:19,146 VQC-4        INFO     ✅ VQC-4 recebeu HELLO_ACK, enviando DELIVER en (28.109392479322697, 9.467635308668074, 7.0) t=8
+2025-07-17 06:10:19,146 VQC-4        INFO     📤 DELIVER enviado: ['100-005', '100-046', '100-030', '100-012', '100-038']
+2025-07-17 06:10:19,147 EQC-0        INFO     📥 DELIVER from VQC-2: []
+2025-07-17 06:10:19,147 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: []
+2025-07-17 06:10:19,147 EQC-0        INFO     🚀 ASSIGN 3 to VQC-1: ['POI-42', 'POI-9', 'POI-8']
+2025-07-17 06:10:19,149 EQC-0        INFO     📥 DELIVER from VQC-4: [{'id': '100-005', 'label': 'POI-6'}, {'id': '100-046', 'label': 'POI-47'}, {'id': '100-030', 'label': 'POI-31'}, {'id': '100-012', 'label': 'POI-13'}, {'id': '100-038', 'label': 'POI-39'}]
+2025-07-17 06:10:19,152 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-4: ['100-005', '100-046', '100-030', '100-012', '100-038']
+2025-07-17 06:10:19,152 VQC-2        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:19,153 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:19,154 VQC-1        INFO     📥 ASSIGN received: [{'label': 'POI-42', 'coord': [21.31633850713279, 22.52529797839568], 'urgency': 3, 'ts': 8}, {'label': 'POI-9', 'coord': [20.153351111747565, 23.055447099879256], 'urgency': 2, 'ts': 8}, {'label': 'POI-8', 'coord': [18.503108108908545, 20.484651238961433], 'urgency': 1, 'ts': 8}]
+2025-07-17 06:10:19,154 VQC-1        INFO     🗺️ Waypoints combinados: [(21.31633850713279, 22.52529797839568, 4.0), (20.153351111747565, 23.055447099879256, 4.0), (18.503108108908545, 20.484651238961433, 4.0)]
+2025-07-17 06:10:19,156 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,156 EQC-0        INFO     📩 HELLO from VQC-5: free=5, pos=(34.851799530242864, 14.499999999999998, 7.0)
+2025-07-17 06:10:19,158 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:19,159 VQC-4        INFO     📥 DELIVER_ACK recibido: ['100-005', '100-046', '100-030', '100-012', '100-038']
+2025-07-17 06:10:19,160 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (28.109392479322697, 9.467635308668074, 7.0) t=8
+2025-07-17 06:10:19,160 VQC-5        INFO     📤 DELIVER enviado: ['100-040', '100-019', '100-043', '100-006', '100-013']
+2025-07-17 06:10:19,161 EQC-0        INFO     📥 DELIVER from VQC-5: [{'id': '100-040', 'label': 'POI-41'}, {'id': '100-019', 'label': 'POI-20'}, {'id': '100-043', 'label': 'POI-44'}, {'id': '100-006', 'label': 'POI-7'}, {'id': '100-013', 'label': 'POI-14'}]
+2025-07-17 06:10:19,162 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: ['100-040', '100-019', '100-043', '100-006', '100-013']
+2025-07-17 06:10:19,162 VQC-5        INFO     📥 DELIVER_ACK recibido: ['100-040', '100-019', '100-043', '100-006', '100-013']
+2025-07-17 06:10:19,172 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,173 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,174 VQC-4        INFO     🔍 Casual detect: 100-031 (POI-32)
+2025-07-17 06:10:19,175 VQC-4        INFO     🔍 Casual detect: 100-044 (POI-45)
+2025-07-17 06:10:19,175 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,177 VQC-5        INFO     🔍 Casual detect: 100-029 (POI-30)
+2025-07-17 06:10:19,229 VQC-4        INFO     🔍 Casual detect: 100-002 (POI-3)
+2025-07-17 06:10:19,249 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,329 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (31.452248051620153, 13.0, 7.0)
+2025-07-17 06:10:19,331 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,335 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (31.664614166889102, 7.000000000000002, 7.0)
+2025-07-17 06:10:19,338 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,346 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (30.045102509813507, 8.5, 7.0)
+2025-07-17 06:10:19,353 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,357 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (32.85474726084799, 14.499999999999998, 7.0)
+2025-07-17 06:10:19,360 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,372 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,374 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,376 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,377 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,390 VQC-2        INFO     🔍 Casual detect: 100-042 (POI-43)
+2025-07-17 06:10:19,526 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (31.856685218614928, 14.499999999999998, 7.0)
+2025-07-17 06:10:19,526 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,529 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (29.04510125935294, 8.5, 7.0)
+2025-07-17 06:10:19,530 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,533 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (30.333346542824533, 7.000000000000002, 7.0)
+2025-07-17 06:10:19,534 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,538 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (30.45224524141463, 13.0, 7.0)
+2025-07-17 06:10:19,540 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,547 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,549 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,549 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,563 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,683 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (29.452246802872693, 13.0, 7.0)
+2025-07-17 06:10:19,684 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,688 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (29.518012741316284, 7.000000000000002, 7.0)
+2025-07-17 06:10:19,690 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,701 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (30.855626680141008, 14.499999999999998, 7.0)
+2025-07-17 06:10:19,703 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,716 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (28.045101982305344, 8.5, 7.0)
+2025-07-17 06:10:19,719 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,724 VQC-1        INFO     🔍 Local detect (assigned): 100-041 (POI-42)
+2025-07-17 06:10:19,727 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,730 VQC-2        INFO     🔍 Casual detect: 100-021 (POI-22)
+2025-07-17 06:10:19,734 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,736 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,739 VQC-4        INFO     🔍 Casual detect: 100-042 (POI-43)
+2025-07-17 06:10:19,740 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,820 VQC-1        INFO     🔍 Local detect (assigned): 100-008 (POI-9)
+2025-07-17 06:10:19,822 VQC-1        INFO     🔍 Local detect (assigned): 100-007 (POI-8)
+2025-07-17 06:10:19,896 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (27.045101564331212, 8.5, 7.0)
+2025-07-17 06:10:19,899 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,904 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (29.85620488240594, 14.499999999999998, 7.0)
+2025-07-17 06:10:19,906 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,916 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (28.41561535701501, 7.000000000000002, 7.0)
+2025-07-17 06:10:19,923 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,930 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (28.452245935266703, 13.0, 7.0)
+2025-07-17 06:10:19,932 root         INFO     Mission: Starting mission
+2025-07-17 06:10:19,954 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,957 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,959 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:19,959 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,129 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (27.45224641734189, 13.0, 7.0)
+2025-07-17 06:10:20,130 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,136 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (27.472571823993956, 7.000000000000002, 7.0)
+2025-07-17 06:10:20,140 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,150 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (26.0451018059825, 8.5, 7.0)
+2025-07-17 06:10:20,151 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,159 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (28.85588905702355, 14.499999999999998, 7.0)
+2025-07-17 06:10:20,161 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,167 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,170 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,172 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,173 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,189 VQC-4        INFO     🔍 Casual detect: 100-021 (POI-22)
+2025-07-17 06:10:20,204 VQC-5        INFO     🔍 Casual detect: 100-021 (POI-22)
+2025-07-17 06:10:20,204 VQC-5        INFO     🔍 Casual detect: 100-042 (POI-43)
+2025-07-17 06:10:20,303 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:20,337 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (27.85606156830263, 14.499999999999998, 7.0)
+2025-07-17 06:10:20,338 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,341 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (25.045101666272096, 8.5, 7.0)
+2025-07-17 06:10:20,341 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,351 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (26.440944053798475, 7.000000000000002, 7.0)
+2025-07-17 06:10:20,352 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,359 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (26.452246149482438, 13.0, 7.0)
+2025-07-17 06:10:20,362 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,370 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,372 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,373 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,374 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,416 root         INFO     Mission: Going to waypoint 2
+2025-07-17 06:10:20,538 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (25.452246298315437, 13.0, 7.0)
+2025-07-17 06:10:20,540 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,546 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (25.458523527439432, 7.000000000000002, 7.0)
+2025-07-17 06:10:20,546 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,556 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (26.855967338951675, 14.499999999999998, 7.0)
+2025-07-17 06:10:20,558 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,561 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (24.04510174704551, 8.5, 7.0)
+2025-07-17 06:10:20,562 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,580 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,581 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,582 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,583 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,614 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,737 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (23.045101700346457, 8.5, 7.0)
+2025-07-17 06:10:20,739 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,742 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (25.85601880915285, 14.499999999999998, 7.0)
+2025-07-17 06:10:20,743 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,745 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (24.44875753165529, 7.000000000000002, 7.0)
+2025-07-17 06:10:20,745 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,747 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (24.45224621561811, 13.0, 7.0)
+2025-07-17 06:10:20,748 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,748 VQC-1        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:20,750 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (20.221752174532824, 11.5, 7.0)
+2025-07-17 06:10:20,770 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,776 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,778 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,778 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,779 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,933 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (23.452246261567915, 13.0, 7.0)
+2025-07-17 06:10:20,936 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,942 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (23.454184456188905, 7.000000000000002, 7.0)
+2025-07-17 06:10:20,942 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,948 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (22.04510172734547, 8.5, 7.0)
+2025-07-17 06:10:20,952 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,964 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (24.855990694999683, 14.499999999999998, 7.0)
+2025-07-17 06:10:20,966 root         INFO     Mission: Starting mission
+2025-07-17 06:10:20,974 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,976 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,978 VQC-3        INFO     🔍 Casual detect: 100-005 (POI-6)
+2025-07-17 06:10:20,979 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:20,981 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,143 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (23.856006051577133, 14.499999999999998, 7.0)
+2025-07-17 06:10:21,143 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,150 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (21.045101711736024, 8.5, 7.0)
+2025-07-17 06:10:21,151 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,156 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (22.451169223018425, 7.000000000000002, 7.0)
+2025-07-17 06:10:21,159 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,161 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (22.452246236036444, 13.0, 7.0)
+2025-07-17 06:10:21,163 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,164 EQC-0        INFO     **************************************** t=9.00s ****************************************
+2025-07-17 06:10:21,167 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=9.00
+2025-07-17 06:10:21,171 EQC-0        INFO     ⚙️  assign @ t=9.00: 19 nodos detectados
+2025-07-17 06:10:21,173 EQC-0        INFO     🔍 POI-1 detectado @ (7.283462755206516, 22.746350225701068) t=9.00
+2025-07-17 06:10:21,176 EQC-0        INFO     🔍 POI-33 detectado @ (10.457283647337112, 19.492251696011408) t=9.00
+2025-07-17 06:10:21,181 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:21,183 VQC-5        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:21,186 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(22.04510172734547, 8.5, 7.0)
+2025-07-17 06:10:21,188 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:21,189 EQC-0        INFO     📩 HELLO from VQC-5: free=5, pos=(24.855990694999683, 14.499999999999998, 7.0)
+2025-07-17 06:10:21,189 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:21,191 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (18.11118543172279, 9.656991674611712, 7.0) t=9
+2025-07-17 06:10:21,193 VQC-2        INFO     📤 DELIVER enviado: ['100-042', '100-021']
+2025-07-17 06:10:21,195 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (18.11118543172279, 9.656991674611712, 7.0) t=9
+2025-07-17 06:10:21,195 VQC-5        INFO     📤 DELIVER enviado: ['100-029', '100-021', '100-042']
+2025-07-17 06:10:21,196 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-042', 'label': 'POI-43'}, {'id': '100-021', 'label': 'POI-22'}]
+2025-07-17 06:10:21,198 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-042', '100-021']
+2025-07-17 06:10:21,200 EQC-0        INFO     🚀 ASSIGN 2 to VQC-5: ['POI-33', 'POI-1']
+2025-07-17 06:10:21,201 EQC-0        INFO     📥 DELIVER from VQC-5: [{'id': '100-029', 'label': 'POI-30'}, {'id': '100-021', 'label': 'POI-22'}, {'id': '100-042', 'label': 'POI-43'}]
+2025-07-17 06:10:21,202 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: ['100-029', '100-021', '100-042']
+2025-07-17 06:10:21,202 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-042', '100-021']
+2025-07-17 06:10:21,203 VQC-5        INFO     📥 ASSIGN received: [{'label': 'POI-33', 'coord': [10.457283647337112, 19.492251696011408], 'urgency': 1, 'ts': 9}, {'label': 'POI-1', 'coord': [7.283462755206516, 22.746350225701068], 'urgency': 1, 'ts': 9}]
+2025-07-17 06:10:21,205 VQC-5        INFO     🗺️ Waypoints combinados: [(10.457283647337112, 19.492251696011408, 4.0), (7.283462755206516, 22.746350225701068, 4.0)]
+2025-07-17 06:10:21,206 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,207 VQC-5        INFO     📥 DELIVER_ACK recibido: ['100-029', '100-021', '100-042']
+2025-07-17 06:10:21,208 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:21,208 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:21,210 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(19.395731646339353, 15.81823349027502, 5.558129845413727)
+2025-07-17 06:10:21,211 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:21,214 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(23.452246261567915, 13.0, 7.0)
+2025-07-17 06:10:21,214 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:21,214 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (18.11118543172279, 9.656991674611712, 7.0) t=9
+2025-07-17 06:10:21,216 VQC-1        INFO     📤 DELIVER enviado: ['100-041', '100-008', '100-007']
+2025-07-17 06:10:21,217 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (18.11118543172279, 9.656991674611712, 7.0) t=9
+2025-07-17 06:10:21,217 VQC-3        INFO     📤 DELIVER enviado: ['100-005']
+2025-07-17 06:10:21,219 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-041', 'label': 'POI-42'}, {'id': '100-008', 'label': 'POI-9'}, {'id': '100-007', 'label': 'POI-8'}]
+2025-07-17 06:10:21,220 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-041', '100-008', '100-007']
+2025-07-17 06:10:21,221 EQC-0        INFO     📥 DELIVER from VQC-3: [{'id': '100-005', 'label': 'POI-6'}]
+2025-07-17 06:10:21,221 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: ['100-005']
+2025-07-17 06:10:21,222 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-041', '100-008', '100-007']
+2025-07-17 06:10:21,223 VQC-3        INFO     📥 DELIVER_ACK recibido: ['100-005']
+2025-07-17 06:10:21,223 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:21,224 EQC-0        INFO     📩 HELLO from VQC-4: free=5, pos=(23.454184456188905, 7.000000000000002, 7.0)
+2025-07-17 06:10:21,228 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-4
+2025-07-17 06:10:21,229 VQC-4        INFO     ✅ VQC-4 recebeu HELLO_ACK, enviando DELIVER en (18.11118543172279, 9.656991674611712, 7.0) t=9
+2025-07-17 06:10:21,229 VQC-4        INFO     📤 DELIVER enviado: ['100-031', '100-044', '100-002', '100-042', '100-021']
+2025-07-17 06:10:21,230 EQC-0        INFO     📥 DELIVER from VQC-4: [{'id': '100-031', 'label': 'POI-32'}, {'id': '100-044', 'label': 'POI-45'}, {'id': '100-002', 'label': 'POI-3'}, {'id': '100-042', 'label': 'POI-43'}, {'id': '100-021', 'label': 'POI-22'}]
+2025-07-17 06:10:21,231 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-4: ['100-031', '100-044', '100-002', '100-042', '100-021']
+2025-07-17 06:10:21,232 VQC-4        INFO     📥 DELIVER_ACK recibido: ['100-031', '100-044', '100-002', '100-042', '100-021']
+2025-07-17 06:10:21,246 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,248 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,248 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,398 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (21.45224625022272, 13.0, 7.0)
+2025-07-17 06:10:21,400 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,406 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (21.452844655967752, 7.000000000000002, 7.0)
+2025-07-17 06:10:21,408 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,418 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (20.045101720760613, 8.5, 7.0)
+2025-07-17 06:10:21,422 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,429 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,432 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,435 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,454 VQC-2        INFO     🔍 Casual detect: 100-005 (POI-6)
+2025-07-17 06:10:21,499 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,544 VQC-1        INFO     🔍 Casual detect: 100-002 (POI-3)
+2025-07-17 06:10:21,586 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (19.04510171554307, 8.5, 7.0)
+2025-07-17 06:10:21,588 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,594 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (20.451913737738103, 7.000000000000002, 7.0)
+2025-07-17 06:10:21,596 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,598 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (18.942090370671245, 11.5, 7.0)
+2025-07-17 06:10:21,601 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,608 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (20.452246242340287, 13.0, 7.0)
+2025-07-17 06:10:21,610 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,624 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,625 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,626 VQC-3        INFO     🔍 Casual detect: 100-007 (POI-8)
+2025-07-17 06:10:21,628 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,643 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,780 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (19.452246246720073, 13.0, 7.0)
+2025-07-17 06:10:21,782 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,789 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (18.10432921280396, 11.5, 7.0)
+2025-07-17 06:10:21,790 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,799 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (18.045101718559593, 8.5, 7.0)
+2025-07-17 06:10:21,805 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,816 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (19.452430996746457, 7.000000000000002, 7.0)
+2025-07-17 06:10:21,819 root         INFO     Mission: Starting mission
+2025-07-17 06:10:21,829 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,830 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,835 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:21,838 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,005 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (18.45214358937688, 7.000000000000002, 7.0)
+2025-07-17 06:10:22,006 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,012 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (17.045101716815587, 8.5, 7.0)
+2025-07-17 06:10:22,013 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,021 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (17.01075655346027, 11.5, 7.0)
+2025-07-17 06:10:22,023 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,037 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (18.452246244286506, 13.0, 7.0)
+2025-07-17 06:10:22,041 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,047 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,049 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,051 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,053 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,210 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (17.45224624563869, 13.0, 7.0)
+2025-07-17 06:10:22,211 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,217 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (16.064922664761518, 11.5, 7.0)
+2025-07-17 06:10:22,219 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,224 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (17.452303284427096, 7.000000000000002, 7.0)
+2025-07-17 06:10:22,227 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,243 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (16.045101717823883, 8.5, 7.0)
+2025-07-17 06:10:22,251 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,256 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,257 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,257 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,260 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,305 VQC-2        INFO     🔍 Casual detect: 100-012 (POI-13)
+2025-07-17 06:10:22,383 root         INFO     Mission: Going to waypoint 1
+2025-07-17 06:10:22,408 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (15.04510171724094, 8.5, 7.0)
+2025-07-17 06:10:22,410 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,414 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (16.452214551880708, 7.000000000000002, 7.0)
+2025-07-17 06:10:22,414 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,420 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (15.033630589899929, 11.5, 7.0)
+2025-07-17 06:10:22,423 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,427 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (16.452246244887377, 13.0, 7.0)
+2025-07-17 06:10:22,429 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,443 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,443 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,446 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,450 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,610 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (15.452246245304842, 13.0, 7.0)
+2025-07-17 06:10:22,613 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,621 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (14.051729788078987, 11.5, 7.0)
+2025-07-17 06:10:22,623 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,632 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (14.045101717577992, 8.5, 7.0)
+2025-07-17 06:10:22,636 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,640 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (15.452263855134568, 7.000000000000002, 7.0)
+2025-07-17 06:10:22,643 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,656 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,660 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,661 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,663 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,738 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,830 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (14.452236460369406, 7.000000000000002, 7.0)
+2025-07-17 06:10:22,832 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,838 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (13.045101717383126, 8.5, 7.0)
+2025-07-17 06:10:22,840 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,846 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (13.041268395265888, 11.5, 7.0)
+2025-07-17 06:10:22,853 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,855 VQC-5        INFO     🏁 Fin de misión → modo satélite
+2025-07-17 06:10:22,859 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (14.552158342462931, 14.499999999999998, 7.0)
+2025-07-17 06:10:22,861 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,867 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (14.452246245072871, 13.0, 7.0)
+2025-07-17 06:10:22,868 root         INFO     Mission: Starting mission
+2025-07-17 06:10:22,876 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,878 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,880 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,881 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:22,896 VQC-3        INFO     🔍 Casual detect: 100-032 (POI-33)
+2025-07-17 06:10:22,929 VQC-3        INFO     🔍 Casual detect: 100-012 (POI-13)
+2025-07-17 06:10:23,030 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (13.452246245201792, 13.0, 7.0)
+2025-07-17 06:10:23,031 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,036 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (12.047317508542271, 11.5, 7.0)
+2025-07-17 06:10:23,038 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,043 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (13.452251681956461, 7.000000000000002, 7.0)
+2025-07-17 06:10:23,048 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,055 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (12.045101717495783, 8.5, 7.0)
+2025-07-17 06:10:23,055 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,067 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,069 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,071 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,073 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,089 VQC-2        INFO     🔍 Casual detect: 100-038 (POI-39)
+2025-07-17 06:10:23,103 VQC-1        INFO     🔍 Casual detect: 100-039 (POI-40)
+2025-07-17 06:10:23,229 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (11.045101717430668, 8.5, 7.0)
+2025-07-17 06:10:23,231 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,238 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (12.452243224260037, 7.000000000000002, 7.0)
+2025-07-17 06:10:23,238 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,250 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (11.043820513623928, 11.5, 7.0)
+2025-07-17 06:10:23,259 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,264 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (12.452246245130155, 13.0, 7.0)
+2025-07-17 06:10:23,266 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,273 VQC-5        INFO     📤 HELLO sent: free=3
+2025-07-17 06:10:23,275 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:23,280 EQC-0        INFO     📩 HELLO from VQC-5: free=3, pos=(10.47300633976805, 19.12780641096963, 5.316416493003292)
+2025-07-17 06:10:23,282 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:23,287 EQC-0        INFO     📩 HELLO from VQC-4: free=5, pos=(13.452251681956461, 7.000000000000002, 7.0)
+2025-07-17 06:10:23,288 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-4
+2025-07-17 06:10:23,292 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (8.112978384122886, 9.84634804055535, 7.0) t=10
+2025-07-17 06:10:23,292 VQC-5        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:23,294 VQC-4        INFO     ✅ VQC-4 recebeu HELLO_ACK, enviando DELIVER en (8.112978384122886, 9.84634804055535, 7.0) t=10
+2025-07-17 06:10:23,295 VQC-4        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:23,296 EQC-0        INFO     📥 DELIVER from VQC-5: []
+2025-07-17 06:10:23,298 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: []
+2025-07-17 06:10:23,299 EQC-0        INFO     📥 DELIVER from VQC-4: []
+2025-07-17 06:10:23,300 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-4: []
+2025-07-17 06:10:23,301 VQC-5        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:23,303 VQC-4        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:23,304 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:23,305 EQC-0        INFO     **************************************** t=10.00s ****************************************
+2025-07-17 06:10:23,306 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=10.00
+2025-07-17 06:10:23,306 EQC-0        INFO     ⚙️  assign @ t=10.00: 22 nodos detectados
+2025-07-17 06:10:23,307 EQC-0        INFO     🔍 POI-4 detectado @ (4.007685458925097, 22.79729405917836) t=10.00
+2025-07-17 06:10:23,308 EQC-0        INFO     🔍 POI-12 detectado @ (0.282254294589962, 19.775809030087473) t=10.00
+2025-07-17 06:10:23,308 EQC-0        INFO     🔍 POI-16 detectado @ (6.330760428261911, 27.697580962204043) t=10.00
+2025-07-17 06:10:23,309 EQC-0        INFO     🔍 POI-36 detectado @ (1.9436473775037877, 22.261692271056415) t=10.00
+2025-07-17 06:10:23,312 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(13.452246245201792, 13.0, 7.0)
+2025-07-17 06:10:23,313 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:23,313 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:23,314 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (8.112978384122886, 9.84634804055535, 7.0) t=10
+2025-07-17 06:10:23,314 VQC-3        INFO     📤 DELIVER enviado: ['100-007', '100-032', '100-012']
+2025-07-17 06:10:23,314 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(12.045101717495783, 8.5, 7.0)
+2025-07-17 06:10:23,316 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:23,318 EQC-0        INFO     📥 DELIVER from VQC-3: [{'id': '100-007', 'label': 'POI-8'}, {'id': '100-032', 'label': 'POI-33'}, {'id': '100-012', 'label': 'POI-13'}]
+2025-07-17 06:10:23,319 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: ['100-007', '100-032', '100-012']
+2025-07-17 06:10:23,320 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (8.112978384122886, 9.84634804055535, 7.0) t=10
+2025-07-17 06:10:23,321 VQC-2        INFO     📤 DELIVER enviado: ['100-005', '100-012', '100-038']
+2025-07-17 06:10:23,321 VQC-3        INFO     📥 DELIVER_ACK recibido: ['100-007', '100-032', '100-012']
+2025-07-17 06:10:23,321 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-005', 'label': 'POI-6'}, {'id': '100-012', 'label': 'POI-13'}, {'id': '100-038', 'label': 'POI-39'}]
+2025-07-17 06:10:23,324 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-005', '100-012', '100-038']
+2025-07-17 06:10:23,324 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:23,326 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-005', '100-012', '100-038']
+2025-07-17 06:10:23,327 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(12.047317508542271, 11.5, 7.0)
+2025-07-17 06:10:23,328 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:23,329 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (8.112978384122886, 9.84634804055535, 7.0) t=10
+2025-07-17 06:10:23,329 VQC-1        INFO     📤 DELIVER enviado: ['100-002', '100-039']
+2025-07-17 06:10:23,330 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-002', 'label': 'POI-3'}, {'id': '100-039', 'label': 'POI-40'}]
+2025-07-17 06:10:23,331 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-002', '100-039']
+2025-07-17 06:10:23,332 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-002', '100-039']
+2025-07-17 06:10:23,346 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,347 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,347 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,348 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,374 VQC-2        INFO     🔍 Casual detect: 100-039 (POI-40)
+2025-07-17 06:10:23,387 VQC-3        INFO     🔍 Casual detect: 100-039 (POI-40)
+2025-07-17 06:10:23,492 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (10.045101717468313, 8.5, 7.0)
+2025-07-17 06:10:23,493 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,498 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (11.452246245169967, 13.0, 7.0)
+2025-07-17 06:10:23,500 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,511 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (10.045842394928371, 11.5, 7.0)
+2025-07-17 06:10:23,521 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,528 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (11.452247923681107, 7.000000000000002, 7.0)
+2025-07-17 06:10:23,530 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,535 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,538 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,539 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,539 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,690 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (10.452245312502605, 7.000000000000002, 7.0)
+2025-07-17 06:10:23,691 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,696 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (9.044673479199325, 11.5, 7.0)
+2025-07-17 06:10:23,697 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,702 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (10.452246245147855, 13.0, 7.0)
+2025-07-17 06:10:23,708 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,715 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (9.045101717446556, 8.5, 7.0)
+2025-07-17 06:10:23,715 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,725 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,727 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,731 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,734 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,747 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,896 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (8.045101717459154, 8.5, 7.0)
+2025-07-17 06:10:23,897 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,902 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (9.298888850668433, 14.499999999999998, 7.0)
+2025-07-17 06:10:23,904 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,917 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (9.452246245160133, 13.0, 7.0)
+2025-07-17 06:10:23,920 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,935 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (9.452246763373601, 7.000000000000002, 7.0)
+2025-07-17 06:10:23,937 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,940 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (8.045349297442016, 11.5, 7.0)
+2025-07-17 06:10:23,944 root         INFO     Mission: Starting mission
+2025-07-17 06:10:23,952 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,957 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,958 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,958 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:23,959 VQC-4        INFO     🔍 Casual detect: 100-039 (POI-40)
+2025-07-17 06:10:23,981 VQC-3        INFO     🔍 Casual detect: 100-038 (POI-39)
+2025-07-17 06:10:24,012 VQC-2        INFO     🔍 Casual detect: 100-030 (POI-31)
+2025-07-17 06:10:24,113 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (7.04495857752773, 11.5, 7.0)
+2025-07-17 06:10:24,116 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,123 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (8.45224595721404, 7.000000000000002, 7.0)
+2025-07-17 06:10:24,125 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,132 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (8.452246245153333, 13.0, 7.0)
+2025-07-17 06:10:24,137 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,144 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (7.045101717451871, 8.5, 7.0)
+2025-07-17 06:10:24,156 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,203 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,214 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,216 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,228 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,349 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,400 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (9.020487575584639, 14.499999999999998, 7.0)
+2025-07-17 06:10:24,402 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,407 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (6.045101717456092, 8.5, 7.0)
+2025-07-17 06:10:24,407 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,410 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (7.452246245157099, 13.0, 7.0)
+2025-07-17 06:10:24,411 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,417 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (6.045184473031441, 11.5, 7.0)
+2025-07-17 06:10:24,417 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,421 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (7.452246405147222, 7.000000000000002, 7.0)
+2025-07-17 06:10:24,423 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,429 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,430 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,432 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,435 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,435 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,477 VQC-1        INFO     🔍 Casual detect: 100-030 (POI-31)
+2025-07-17 06:10:24,573 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (6.4522461562583695, 7.000000000000002, 7.0)
+2025-07-17 06:10:24,574 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,578 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (5.0450538722050595, 11.5, 7.0)
+2025-07-17 06:10:24,579 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,582 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (6.452246245155024, 13.0, 7.0)
+2025-07-17 06:10:24,586 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,597 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (7.794228634059948, 14.52848440117896, 7.0)
+2025-07-17 06:10:24,599 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,604 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (5.04510171745364, 8.5, 7.0)
+2025-07-17 06:10:24,604 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,616 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,616 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,618 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,618 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,620 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,774 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (4.0451017174550685, 8.5, 7.0)
+2025-07-17 06:10:24,776 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,780 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (7.794228634059948, 15.008192379715558, 7.0)
+2025-07-17 06:10:24,781 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,790 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (5.452246245156182, 13.0, 7.0)
+2025-07-17 06:10:24,798 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,803 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (5.452246294550577, 7.000000000000002, 7.0)
+2025-07-17 06:10:24,804 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,808 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (4.045129379063894, 11.5, 7.0)
+2025-07-17 06:10:24,809 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,818 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,819 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,820 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,822 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,823 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:24,838 root         INFO     Mission: Going to waypoint 4
+2025-07-17 06:10:24,839 EQC-0        INFO     🛰️ EQC rumbo al waypoint en 4
+2025-07-17 06:10:24,965 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (3.0450857249030037, 11.5, 7.0)
+2025-07-17 06:10:24,967 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,971 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (5.196152422706633, 7.615229720548138, 7.0)
+2025-07-17 06:10:24,972 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,977 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (5.196152422706632, 13.41372662888394, 7.0)
+2025-07-17 06:10:24,979 root         INFO     Mission: Starting mission
+2025-07-17 06:10:24,991 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (3.045101717454252, 8.5, 7.0)
+2025-07-17 06:10:24,996 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,002 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (7.794228634059948, 15.930161905165653, 7.0)
+2025-07-17 06:10:25,002 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,014 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,016 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,018 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,020 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,020 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,179 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (7.794228634059948, 16.919506005404713, 7.0)
+2025-07-17 06:10:25,181 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,187 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (2.5980762113533165, 8.944556594967995, 7.0)
+2025-07-17 06:10:25,190 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,200 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (5.196152422706632, 14.251216287937797, 7.0)
+2025-07-17 06:10:25,201 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,208 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (2.598076211353316, 11.807883149132149, 7.0)
+2025-07-17 06:10:25,214 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,221 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (5.196152422706633, 8.623181052184803, 7.0)
+2025-07-17 06:10:25,222 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,228 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,229 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,233 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,234 VQC-3        INFO     🔍 Casual detect: 100-011 (POI-12)
+2025-07-17 06:10:25,235 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,236 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,405 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-2.99999999999889, 7.425164693401284, 7.0)
+2025-07-17 06:10:25,407 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,414 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.5000000000005536, 8.481265107374, 7.0)
+2025-07-17 06:10:25,416 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,423 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (3.000000000001107, 7.0341775369024155, 7.0)
+2025-07-17 06:10:25,428 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,438 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (4.500000000001661, 5.624138834212477, 7.0)
+2025-07-17 06:10:25,440 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,444 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999445, 8.841450894530624, 7.0)
+2025-07-17 06:10:25,445 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,449 VQC-5        INFO     📤 HELLO sent: free=3
+2025-07-17 06:10:25,450 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:25,451 EQC-0        INFO     📩 HELLO from VQC-5: free=3, pos=(7.794228634059948, 16.919506005404713, 7.0)
+2025-07-17 06:10:25,452 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:25,453 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(5.196152422706632, 14.251216287937797, 7.0)
+2025-07-17 06:10:25,454 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:25,457 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (0.6597741779671508, 12.771094964685428, 7.0) t=11
+2025-07-17 06:10:25,458 VQC-5        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:25,458 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (0.6597741779671508, 12.771094964685428, 7.0) t=11
+2025-07-17 06:10:25,460 VQC-3        INFO     📤 DELIVER enviado: ['100-039', '100-038', '100-011']
+2025-07-17 06:10:25,461 EQC-0        INFO     📥 DELIVER from VQC-5: []
+2025-07-17 06:10:25,464 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: []
+2025-07-17 06:10:25,465 EQC-0        INFO     📥 DELIVER from VQC-3: [{'id': '100-039', 'label': 'POI-40'}, {'id': '100-038', 'label': 'POI-39'}, {'id': '100-011', 'label': 'POI-12'}]
+2025-07-17 06:10:25,466 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: ['100-039', '100-038', '100-011']
+2025-07-17 06:10:25,466 VQC-5        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:25,467 VQC-3        INFO     📥 DELIVER_ACK recibido: ['100-039', '100-038', '100-011']
+2025-07-17 06:10:25,468 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:25,471 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:25,472 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(2.5980762113533165, 8.944556594967995, 7.0)
+2025-07-17 06:10:25,472 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:25,473 EQC-0        INFO     📩 HELLO from VQC-4: free=5, pos=(5.196152422706633, 8.623181052184803, 7.0)
+2025-07-17 06:10:25,473 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-4
+2025-07-17 06:10:25,474 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (0.6597741779671508, 12.771094964685428, 7.0) t=11
+2025-07-17 06:10:25,475 VQC-2        INFO     📤 DELIVER enviado: ['100-039', '100-030']
+2025-07-17 06:10:25,475 VQC-4        INFO     ✅ VQC-4 recebeu HELLO_ACK, enviando DELIVER en (0.6597741779671508, 12.771094964685428, 7.0) t=11
+2025-07-17 06:10:25,478 VQC-4        INFO     📤 DELIVER enviado: ['100-039']
+2025-07-17 06:10:25,479 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-039', 'label': 'POI-40'}, {'id': '100-030', 'label': 'POI-31'}]
+2025-07-17 06:10:25,479 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-039', '100-030']
+2025-07-17 06:10:25,480 EQC-0        INFO     📥 DELIVER from VQC-4: [{'id': '100-039', 'label': 'POI-40'}]
+2025-07-17 06:10:25,480 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-4: ['100-039']
+2025-07-17 06:10:25,481 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-039', '100-030']
+2025-07-17 06:10:25,482 VQC-4        INFO     📥 DELIVER_ACK recibido: ['100-039']
+2025-07-17 06:10:25,482 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:25,484 EQC-0        INFO     **************************************** t=11.00s ****************************************
+2025-07-17 06:10:25,485 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=11.00
+2025-07-17 06:10:25,485 EQC-0        INFO     ⚙️  assign @ t=11.00: 16 nodos detectados
+2025-07-17 06:10:25,486 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(2.598076211353316, 11.807883149132149, 7.0)
+2025-07-17 06:10:25,487 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:25,488 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (0.6597741779671508, 12.771094964685428, 7.0) t=11
+2025-07-17 06:10:25,490 VQC-1        INFO     📤 DELIVER enviado: ['100-030']
+2025-07-17 06:10:25,492 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-030', 'label': 'POI-31'}]
+2025-07-17 06:10:25,493 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-030']
+2025-07-17 06:10:25,493 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-030']
+2025-07-17 06:10:25,596 VQC-3        INFO     🔍 Casual detect: 100-030 (POI-31)
+2025-07-17 06:10:25,672 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,710 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,837 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.4999999999999996, 11.849984015889138, 7.0)
+2025-07-17 06:10:25,838 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,838 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999999, 11.6254954421191, 7.0)
+2025-07-17 06:10:25,846 root         INFO     Mission: Starting mission
+2025-07-17 06:10:25,968 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:25,990 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,028 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,035 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,046 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-2.999999999999998, 11.58715107998545, 7.0)
+2025-07-17 06:10:26,050 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,055 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999999, 11.736523699843907, 7.0)
+2025-07-17 06:10:26,055 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,059 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.4999999999999996, 11.939675299482765, 7.0)
+2025-07-17 06:10:26,061 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,066 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (2.999999999999999, 12.010677884088235, 7.0)
+2025-07-17 06:10:26,068 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,076 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,077 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,235 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.4999999999999996, 12.963706326765475, 7.0)
+2025-07-17 06:10:26,237 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,238 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999999, 13.082480182209316, 7.0)
+2025-07-17 06:10:26,246 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,266 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,268 VQC-2        INFO     🔍 Casual detect: 100-011 (POI-12)
+2025-07-17 06:10:26,291 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,310 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,329 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,358 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,428 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999999, 13.881644933198348, 7.0)
+2025-07-17 06:10:26,428 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,434 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-2.999999999999998, 12.525895433895744, 7.0)
+2025-07-17 06:10:26,435 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,439 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (5.425644237946201, 12.205771365940052, 7.0)
+2025-07-17 06:10:26,443 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,458 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (2.999999999999999, 12.29535319756727, 7.0)
+2025-07-17 06:10:26,460 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,465 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.4999999999999996, 13.94980824779909, 7.0)
+2025-07-17 06:10:26,467 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,476 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,477 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,480 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,482 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,527 VQC-4        INFO     🔍 Casual detect: 100-011 (POI-12)
+2025-07-17 06:10:26,627 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.4999999999999996, 14.957841853749127, 7.0)
+2025-07-17 06:10:26,630 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,635 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (2.999999999999999, 13.689259807772867, 7.0)
+2025-07-17 06:10:26,637 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,645 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999999, 14.997406243831456, 7.0)
+2025-07-17 06:10:26,646 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,651 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-2.999999999999998, 13.559908927316709, 7.0)
+2025-07-17 06:10:26,652 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,661 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,665 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,669 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,692 VQC-1        INFO     🔍 Casual detect: 100-035 (POI-36)
+2025-07-17 06:10:26,693 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,708 root         INFO     Mission: Going to waypoint 5
+2025-07-17 06:10:26,710 EQC-0        INFO     🛰️ EQC rumbo al waypoint en 5
+2025-07-17 06:10:26,834 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-2.999999999999998, 14.541002938892678, 7.0)
+2025-07-17 06:10:26,836 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,839 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999999, 15.930377143188114, 7.0)
+2025-07-17 06:10:26,839 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,856 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.4999999999999996, 15.95319671942445, 7.0)
+2025-07-17 06:10:26,861 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,876 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (2.999999999999999, 14.469552394829115, 7.0)
+2025-07-17 06:10:26,877 root         INFO     Mission: Starting mission
+2025-07-17 06:10:26,886 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,886 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,887 VQC-2        INFO     🔍 Casual detect: 100-035 (POI-36)
+2025-07-17 06:10:26,888 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,889 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:26,917 VQC-3        INFO     🔍 Casual detect: 100-035 (POI-36)
+2025-07-17 06:10:26,919 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,046 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (3.4378899824800433, 14.803847577293368, 7.0)
+2025-07-17 06:10:27,046 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,052 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.4999999999999996, 16.95588212588332, 7.0)
+2025-07-17 06:10:27,053 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,059 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (5.991863650018032, 12.205771365940052, 7.0)
+2025-07-17 06:10:27,060 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,064 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-2.3818776928362246, 14.803847577293368, 7.0)
+2025-07-17 06:10:27,070 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,078 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.499999999999999, 16.9690929836151, 7.0)
+2025-07-17 06:10:27,079 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,087 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,088 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,090 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,092 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,094 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,256 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.0615417068980857, 17.401923788646684, 7.0)
+2025-07-17 06:10:27,258 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,263 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-1.3777472783055074, 14.803847577293368, 7.0)
+2025-07-17 06:10:27,264 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,277 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (6.928271161641557, 12.205771365940052, 7.0)
+2025-07-17 06:10:27,279 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,284 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (4.254446762033562, 14.803847577293368, 7.0)
+2025-07-17 06:10:27,286 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,293 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.8075682570786138, 17.401923788646684, 7.0)
+2025-07-17 06:10:27,294 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,303 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,304 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,308 VQC-2        INFO     🔍 Casual detect: 100-003 (POI-4)
+2025-07-17 06:10:27,312 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,313 VQC-3        INFO     🔍 Casual detect: 100-003 (POI-4)
+2025-07-17 06:10:27,314 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,316 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,472 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (-1.5187656202883169, 18.499999999999353, 7.0)
+2025-07-17 06:10:27,473 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,478 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (-2.9654120760940046, 16.999999999998707, 7.0)
+2025-07-17 06:10:27,480 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,494 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (-4.3746214047621095, 15.499999999998062, 7.0)
+2025-07-17 06:10:27,498 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,508 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (-1.1562287399316205, 21.499999999999353, 7.0)
+2025-07-17 06:10:27,513 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,524 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (-2.574537588437746, 22.999999999998707, 7.0)
+2025-07-17 06:10:27,526 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,527 VQC-5        INFO     📤 HELLO sent: free=3
+2025-07-17 06:10:27,528 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:27,530 EQC-0        INFO     📩 HELLO from VQC-5: free=3, pos=(6.928271161641557, 12.205771365940052, 7.0)
+2025-07-17 06:10:27,534 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:27,536 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(1.8075682570786138, 17.401923788646684, 7.0)
+2025-07-17 06:10:27,539 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:27,539 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (3.786483085329365, 19.115797333030685, 7.0) t=12
+2025-07-17 06:10:27,541 VQC-5        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:27,541 VQC-1        INFO     ✅ VQC-1 recebeu HELLO_ACK, enviando DELIVER en (3.786483085329365, 19.115797333030685, 7.0) t=12
+2025-07-17 06:10:27,541 VQC-1        INFO     📤 DELIVER enviado: ['100-035']
+2025-07-17 06:10:27,541 EQC-0        INFO     📥 DELIVER from VQC-5: []
+2025-07-17 06:10:27,546 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: []
+2025-07-17 06:10:27,547 EQC-0        INFO     📥 DELIVER from VQC-1: [{'id': '100-035', 'label': 'POI-36'}]
+2025-07-17 06:10:27,549 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-1: ['100-035']
+2025-07-17 06:10:27,549 VQC-5        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:27,551 VQC-1        INFO     📥 DELIVER_ACK recibido: ['100-035']
+2025-07-17 06:10:27,553 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:27,553 VQC-3        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:27,554 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(-1.0615417068980857, 17.401923788646684, 7.0)
+2025-07-17 06:10:27,554 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:27,556 EQC-0        INFO     📩 HELLO from VQC-3: free=5, pos=(4.254446762033562, 14.803847577293368, 7.0)
+2025-07-17 06:10:27,557 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-3
+2025-07-17 06:10:27,557 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (3.786483085329365, 19.115797333030685, 7.0) t=12
+2025-07-17 06:10:27,559 VQC-2        INFO     📤 DELIVER enviado: ['100-011', '100-035', '100-003']
+2025-07-17 06:10:27,560 VQC-3        INFO     ✅ VQC-3 recebeu HELLO_ACK, enviando DELIVER en (3.786483085329365, 19.115797333030685, 7.0) t=12
+2025-07-17 06:10:27,561 VQC-3        INFO     📤 DELIVER enviado: ['100-030', '100-035', '100-003']
+2025-07-17 06:10:27,561 EQC-0        INFO     📥 DELIVER from VQC-2: [{'id': '100-011', 'label': 'POI-12'}, {'id': '100-035', 'label': 'POI-36'}, {'id': '100-003', 'label': 'POI-4'}]
+2025-07-17 06:10:27,562 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-2: ['100-011', '100-035', '100-003']
+2025-07-17 06:10:27,563 EQC-0        INFO     📥 DELIVER from VQC-3: [{'id': '100-030', 'label': 'POI-31'}, {'id': '100-035', 'label': 'POI-36'}, {'id': '100-003', 'label': 'POI-4'}]
+2025-07-17 06:10:27,566 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-3: ['100-030', '100-035', '100-003']
+2025-07-17 06:10:27,567 VQC-2        INFO     📥 DELIVER_ACK recibido: ['100-011', '100-035', '100-003']
+2025-07-17 06:10:27,568 VQC-3        INFO     📥 DELIVER_ACK recibido: ['100-030', '100-035', '100-003']
+2025-07-17 06:10:27,568 EQC-0        INFO     **************************************** t=12.00s ****************************************
+2025-07-17 06:10:27,568 EQC-0        INFO     ⚙️  EQC handle_timer('assign') @ t=12.00
+2025-07-17 06:10:27,568 EQC-0        INFO     ⚙️  assign @ t=12.00: 20 nodos detectados
+2025-07-17 06:10:27,570 EQC-0        INFO     🔍 POI-25 detectado @ (7.3594328232926385, 33.79878423562354) t=12.00
+2025-07-17 06:10:27,571 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:27,572 EQC-0        INFO     📩 HELLO from VQC-4: free=5, pos=(-1.3777472783055074, 14.803847577293368, 7.0)
+2025-07-17 06:10:27,574 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-4
+2025-07-17 06:10:27,575 VQC-4        INFO     ✅ VQC-4 recebeu HELLO_ACK, enviando DELIVER en (3.786483085329365, 19.115797333030685, 7.0) t=12
+2025-07-17 06:10:27,575 VQC-4        INFO     📤 DELIVER enviado: ['100-011']
+2025-07-17 06:10:27,576 EQC-0        INFO     📥 DELIVER from VQC-4: [{'id': '100-011', 'label': 'POI-12'}]
+2025-07-17 06:10:27,577 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-4: ['100-011']
+2025-07-17 06:10:27,578 VQC-4        INFO     📥 DELIVER_ACK recibido: ['100-011']
+2025-07-17 06:10:27,590 VQC-4        INFO     🔍 Casual detect: 100-035 (POI-36)
+2025-07-17 06:10:27,741 VQC-4        INFO     🔍 Casual detect: 100-003 (POI-4)
+2025-07-17 06:10:27,768 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,810 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:27,930 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (1.6240577852200957, 21.5, 7.0)
+2025-07-17 06:10:27,932 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,938 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.8500032695116388, 18.5, 7.0)
+2025-07-17 06:10:27,940 root         INFO     Mission: Starting mission
+2025-07-17 06:10:27,986 VQC-2        INFO     🔍 Casual detect: 100-000 (POI-1)
+2025-07-17 06:10:28,041 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,069 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,111 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,123 VQC-2        INFO     🔍 Casual detect: 100-015 (POI-16)
+2025-07-17 06:10:28,134 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,150 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (1.939693015590315, 18.5, 7.0)
+2025-07-17 06:10:28,184 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,204 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (1.587076055346273, 23.0, 7.0)
+2025-07-17 06:10:28,213 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,220 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (1.7352481054943993, 21.5, 7.0)
+2025-07-17 06:10:28,220 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,223 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (2.0089853833655162, 17.0, 7.0)
+2025-07-17 06:10:28,229 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,257 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,259 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,351 VQC-4        INFO     🔍 Casual detect: 100-000 (POI-1)
+2025-07-17 06:10:28,379 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (3.0832326988175964, 21.5, 7.0)
+2025-07-17 06:10:28,380 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,384 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (2.963696068222127, 18.5, 7.0)
+2025-07-17 06:10:28,385 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,398 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,400 VQC-4        INFO     🔍 Casual detect: 100-015 (POI-16)
+2025-07-17 06:10:28,412 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,426 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,440 VQC-2        INFO     🔍 Casual detect: 100-032 (POI-33)
+2025-07-17 06:10:28,440 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,470 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,514 VQC-3        INFO     🔍 Casual detect: 100-000 (POI-1)
+2025-07-17 06:10:28,535 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (2.525936996970593, 23.0, 7.0)
+2025-07-17 06:10:28,536 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,538 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (3.949814173341121, 18.5, 7.0)
+2025-07-17 06:10:28,538 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,538 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (3.881216009051819, 21.5, 7.0)
+2025-07-17 06:10:28,538 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,538 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (3.813927974214721, 15.5, 7.0)
+2025-07-17 06:10:28,538 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,546 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (2.2962569653452363, 17.0, 7.0)
+2025-07-17 06:10:28,546 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,560 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,561 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,562 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,562 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,690 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (3.688748805122078, 17.0, 7.0)
+2025-07-17 06:10:28,691 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,694 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (4.997656043251928, 21.5, 7.0)
+2025-07-17 06:10:28,695 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,699 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (3.559885795922309, 23.0, 7.0)
+2025-07-17 06:10:28,700 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,704 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (4.957838426105678, 18.5, 7.0)
+2025-07-17 06:10:28,704 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,714 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,716 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,718 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,732 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,748 VQC-4        INFO     🔍 Casual detect: 100-032 (POI-33)
+2025-07-17 06:10:28,856 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (5.953198700508832, 18.5, 7.0)
+2025-07-17 06:10:28,858 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,862 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (4.541015779919071, 23.0, 7.0)
+2025-07-17 06:10:28,863 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,866 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (5.9302333724228475, 21.5, 7.0)
+2025-07-17 06:10:28,866 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,866 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (4.46983322662663, 17.0, 7.0)
+2025-07-17 06:10:28,866 root         INFO     Mission: Starting mission
+2025-07-17 06:10:28,886 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,887 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,888 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:28,888 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,014 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,036 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (4.1541757993648005, 15.5, 7.0)
+2025-07-17 06:10:29,037 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,040 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (5.591173362268023, 17.0, 7.0)
+2025-07-17 06:10:29,040 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,040 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (6.9691763133811016, 21.5, 7.0)
+2025-07-17 06:10:29,040 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,046 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (6.955880980320263, 18.5, 7.0)
+2025-07-17 06:10:29,046 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,046 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (5.551498570734388, 23.0, 7.0)
+2025-07-17 06:10:29,046 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,066 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,067 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,068 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,069 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,069 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,215 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (6.545673281872631, 23.0, 7.0)
+2025-07-17 06:10:29,220 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,255 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (7.954330165800311, 18.5, 7.0)
+2025-07-17 06:10:29,256 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,262 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (7.9466495786544336, 21.5, 7.0)
+2025-07-17 06:10:29,275 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,282 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (5.138442385326815, 15.5, 7.0)
+2025-07-17 06:10:29,290 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,302 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (6.52366746876411, 17.0, 7.0)
+2025-07-17 06:10:29,304 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,317 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,324 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,325 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,326 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,332 root         INFO     Mission: Stopping mission
+2025-07-17 06:10:29,470 VQC-3        INFO     🛰️ Satélite predictivo → interceptar en (7.561148976056229, 17.0, 7.0)
+2025-07-17 06:10:29,471 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,473 VQC-5        INFO     🛰️ Satélite predictivo → interceptar en (6.147035200068178, 15.5, 7.0)
+2025-07-17 06:10:29,474 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,477 VQC-2        INFO     🛰️ Satélite predictivo → interceptar en (8.95966929019448, 21.5, 7.0)
+2025-07-17 06:10:29,483 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,489 VQC-4        INFO     🛰️ Satélite predictivo → interceptar en (7.5489098349984545, 23.0, 7.0)
+2025-07-17 06:10:29,491 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,496 VQC-1        INFO     🛰️ Satélite predictivo → interceptar en (8.95522674825726, 18.5, 7.0)
+2025-07-17 06:10:29,497 root         INFO     Mission: Starting mission
+2025-07-17 06:10:29,498 VQC-5        INFO     📤 HELLO sent: free=3
+2025-07-17 06:10:29,500 VQC-4        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:29,503 EQC-0        INFO     📩 HELLO from VQC-5: free=3, pos=(5.138442385326815, 15.5, 7.0)
+2025-07-17 06:10:29,507 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-5
+2025-07-17 06:10:29,512 EQC-0        INFO     📩 HELLO from VQC-4: free=5, pos=(6.545673281872631, 23.0, 7.0)
+2025-07-17 06:10:29,514 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-4
+2025-07-17 06:10:29,520 VQC-5        INFO     ✅ VQC-5 recebeu HELLO_ACK, enviando DELIVER en (13.784653231547633, 19.307092202980172, 7.0) t=13
+2025-07-17 06:10:29,523 VQC-5        INFO     📤 DELIVER enviado: []
+2025-07-17 06:10:29,525 VQC-4        INFO     ✅ VQC-4 recebeu HELLO_ACK, enviando DELIVER en (13.784653231547633, 19.307092202980172, 7.0) t=13
+2025-07-17 06:10:29,529 VQC-4        INFO     📤 DELIVER enviado: ['100-035', '100-003', '100-000', '100-015', '100-032']
+2025-07-17 06:10:29,532 EQC-0        INFO     📥 DELIVER from VQC-5: []
+2025-07-17 06:10:29,532 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-5: []
+2025-07-17 06:10:29,534 EQC-0        INFO     📥 DELIVER from VQC-4: [{'id': '100-035', 'label': 'POI-36'}, {'id': '100-003', 'label': 'POI-4'}, {'id': '100-000', 'label': 'POI-1'}, {'id': '100-015', 'label': 'POI-16'}, {'id': '100-032', 'label': 'POI-33'}]
+2025-07-17 06:10:29,538 EQC-0        INFO     📣 Enviado DELIVER_ACK a VQC-4: ['100-035', '100-003', '100-000', '100-015', '100-032']
+2025-07-17 06:10:29,538 VQC-5        INFO     📥 DELIVER_ACK recibido: []
+2025-07-17 06:10:29,538 VQC-4        INFO     📥 DELIVER_ACK recibido: ['100-035', '100-003', '100-000', '100-015', '100-032']
+2025-07-17 06:10:29,544 VQC-2        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:29,546 VQC-1        INFO     📤 HELLO sent: free=5
+2025-07-17 06:10:29,553 EQC-0        INFO     📩 HELLO from VQC-2: free=5, pos=(7.9466495786544336, 21.5, 7.0)
+2025-07-17 06:10:29,559 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-2
+2025-07-17 06:10:29,560 EQC-0        INFO     📩 HELLO from VQC-1: free=5, pos=(7.954330165800311, 18.5, 7.0)
+2025-07-17 06:10:29,561 EQC-0        INFO     📣 EQC envió HELLO_ACK a VQC-1
+2025-07-17 06:10:29,562 VQC-2        INFO     ✅ VQC-2 recebeu HELLO_ACK, enviando DELIVER en (13.784653231547633, 19.307092202980172, 7.0) t=13

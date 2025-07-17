@@ -1,22 +1,17 @@
-# experiments.py
 
 import subprocess
 import re
 import csv
 import itertools
 
-seeds = list(range(100, 101))  
-# ——— Listas de valores a probar ———
+seeds = list(range(100, 110))  
 num_pois_list     = [50, 100, 200]      # densidades de PoIs
-num_vqcs_list     = [5, 10, 20]          # número de V-QCs
-buffer_sizes_list = [3, 5, 10]         # tamaño de buffer M
-speeds_list       = [5.0]        # velocidad de vuelo (m/s)
+num_vqcs_list     = [5, 10, 20]         # número de V-QCs
+buffer_sizes_list = [3, 5, 10]          # tamaño de buffer M
+speeds_list       = [5.0]               # velocidad de vuelo (m/s)
 camera_reaches    = [10.0, 15.0, 20.0]  # alcance oblicuo de la cámara
 
-# FOV angular siempre fijo en 180° (hemiespacio)
-#camera_theta = 180.0
 
-# Archivo de resultados
 with open('experiment_results.csv', 'w', newline='', encoding='utf-8') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['seed',
@@ -27,14 +22,13 @@ with open('experiment_results.csv', 'w', newline='', encoding='utf-8') as csvfil
         'avg_latency','discovery_rate'
     ])
 
-    # Luego:
-    for seed in seeds:              # <<< EDITA AQUÍ
+    for seed in seeds:              
         for pois, vqcs, buf, spd, reach in itertools.product(
             num_pois_list, num_vqcs_list, buffer_sizes_list, speeds_list, camera_reaches
         ):
             cmd = (
                 f"python run_simulation.py"
-                f" --seed {seed}"                   # <<< EDITA AQUÍ: pasamos la seed
+                f" --seed {seed}"                   
                 f" --num_pois {pois}"
                 f" --num_vqcs {vqcs}"
                 f" --buffer_size {buf}"

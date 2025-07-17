@@ -19,27 +19,21 @@ from gradysim.protocol.plugin.mission_mobility import MissionMobilityPlugin, Mis
 from gradysim.simulator.extension.camera import CameraHardware, CameraConfiguration
 
 import config
-from config import MAX_ASSIGN_PER_ENCOUNTER                    
-
+from config import MAX_ASSIGN_PER_ENCOUNTER
+from config import EQC_WAYPOINTS 
 class EQCProtocol(IProtocol):
 
     def initialize(self) -> None:
         self.id = self.provider.get_id()
         self.log = logging.getLogger(f"EQC-{self.id}")
-        self.log.info(f"Current handlers: s{self.log.handlers!r}")
-        self.assignment_policy = "greedy" # or "round_robin" or "load_balancing"  greedy
+        self.log.info(f"Current handlers: s{self.log.handlers}")
+        self.assignment_policy = "load_balancing" # or "round_robin" or "load_balancing"  greedy
         self.encounter_assigned = {vid: 0 for vid in range(config.NUM_VQCS)}
         self.last_hello_time = {}
 
-        # ——— Inicializar el último waypoint para el logging condicional ———
         self._last_wp = None
 
-        # Definir waypoints de patrulla
-        waypoints = [
-            (0,0,7.0),(config.L,0,7.0),(config.L,10,7.0),(0,10,7.0),
-            (0,20,7.0),(config.L,20,7.0),(config.L,30,7.0),(0,30,7.0),
-            (0,40,7.0),(config.L,40,7.0),(config.L,config.L,7.0),(0,config.L,7.0),
-        ]
+        waypoints = EQC_WAYPOINTS
 
         self.log.info(f"🛰️  EQC iniciando patrulla con waypoints: {waypoints}")
         cfg = MissionMobilityConfiguration(
@@ -53,7 +47,8 @@ class EQCProtocol(IProtocol):
         # ---------- Métricas ----------
         self.start_time        = self.provider.current_time()
         self.assign_count      = 0                # total ASSIGNs enviadas
-        self.assign_success    = 0                # PoIs de ASSIGN que efectivamente se entregaron
+        self.assign_success    = 0
+        self.global_score      = 0                # PoIs de ASSIGN que efectivamente se entregaron
         self.assign_times      = {}               # mapa poi_label → t_assign
         self.latencies         = []               # lista de (label, latency)
         self.coverage_timeline = []               # lista de (elapsed_time, unique_count)
@@ -64,7 +59,7 @@ class EQCProtocol(IProtocol):
 
         self.cam_raw_count     = 0   # cada nodo detectado por take_picture()
         self.cam_poi_matches   = 0   # cuántos de esos nodes eran PoIs
-        # Flags de ejecución
+        # Flags
         self._executed = {
             "handle_timer.assign": False,
             "handle_packet.HELLO": False,
@@ -94,6 +89,7 @@ class EQCProtocol(IProtocol):
 
     def handle_telemetry(self, telemetry: Telemetry) -> None: # lo que hace es imprimir posicion y a que waypoint se dirige
         self.log.debug(f"📡 Telemetry: pos={telemetry.current_position}, idle={self.mission.is_idle}")
+        self.pos = telemetry.current_position
         if not self.mission.is_idle:
             wp = self.mission.current_waypoint
             self.log.debug(f"🛰️ EQC moving towards waypoint {wp}")
@@ -187,8 +183,7 @@ class EQCProtocol(IProtocol):
             if free <= 0:
                     self.log.debug(f"→ VQC-{vid} buffer FULL tras assign")
 
-            # CHANGED: ahora respondemos HELLO_ACK
-            ack = {"type": "HELLO_ACK", "v_id": vid}
+            ack = {"type": "HELLO_ACK", "v_id": vid,"eqc_pos": list(self.pos), "eqc_time": self.provider.current_time()}
             cmd_ack = CommunicationCommand(
                 CommunicationCommandType.SEND,
                 json.dumps(ack),
@@ -203,19 +198,20 @@ class EQCProtocol(IProtocol):
             vid = msg["v_id"]
             delivered = msg.get("pids", [])  
             self.log.info(f"📥 DELIVER from VQC-{vid}: {delivered}")
-            # Métricas y filtrado
             for entry in delivered:
                 label = entry.get("label")
                 poi_id = entry.get("id")
                 if label is None or poi_id is None:
                     self.log.warning(f"DELIVER malformed: {entry!r}")
                     continue
-                # 1) “Pop” usando el mismo label que guardamos en assign_times
                 t0 = self.assign_times.pop(label, None)
                 if t0 is not None:
                     latency = now - t0
                     self.latencies.append((label, latency))
                     self.assign_success += 1
+                    poi = next(p for p in config.POIS if p["label"] == label or p["id"] == poi_id)
+                    w = config.URGENCY_WEIGHTS.get(poi["urgency"], 0)
+                    self.global_score += w                    
                 elif label not in config.METRICS["unique_ids"]:
                     config.METRICS["unique_ids"].add(label)
                     self.log.debug(f"ℹ️ First auto‐deliver for {label}")
@@ -373,7 +369,7 @@ class EQCProtocol(IProtocol):
         best_vid = None
         for vid, st in self.vqc_states.items():
             free = st["huecos"]
-            buffer_max = getattr(config, "BUFFER_M", 5)  # Suponemos existe BUFFER_M en config
+            buffer_max = config.M
             ratio = free / buffer_max if buffer_max > 0 else 0
             self.log.debug(f"→ VQC-{vid} free={free}, buffer_max={buffer_max}, ratio={ratio:.2f}")
             if free > 0 and ratio > max_ratio:
@@ -450,10 +446,11 @@ class EQCProtocol(IProtocol):
         self.log.info(f"✅ EQC finished. Unique={unique}, redundant={redundant}")
         self.log.info(f"   Assigns sent={assigns}, successful delivers={success} (rate={success_rate:.2f})")
         self.log.info(f"   Avg. latency={avg_latency:.2f}s, discovery rate={discovery_rate:.2f} PoIs/s")
-
+        self.log.info(f"⭐ Global mission score = {self.global_score:.2f}")
+        config.METRICS["global_score"] = self.global_score
         self.log.info(f"📷 Cámara hizo {self.cam_raw_count} detecciones totales, "
                       f"{self.cam_poi_matches} coincidencias con PoIs")
-        # Métodos invocados
+       
         never_called = [k for k,v in self._executed.items() if not v]
         if never_called:
             self.log.warning(f"⚠️ Métodos nunca ejecutados: {never_called}")
@@ -465,7 +462,7 @@ class EQCProtocol(IProtocol):
         """
         if not detected:
             return
-        # Extrae sólo las tuplas de posición
+        
         coords = [tuple(n["position"]) for n in detected]
         counts = Counter(coords)
         entries = ", ".join(f"{pos}:{cnt}" for pos, cnt in counts.items())

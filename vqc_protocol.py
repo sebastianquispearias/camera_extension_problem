@@ -17,6 +17,10 @@ from gradysim.protocol.plugin.random_mobility import RandomMobilityPlugin, Rando
 from gradysim.protocol.plugin.mission_mobility import MissionMobilityPlugin, MissionMobilityConfiguration, LoopMission
 
 import config
+from config import EQC_INIT_POS
+
+import math
+from scipy.spatial.distance import euclidean
 
 class VQCProtocol(IProtocol):
     def initialize(self) -> None:
@@ -28,18 +32,25 @@ class VQCProtocol(IProtocol):
         self.discovered: List[Dict[str,str]] = []
         self.visited: List[str] = []
         self.delivering = False
-        
+        self.state = "satellite"   
+        self.last_assign = {
+            "eqc_pos":  EQC_INIT_POS,                 # (0.0, 0.0, 7.0)
+            "eqc_time": self.provider.current_time()         # t = 0.0 ó tiempo de inicio
+        }
+        self.log.info(f"🛰️ Posición inicial EQC sembrada: {self.last_assign['eqc_pos']}")
+
+
         self.log.info(f"🛫 VQC-{self.id} initialized at {self.pos}")
 
-        self.random = RandomMobilityPlugin(
-            self, RandomMobilityConfig(x_range=(0,config.L), y_range=(0,config.L), z_range=(4.0,4.0), tolerance=1)
-        )
+        #self.random = RandomMobilityPlugin(self, RandomMobilityConfig(x_range=(0,config.L), y_range=(0,config.L), z_range=(4.0,4.0), tolerance=1))
         self.mission = MissionMobilityPlugin(
             self, MissionMobilityConfiguration(speed=config.VQC_SPEED, loop_mission=LoopMission.NO, tolerance=1)
         )
 
-        self.random.initiate_random_trip()
-        self.log.info("✅ Random roaming started")
+        # Inicialmente arrancas en modo satélite a w₀
+        self.maintain_satellite_mode()
+
+        self.log.info("Modo satélite iniciado")
         t0 = self.provider.current_time()
         self.provider.schedule_timer("hello", t0+1)
         self.provider.schedule_timer("check_roam", t0+1)
@@ -55,6 +66,94 @@ class VQCProtocol(IProtocol):
             "handle_packet.HELLO_ACK": False,
             "handle_packet.DELIVER_ACK": False,
         }
+        
+    def predict_eqc_position(self, t: float) -> Tuple[float, float, float]:
+        """
+        Predice la posición del EQC a t segundos desde el inicio de la simulación,
+        interpolando linealmente entre waypoints.
+        """
+        waypoints = config.EQC_WAYPOINTS
+        v_eqc = config.EQC_SPEED
+
+        # calcular duración de cada tramo
+        durations = [euclidean(a, b) / v_eqc
+                    for a, b in zip(waypoints, waypoints[1:])]
+        total = sum(durations)
+
+        if t <= 0:
+            return waypoints[0]
+        if t >= total:
+            return waypoints[-1]
+
+        elapsed = 0.0
+        for (a, b), dur in zip(zip(waypoints, waypoints[1:]), durations):
+            if elapsed + dur >= t:
+                frac = (t - elapsed) / dur
+                return (
+                    a[0] + frac * (b[0] - a[0]),
+                    a[1] + frac * (b[1] - a[1]),
+                    a[2] + frac * (b[2] - a[2]),
+                )
+            elapsed += dur
+
+        return waypoints[-1]
+    # --- 2) Método auxiliar: calcular punto de intercepción predictiva ---
+    def compute_intercept(self) -> Tuple[float, float, float]:
+        """
+        Itera para encontrar Δt tal que el VQC llegue justo donde estará el EQC.
+        """
+        now = self.provider.current_time()
+        pos_vqc = self.pos                         # usa tu posición interna
+        v_vqc = config.VQC_SPEED
+
+        # estimación inicial: EQC en t = now
+        pred = self.predict_eqc_position(now)
+        dt = euclidean(pos_vqc, pred) / v_vqc
+
+        # refinar con 5 iteraciones para converger
+        for _ in range(5):
+            T = now + dt
+            pred = self.predict_eqc_position(T)
+            dt = euclidean(pos_vqc, pred) / v_vqc
+
+
+        angle   = math.radians(150)  # apertura de 30°
+        spacing = 3.0               # 1 m entre cada “paso” de la V
+
+        # Determinar ala y profundidad según el id (1…N)
+        # lado: alterna izquierda/derecha; profundidad: ceil(id/2)
+        side  = -1 if (self.id % 2) != 0 else 1
+        depth = (self.id + 1) // 2
+
+        # Aproximar rumbo (heading) del EQC en este instante
+        curr  = self.predict_eqc_position(now)
+        fut   = self.predict_eqc_position(now + 0.1)
+        heading = math.atan2(fut[1] - curr[1], fut[0] - curr[0])
+
+        # Vector de offset en V
+        dx = spacing * depth * math.cos(heading + side * angle)
+        dy = spacing * depth * math.sin(heading + side * angle)
+
+        # Punto final: intercept + offset en XY, misma Z
+        return (pred[0] + dx, pred[1] + dy, pred[2])
+
+    # --- 3) Mantenimiento de modo satélite con intercepción dinámica ---
+    def maintain_satellite_mode(self):
+        """
+        En lugar de un offset fijo, calcula el punto donde interceptar al EQC
+        en movimiento y lanza la misión hacia allí.
+        """
+        # 1) calcular punto de interceptación
+        intercept = self.compute_intercept()
+        self.log.info(f"🛰️ Satélite predictivo → interceptar en {intercept}")
+
+        # 2) lanzar misión hacia ese punto SIN el argumento 'loop'
+        #    (usa la configuración que ya diste en MissionMobilityConfiguration)
+        self.mission.start_mission([intercept])
+
+        # 3) cambiar estado
+        self.state = "satellite"
+
     def handle_telemetry(self, telemetry: Telemetry) -> None:
         self._exec["handle_telemetry"] = True
         in_mission = not self.mission.is_idle
@@ -154,12 +253,15 @@ class VQCProtocol(IProtocol):
             self.log.info(f"📤 HELLO sent: free={free}")
             self.provider.schedule_timer("hello", self.provider.current_time()+1)
 
-        elif timer == "check_roam":
-            self.log.debug(f"🔥 check_roam: idle={self.mission.is_idle}, roaming={self.random._trip_ongoing}")
-            if self.mission.is_idle and not self.random._trip_ongoing:
-                self.log.info("✅ check_roam: resuming random roaming")
-                self.random.initiate_random_trip()
-            self.provider.schedule_timer("check_roam", self.provider.current_time()+1)
+        elif timer == "check_roam": #¿Estoy libre de misiones (mission.is_idle) y no estoy ya vagando de forma aleatoria (random._trip_ongoing)
+            self.log.debug(f"🔥 check_roam: idle={self.mission.is_idle}")
+            if self.mission.is_idle:
+                if self.state == "visiting":
+                    self.log.info("🏁 Fin de misión → modo satélite")
+                    self.state = "satellite"
+                self.maintain_satellite_mode()
+                # si estoy en satellite y la misión idle, no hago nada
+            self.provider.schedule_timer("check_roam", self.provider.current_time()+0.1)
 
     def handle_packet(self, message: str) -> None:
         self.log.debug(f"📥 handle_packet ASSIGN: {message}")
@@ -213,19 +315,23 @@ class VQCProtocol(IProtocol):
 
             # 5) Si tras el merge no queda nada, reanudar roaming
             if not self.next2visit:
-                self.log.warning("⚠️ No quedan PoIs tras merge → reanudando roaming")
-                self.random.initiate_random_trip()
+                self.log.info("🔄 ASSIGN vacío → sigo en modo satélite")
                 return
                 
             # 6) Arrancar la misión guiada con la lista combinada
-            waypoints = [coord for (coord, _) in self.next2visit]
-            self.log.info(f"🗺️ Waypoints combinados: {waypoints}")
-            self.random.finish_random_trip()
-            self.mission.start_mission(waypoints)
+            coords  = [coord for (coord, _) in self.next2visit]
+            self.log.info(f"🗺️ Waypoints combinados: {coords}")
+            self.state = "visiting"
+            self.mission.start_mission(coords)
+            return
             
         elif t == "HELLO_ACK":
                 self._exec["handle_packet.HELLO_ACK"] = True
-                self.log.info(f"✅ VQC-{self.id} recebeu HELLO_ACK, enviando DELIVER")
+                self.last_assign = {
+                    "eqc_pos":  tuple(msg.get("eqc_pos", self.pos)),
+                    "eqc_time": msg.get("eqc_time", self.provider.current_time())
+                }
+                self.log.info(f"✅ VQC-{self.id} recebeu HELLO_ACK, enviando DELIVER en {self.last_assign['eqc_pos']} t={self.last_assign['eqc_time']}")
                 self.send_deliver() 
 
         elif t == "DELIVER_ACK":

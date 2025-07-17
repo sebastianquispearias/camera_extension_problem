@@ -1,0 +1,2 @@
+seed,num_pois,num_vqcs,buffer_size,speed,camera_reach,assign_success,redundant_delivers,avg_latency,discovery_rate
+100,50,5,3,5.0,10.0,17,5,28.294,0.09
