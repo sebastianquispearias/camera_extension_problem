@@ -1,4 +1,4 @@
-
+git
 """
 Simulation parameters and PoI definitions:
 - Area size, camera and detection ranges.
