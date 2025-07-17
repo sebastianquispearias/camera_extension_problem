@@ -4,7 +4,7 @@ import re
 import csv
 import itertools
 
-seeds = list(range(100, 101))  
+seeds = list(range(100, 110))  
 num_pois_list     = [50, 100, 200]      # densidades de PoIs
 num_vqcs_list     = [5, 10, 20]         # número de V-QCs
 buffer_sizes_list = [3, 5, 10]          # tamaño de buffer M
@@ -46,24 +46,7 @@ with open('experiment_results.csv', 'w', newline='', encoding='utf-8') as csvfil
             a_l = re.search(r'avg_latency\s*=\s*([\d\.]+)s', log)
             d_r = re.search(r'discovery rate=\s*([\d\.]+)\s*PoIs/s', log)
 
-            gms = re.search(r'Global mission score\s*=\s*([\d\.]+)', log)
-            global_score = float(gms.group(1)) if gms else ''
-
-            # Camera matches
-            cam = re.search(
-                r'Cámara hizo\s*\d+\s*detecciones.*?,\s*(\d+)\s*coincidencias',
-                log
-            )
-            cam_matches = int(cam.group(1)) if cam else ''
-
-            # Assigns sent & assign rate (successful delivers ya ≡ assign_success)
-            ar = re.search(
-                r'Assigns sent=(\d+), successful delivers=(\d+) \(rate=([\d\.]+)\)',
-                log
-            )
-            assigns_sent = int(ar.group(1)) if ar else ''
-            assign_rate  = float(ar.group(3)) if ar else ''
-            
+            writer.writerow([
             writer.writerow([
                 seed, pois, vqcs, buf, spd, reach,
                 int(a_s.group(1)) if a_s else '',
@@ -80,7 +63,5 @@ with open('experiment_results.csv', 'w', newline='', encoding='utf-8') as csvfil
                 f"→ seed={seed}, Pois={pois}, VQCs={vqcs}, M={buf}, "
                 f"speed={spd}, reach={reach} → "
                 f"assign_success={a_s.group(1) if a_s else '?'}  "
-                f"redundant_delivers={r_d.group(1) if r_d else '?'}  "
-                f"global_score={global_score}  "  
-                f"assign_rate={assign_rate}"      
-            )
+                f"redundant_delivers={r_d.group(1) if r_d else '?'}"
+            )  # <<< OPCIONAL: añade seed al print para mayor trazabilidad

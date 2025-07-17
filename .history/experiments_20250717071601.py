@@ -4,7 +4,7 @@ import re
 import csv
 import itertools
 
-seeds = list(range(100, 101))  
+seeds = list(range(100, 10))  
 num_pois_list     = [50, 100, 200]      # densidades de PoIs
 num_vqcs_list     = [5, 10, 20]         # número de V-QCs
 buffer_sizes_list = [3, 5, 10]          # tamaño de buffer M
