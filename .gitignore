@@ -4,3 +4,5 @@ models/
 *.xlsx
 *_history.csv
 *.h5
+.lh/
+gradysim/
